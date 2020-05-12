@@ -10,7 +10,7 @@
         <div>
             <h3>{{ $event->title }}</h3>
             <!-- 枚数持ってくる処理が必要 -->
-            <p>掲載期間：{{ $event->release_date }} - {{ $event.end_date }} 枚数：(eventに紐づいているpicturesの枚数) キー：{{ $event.auth_key }}</p>
+            <p>掲載期間：{{ $event->release_date }} - {{ $event->end_date }} 枚数：(eventに紐づいているpicturesの枚数) キー：{{ $event->auth_key }}</p>
             <a href="">編集ボタン</a>
         </div>
     @endforeach
