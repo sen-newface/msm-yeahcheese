@@ -84,7 +84,7 @@
                 <a href="/login">login</a>
                 <a href="/register">register</a>
             </div>
-            @end
+            @endif
         </div>
 
         <div class="content">
