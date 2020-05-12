@@ -10,5 +10,5 @@ class Event extends Model
         'title',
         'release_date',
         'end_date',
-    ]
+    ];
 }
