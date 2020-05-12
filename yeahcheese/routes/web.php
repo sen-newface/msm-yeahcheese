@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/index', 'EventController@index')->name('event.index');
+Route::get('/event/create', 'EventController@create')->name('event.create');
+Route::post('/event/create', 'EventController@store')->name('event.store');
+Route::get('/event/update', 'EventController@update')->name('event.update');
+# テスト表示用なのでputは用意しません
+Route::get('/event/search', 'EventController@search')->name('event.search');
+Route::get('/event/show/{id}', 'EventController@show')->name('event.show');
