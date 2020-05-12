@@ -20,7 +20,7 @@ class CreateEventsTables extends Migration
             $table->date('release_date');
             $table->date('end_date');
             $table->string('auth_key');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
