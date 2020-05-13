@@ -15,6 +15,7 @@ class EventController extends Controller
     }
 
     /**
+     * EventのAuth_key(8桁の文字列)を生成する
      * @param $str 文字列を受け取る(ここでは$event->titleを期待)
      * @param $generateKey $strとランダムに生成された8桁のバイト文字列を結合して格納する
      * @return $generateKeyから生成された8桁のハッシュ値を返す
@@ -26,7 +27,8 @@ class EventController extends Controller
     }
 
     /**
-     * @return イベント作成のページを表示する
+     * イベント作成のページを表示する
+     * @return event_create.blade.phpからビューを作成し、表示する
      */
     public function create()
     {
@@ -34,6 +36,7 @@ class EventController extends Controller
     }
 
     /**
+     * /events/create/ のページのフォーム情報を受け取り、保存する
      * @param $request POSTリクエストを受け取る
      * @param $form $requestの中からhtml側のformに格納された情報を取り出し、受け取る
      * @param $event 新規作成するEventの情報を格納する
@@ -41,7 +44,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        #リダイレクトのテストでとりあえずhomeに飛ばしています
         $event = new \App\Event;
         $event->user_id = Auth::id();
         $form = $request->all();
