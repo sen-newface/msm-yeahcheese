@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Event;
 
-
 class EventController extends Controller
 {
     public function index()
