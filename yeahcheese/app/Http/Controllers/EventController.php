@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Event;
+use \App\Picture;
 
 class EventController extends Controller
 {
+  
     public function index()
     {
         $events = Event::with('pictures')->get();
         return view('events_list', ['events' => $events]);
     }
-
+  
     /**
      * EventのAuth_key(8桁の文字列)を生成する
      * @param $str 文字列を受け取る(ここでは$event->titleを期待)
@@ -52,5 +54,14 @@ class EventController extends Controller
         $event->auth_key = $this->generateHash($event->title);
         $event->save();
         return redirect('events');
+    }
+  
+    // TODO: resquestに認証キー
+    public function show(Request $request, $event)
+    {
+        $event = Event::where('auth_key', $request->auth_key)->get();
+        $picture = Picture::where('event_id', $event->id)->get();
+        $data = [['pictures' => $picture], ['event' => $event]];
+        return view('event', $data);
     }
 }
