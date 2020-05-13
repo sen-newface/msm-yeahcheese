@@ -3,7 +3,7 @@
 @section('title', 'イベント')
 
 @section('content')
-    <h2>{{ $data->event->title }}</h2><!-- eventのタイトル -->
+    <h2>{{ $data['event']->title }}</h2><!-- eventのタイトル -->
     <!-- events.id == pictures.event_idのpictures.path -->
     <div>
     @foreach($data->pictures as $picture)<!-- 写真一覧表示 -->
