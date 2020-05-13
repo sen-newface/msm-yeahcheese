@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Event;
+use \App\Picture;
 
 class EventController extends Controller
 {
-    public function show(Request $request) //resquestに認証キー
+    // TODO: resquestに認証キー
+    public function show(Request $request)
     {
-        $event = \App\Event::where('auth_key', $request)->get();
-        $picture = \App\Picture::where('event_id', $event->id)->get();
+        $event = Event::where('auth_key', $request->auth)->get();
+        $picture = Picture::where('event_id', $event->id)->get();
         $data = [['pictures' => $picture], ['event' => $event]];
         return view('event', $data);
     }
