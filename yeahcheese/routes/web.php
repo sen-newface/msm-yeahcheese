@@ -21,10 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/index', 'EventController@index')->name('event.index');
-Route::get('/event/create', 'EventController@create')->name('event.create');
-Route::post('/event/create', 'EventController@store')->name('event.store');
-Route::get('/event/update', 'EventController@update')->name('event.update');
-# テスト表示用なのでputは用意しません
-Route::get('/event/search', 'EventController@search')->name('event.search');
-Route::get('/event/show/{id}', 'EventController@show')->name('event.show');
+Route::prefix('events')->group(function () {
+    Route::get('/', 'EventController@index')->name('events.index');
+    Route::get('create', 'EventController@create')->name('events.create');
+    Route::post('/', 'EventController@store')->name('events.store');
+    Route::get('update', 'EventController@update')->name('events.update');
+    # テスト表示用なのでputは用意しません
+    Route::get('search', 'EventController@search')->name('events.search');
+    Route::get('show/{id}', 'EventController@show')->name('events.show');
+});
