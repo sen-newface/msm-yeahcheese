@@ -32,7 +32,7 @@ class EventsTableSeeder extends Seeder
                 'end_date' => '2020-05-30',
                 'auth_key' => '33333333',
                 'user_id' => 2,
-            ]
+            ],
         ]);
     }
 }
