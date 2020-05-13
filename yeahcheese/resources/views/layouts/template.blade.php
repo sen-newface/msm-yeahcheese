@@ -66,26 +66,22 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            <div>
-                @yield('title')
+        <nav class="navbar nabvar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <p>@yield('title')</p>
+                <!--ログインしてたら-->
+                @if (Auth::check())
+                    <a href="">home</a>
+                    <!--ログアウトの処理が必要-->
+                    <a href="">logout</a>
+                    <p>{{ Auth::user()->email }}</p>
+                <!--ログインしてなかったら-->
+                @else
+                    <a href="/login">login</a>
+                    <a href="/register">register</a>
+                @endif
             </div>
-            <!--ログインしてたら-->
-            @if (Auth::check())
-            <div>
-                <a href="">home</a>
-                <!--ログアウトの処理が必要-->
-                <a href="">logout</a>
-                <p>{{ $user->mailaddress }}</p>
-            </div>
-            <!--ログインしてなかったら-->
-            @else
-            <div>
-                <a href="/login">login</a>
-                <a href="/register">register</a>
-            </div>
-            @endif
-        </div>
+        </nav>
 
         <div class="content">
             @yield('content')

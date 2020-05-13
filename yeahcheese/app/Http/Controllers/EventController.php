@@ -8,6 +8,13 @@ use \App\Picture;
 
 class EventController extends Controller
 {
+  
+    public function index()
+    {
+        $events = Event::with('pictures')->get();
+        return view('events_list', ['events' => $events]);
+    }
+  
     // TODO: resquestに認証キー
     public function show(Request $request)
     {
