@@ -4,12 +4,17 @@
 
 @section('content')
     <div>
-    @if(isset($event))
+    @if(!is_null($event))
         <h2>{{ $event->title }}</h2><!-- eventのタイトル -->
+        <!-- 写真一覧表示 -->
+        @foreach($pictures as $picture)
+        <div>
+            <!-- events.id == pictures.event_idのpictures.path -->
+            <img src="{{ \Storage::url($picture->path) }}" style="width:250px">
+        </div>
+        @endforeach
     @else
-        <h2>error</h2>
+        <h2>イベントが見つかりませんでした</h2>
     @endif
-    <!-- ここに写真が入ります -->
-    <!-- events.id == pictures.event_idのpictures.path -->
     </div>
 @endsection

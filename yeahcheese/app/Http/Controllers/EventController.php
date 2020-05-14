@@ -67,11 +67,13 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $event = Event::where('auth_key', $request->auth_key)->first();
-        // 今の段階で画像を登録する機能がないので画像は投げずにイベントのみ受け渡し
-        // 画像の有無を確認する機能が必要
-        //$picture = Picture::where('event_id', $event->id)->get();
-        //$data = [['pictures' => $picture], ['event' => $event]];
-        return view('event', ['event' => $event]);
+        if(is_null($event))
+        {
+            $pictures = null;
+        } else {
+            $pictures = $event->pictures();
+        }
+        return view('event', compact('event', 'pictures'));
     }
 
     public function search()
