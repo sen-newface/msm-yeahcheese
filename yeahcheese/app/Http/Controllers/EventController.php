@@ -46,7 +46,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Event::$rules);
+        $this->validate($request, Event::$rules, Event::$messages);
 
         $form = $request->all();
         unset($form['_token']);
