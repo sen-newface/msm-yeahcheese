@@ -12,10 +12,10 @@ class EventController extends Controller
 {
     public function index()
     {
-        $date = CarbonImmutable::now()->toDateString();
+        $today = CarbonImmutable::now()->toDateString();
         $id = Auth::id();
         $events = Event::where('user_id', $id)->with('pictures')->get();
-        return view('events_list', ['events' => $events, 'date' => $date]);
+        return view('events_list', ['events' => $events, 'today' => $today]);
     }
 
     /**
