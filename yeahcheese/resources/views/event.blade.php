@@ -9,7 +9,16 @@
     @else
         <h2>error</h2>
     @endif
-    <!-- ここに写真が入ります -->
     <!-- events.id == pictures.event_idのpictures.path -->
+    <!-- 写真一覧表示 -->
+    @if(isset($pictures))
+        @foreach($pictures as $picture)
+        <div>
+            <img src="{{ \Storage::url($picture->path) }}" style="width:250px">
+        </div>
+        @endforeach
+    @else
+        <p>画像はまだ登録されていません</p>
+    @endif
     </div>
 @endsection
