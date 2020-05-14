@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Event;
 use \App\Picture;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
     public function index()
     {
+        $date = Carbon::now()->toDateString();
         $id = Auth::id();
         $events = Event::where('user_id', $id)->with('pictures')->get();
-        return view('events_list', ['events' => $events]);
+        return view('events_list', ['events' => $events, 'date' => $date]);
     }
 
     /**
