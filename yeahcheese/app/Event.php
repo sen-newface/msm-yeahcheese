@@ -15,6 +15,9 @@ class Event extends Model
         return $this->hasMany('App\Picture');
     }
 
+    public static $rules = array(
+    );
+
     protected $fillable = [
         'title',
         'release_date',
