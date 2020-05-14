@@ -71,9 +71,15 @@
                 <p>@yield('title')</p>
                 <!--ログインしてたら-->
                 @if (Auth::check())
-                    <a href="">home</a>
-                    <!--ログアウトの処理が必要-->
-                    <a href="">logout</a>
+                    <!--ログアウトの処理-->
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                     <p>{{ Auth::user()->email }}</p>
                 <!--ログインしてなかったら-->
                 @else
