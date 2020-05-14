@@ -8,10 +8,19 @@
         @csrf
         <h3>イベント名</h3>
         <input type="text" name="title">
+        @if($errors->has('title'))
+        <p>{{ $errors->first('title') }}</p>
+        @endif
         <h3>公開開始日</h3>
         <input type="date" name="release_date">
+        @if($errors->has('release_date'))
+        <p>{{ $errors->first('release_date') }}</p>
+        @endif
         <h3>公開終了日</h3>
         <input type="date" name="end_date">
+        @if($errors->has('end_date'))
+        <p>{{ $errors->first('end_date') }}</p>
+        @endif
         <input type="submit" value="作成">
     </form>
 @endsection
