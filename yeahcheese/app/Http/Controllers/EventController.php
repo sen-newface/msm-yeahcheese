@@ -46,6 +46,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Event::$rules);
         $event = new \App\Event;
         $event->user_id = Auth::id();
         $form = $request->all();
