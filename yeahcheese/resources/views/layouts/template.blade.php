@@ -71,6 +71,7 @@
                 <p>@yield('title')</p>
                 <!--ログインしてたら-->
                 @if (Auth::check())
+                    <a href="{{ url('/home') }}">Home</a>
                     <!--ログアウトの処理-->
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
