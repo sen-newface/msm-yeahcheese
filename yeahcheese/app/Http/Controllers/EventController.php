@@ -64,7 +64,7 @@ class EventController extends Controller
         {
             $pictures = null;
         } else {
-            $pictures = Picture::where('event_id', $event->id)->get();
+            $pictures = $event->pictures();
         }
         return view('event', compact('event', 'pictures'));
     }
