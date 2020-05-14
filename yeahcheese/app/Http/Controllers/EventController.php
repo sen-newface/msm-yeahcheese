@@ -60,7 +60,16 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $event = Event::where('auth_key', $request->auth_key)->first();
-        $pictures = Picture::where('event_id', $event->id)->get();
+        if(is_null($event))
+        {
+            unset($pictures);
+        } else {
+            $pictures = Picture::where('event_id', $event->id)->get();
+            if(empty($pictures))
+            {
+                $pictures=null;
+            }
+        }
         return view('event', compact('event', 'pictures'));
     }
 
