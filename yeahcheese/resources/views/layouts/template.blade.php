@@ -68,10 +68,10 @@
     <body>
         <nav class="navbar nabvar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <p>@yield('title')</p>
+                <p>YeahCheese</p>
                 <!--ログインしてたら-->
                 @if (Auth::check())
-                    <a href="{{ url('/home') }}">Home</a>
+                    <a href="{{ route('events.index') }}">イベント一覧</a>
                     <!--ログアウトの処理-->
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
