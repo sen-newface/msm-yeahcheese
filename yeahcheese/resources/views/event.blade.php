@@ -1,13 +1,15 @@
-@extends(layouts.template)
+@extends('layouts.template')
 
 @section('title', 'イベント')
 
 @section('content')
-    <h2>{{ $data['event']->title }}</h2><!-- eventのタイトル -->
-    <!-- events.id == pictures.event_idのpictures.path -->
     <div>
-    @foreach($data['pictures'] as $picture)<!-- 写真一覧表示 -->
-        <img src="{{ \Storage::url($picture->path }}" style="width:250px">
-    @endforeach
+    @if(isset($event))
+        <h2>{{ $event->title }}</h2><!-- eventのタイトル -->
+    @else
+        <h2>error</h2>
+    @endif
+    <!-- ここに写真が入ります -->
+    <!-- events.id == pictures.event_idのpictures.path -->
     </div>
 @endsection
