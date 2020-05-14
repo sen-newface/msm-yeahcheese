@@ -27,8 +27,12 @@ class Event extends Model
 
         'release_date.required' => 'イベント公開開始日は必須項目です',
         'release_date.date' => 'イベント公開開始日は日付形式で入力してください',
-        'release_date.after' => 'イベント公開開始日は明日以降である必要があります',
-        'release_date.before' => 'イベント公開開始日はイベント公開終了日以前である必要があります',
+        'release_date.after' => 'イベント公開開始日は明日より後である必要があります',
+        'release_date.before' => 'イベント公開開始日はイベント公開終了日より前である必要があります',
+
+        'end_date.required' => 'イベント公開終了日は必須項目です',
+        'end_date.date' => 'イベント公開終了日は日付形式で入力してください',
+        'end_date.after' => 'イベント公開終了日はイベント公開日より後である必要があります',
     ];
 
     protected $fillable = [
