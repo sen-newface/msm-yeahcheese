@@ -17,7 +17,7 @@ class Event extends Model
 
     public static $rules = [
         'title' => ['required', 'max:255'],
-        'release_date' => ['required', 'date', 'after:today', 'before:end_date'],
+        'release_date' => ['required', 'date', 'after_or_equal:today', 'before:end_date'],
         'end_date' => ['required', 'date', 'after:today', 'after:release_date'],
     ];
 
