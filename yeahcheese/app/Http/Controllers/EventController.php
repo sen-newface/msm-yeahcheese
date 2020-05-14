@@ -47,13 +47,17 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, Event::$rules);
-        $event = new \App\Event;
-        $event->user_id = Auth::id();
+
         $form = $request->all();
         unset($form['_token']);
-        $event->fill($form);
+
+        $event = new Event;
+        $event->user_id = Auth::id();
         $event->auth_key = $this->generateHash($event->title);
+        $event->fill($form);
+
         $event->save();
+
         return redirect('events');
     }
   
