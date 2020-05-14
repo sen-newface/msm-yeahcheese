@@ -39,20 +39,25 @@ class EventController extends Controller
 
     /**
      * /events/create/ のページのフォーム情報を受け取り、保存する
-     * @param $request POSTリクエストを受け取る
+     * @param $request POSTリクエストを受け取る(Eventモデルの$rulesでバリデーションを行う)
      * @param $form $requestの中からhtml側のformに格納された情報を取り出し、受け取る
      * @param $event 新規作成するEventの情報を格納する
      * @return イベント一覧画面を表示する
      */
     public function store(Request $request)
     {
-        $event = new \App\Event;
-        $event->user_id = Auth::id();
+        $this->validate($request, Event::$rules, Event::$messages);
+
         $form = $request->all();
         unset($form['_token']);
-        $event->fill($form);
+
+        $event = new Event;
+        $event->user_id = Auth::id();
         $event->auth_key = $this->generateHash($event->title);
+        $event->fill($form);
+
         $event->save();
+
         return redirect('events');
     }
 
