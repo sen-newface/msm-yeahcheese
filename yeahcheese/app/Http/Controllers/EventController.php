@@ -9,13 +9,13 @@ use \App\Picture;
 
 class EventController extends Controller
 {
-  
     public function index()
     {
-        $events = Event::with('pictures')->get();
+        $id = Auth::id();
+        $events = Event::where('user_id', $id)->with('pictures')->get();
         return view('events_list', ['events' => $events]);
     }
-  
+
     /**
      * EventのAuth_key(8桁の文字列)を生成する
      * @param $str 文字列を受け取る(ここでは$event->titleを期待)
@@ -55,7 +55,7 @@ class EventController extends Controller
         $event->save();
         return redirect('events');
     }
-  
+
     // TODO: resquestに認証キー
     public function show(Request $request, $event)
     {
