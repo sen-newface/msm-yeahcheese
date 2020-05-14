@@ -56,12 +56,14 @@ class EventController extends Controller
     }
   
     // TODO: resquestに認証キー
-    public function show(Request $request, $event)
+    public function show(Request $request)
     {
-        $event = Event::where('auth_key', $request->auth_key)->get();
-        $picture = Picture::where('event_id', $event->id)->get();
-        $data = [['pictures' => $picture], ['event' => $event]];
-        return view('event', $data);
+        $event = Event::where('auth_key', $request->auth_key)->first();
+        // 今の段階で画像を登録する機能がないので画像は投げずにイベントのみ受け渡し
+        // 画像の有無を確認する機能が必要
+        //$picture = Picture::where('event_id', $event->id)->get();
+        //$data = [['pictures' => $picture], ['event' => $event]];
+        return view('event', ['event' => $event]);
     }
 
     public function search()
