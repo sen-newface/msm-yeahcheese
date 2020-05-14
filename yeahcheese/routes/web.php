@@ -21,10 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('events')->group(function () {
-    Route::get('/', 'EventController@index')->name('events.index')->middleware('auth');
-    Route::get('create', 'EventController@create')->name('events.create')->middleware('auth');
-    Route::post('/', 'EventController@store')->name('events.store')->middleware('auth');
-    Route::get('update', 'EventController@update')->name('events.update')->middleware('auth');
+    Route::middleware('auth')->group(function () {
+        Route::get('/', 'EventController@index')->name('events.index');
+        Route::get('create', 'EventController@create')->name('events.create');
+        Route::post('/', 'EventController@store')->name('events.store');
+        Route::get('update', 'EventController@update')->name('events.update');
+    });
     # テスト表示用なのでputは用意しません
     Route::get('search', 'EventController@search')->name('events.search');
     Route::post('show', 'EventController@show')->name('events.show');
