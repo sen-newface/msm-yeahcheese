@@ -21,6 +21,9 @@ class Event extends Model
         'end_date' => ['required', 'date', 'after:release_date'],
     ];
 
+    public static $messages = [
+    ];
+
     protected $fillable = [
         'title',
         'release_date',
