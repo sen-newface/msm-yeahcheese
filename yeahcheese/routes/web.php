@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('events')->group(function () {
-    Route::middleware('auth')->group(function(){
+    Route::middleware('auth')->group(function () {
         Route::get('/', 'EventController@index')->name('events.index');
         Route::get('create', 'EventController@create')->name('events.create');
         Route::post('/', 'EventController@store')->name('events.store');
