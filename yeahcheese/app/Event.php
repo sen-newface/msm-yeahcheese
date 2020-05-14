@@ -22,6 +22,8 @@ class Event extends Model
     ];
 
     public static $messages = [
+        'title.required' => 'イベントタイトルは必須項目です',
+        'title.max' => 'イベントタイトルは255文字まで設定できます',
     ];
 
     protected $fillable = [
