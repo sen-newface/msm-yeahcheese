@@ -62,13 +62,9 @@ class EventController extends Controller
         $event = Event::where('auth_key', $request->auth_key)->first();
         if(is_null($event))
         {
-            unset($pictures);
+            $pictures = null;
         } else {
             $pictures = Picture::where('event_id', $event->id)->get();
-            if(empty($pictures))
-            {
-                $pictures=null;
-            }
         }
         return view('event', compact('event', 'pictures'));
     }
