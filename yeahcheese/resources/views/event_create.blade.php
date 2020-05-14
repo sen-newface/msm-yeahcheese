@@ -21,6 +21,10 @@
         @if($errors->has('end_date'))
         <p>{{ $errors->first('end_date') }}</p>
         @endif
+        @if($errors->any())
+        <hr>
+        <p>入力した値が正しくありません。</p>
+        @endif
         <input type="submit" value="作成">
     </form>
 @endsection
