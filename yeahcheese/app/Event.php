@@ -32,6 +32,7 @@ class Event extends Model
 
         'end_date.required' => 'イベント公開終了日は必須項目です',
         'end_date.date' => 'イベント公開終了日は日付形式で入力してください',
+        'end_date.after' => 'イベント公開開始日は明日より後である必要があります',
         'end_date.after' => 'イベント公開終了日はイベント公開日より後である必要があります',
     ];
 
