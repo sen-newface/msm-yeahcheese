@@ -16,6 +16,7 @@ class Event extends Model
     }
 
     public static $rules = array(
+        'title' => ['required', 'max:255'],
     );
 
     protected $fillable = [
