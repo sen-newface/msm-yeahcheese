@@ -21,8 +21,8 @@ class PictureController extends Controller
         Picture::create(['path' => $path]);
         // 保存されたら編集画面に画像を表示するので
         // イベント編集画面をリダイレクト
-        // イベント編集画面のviewをつくってね
-        return redirect()->route('events.edit');
+        // イベント編集画面のrouteがupdate
+        return redirect()->route('events.update');
     }
 
     public function destroy(Picture $picture)
