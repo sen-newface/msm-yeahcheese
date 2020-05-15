@@ -15,7 +15,14 @@ class PictureController extends Controller
 
     public function store(Request $request)
     {
-        # code...
+        // 画像を保存
+        $path = \Storage::putFile('public', $request->file);
+        // DBに保存
+        Picture::create(['path' => $path]);
+        // 保存されたら編集画面に画像を表示するので
+        // イベント編集画面をリダイレクト
+        // イベント編集画面のviewをつくってね
+        return redirect()->route('events.edit');
     }
 
     public function destroy(Picture $picture)
