@@ -12,4 +12,9 @@ class PictureController extends Controller
     {
         # code...
     }
+
+    public function store(Request $request)
+    {
+        # code...
+    }
 }
