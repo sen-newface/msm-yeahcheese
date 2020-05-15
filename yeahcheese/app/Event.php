@@ -10,9 +10,35 @@ class Event extends Model
     {
         return $this->belongsTo('App\User');
     }
+
     public function pictures()
     {
         return $this->hasMany('App\Picture');
+    }
+
+    public function scopeUserIdEquals($query, $id)
+    {
+        return $query->where('user_id', $id);
+    }
+
+    public function scopeEndDateAfter($query, $date)
+    {
+        return $query->where('end_date', '>', $date);
+    }
+
+    public function scopeEndDateBefore($query, $date)
+    {
+        return $query->where('end_date', '<', $date);
+    }
+
+    public function scopeReleaseDateAfter($query, $date)
+    {
+        return $query->where('release_date', '>', $date);
+    }
+
+    public function scopeReleaseDateBefore($query, $date)
+    {
+        return $query->where('release_date', '<', $date);
     }
 
     public static $rules = [

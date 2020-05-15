@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Event;
-use \App\Picture;
-use Carbon\CarbonImmutable;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $today = CarbonImmutable::now()->toDateString();
         $id = Auth::id();
-        $events = Event::where('user_id', $id)->with('pictures')->get();
-        return view('events_list', ['events' => $events, 'today' => $today]);
+        $events = Event::userIdEquals($id)
+            ->with('pictures')
+            ->get();
+
+        return view('events_list', ['events' => $events]);
     }
 
     /**
