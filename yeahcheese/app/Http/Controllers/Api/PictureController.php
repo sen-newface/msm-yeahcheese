@@ -17,4 +17,9 @@ class PictureController extends Controller
     {
         # code...
     }
+
+    public function destroy(Picture $picture)
+    {
+        # code...
+    }
 }
