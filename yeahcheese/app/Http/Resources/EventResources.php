@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Event extends JsonResource
+class EventResources extends JsonResource
 {
     /**
      * Transform the resource into an array.

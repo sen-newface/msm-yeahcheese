@@ -12,7 +12,7 @@ class EventController extends Controller
 {
     public function fetch(Event $event)
     {
-        return new EventResource($event);
+        return new EventResources($event);
     }
 
     public function update(Event $event)
