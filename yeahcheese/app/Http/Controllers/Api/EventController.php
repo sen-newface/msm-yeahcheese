@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
 
+use App\Http\Resources\EventResources;
+
 class EventController extends Controller
 {
-    public function fetch(Event $event)
+    public function fetch($auth_key)
     {
-        # code...
+        $event = Event::AuthKeyEquals($auth_key)
+            ->first();
+        return new EventResources($event);
     }
 
     public function update(Event $event)
