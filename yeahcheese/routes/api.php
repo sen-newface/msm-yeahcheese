@@ -19,12 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('events')->group(function () {
-    Route::get('/', 'Api\EventController@fetch')->name('events.fetch');
-    Route::put('/', 'Api\EventController@update')->name('events.update');
+    Route::get('/fetch', 'Api\EventController@fetch')->name('events.fetch');
+    Route::put('/update', 'Api\EventController@update')->name('events.update');
 });
 
 Route::prefix('pictures')->group(function () {
-    Route::get('/', 'Api\PictureController@fetch')->name('pictures.fetch');
-    Route::post('/', 'Api\PictureController@store')->name('pictures.store');
-    Route::delete('/', 'Api\PictureController@destroy')->name('pictures.destroy');
+    Route::get('/fetch', 'Api\PictureController@fetch')->name('pictures.fetch');
+    Route::post('/store', 'Api\PictureController@store')->name('pictures.store');
+    Route::delete('/destroy', 'Api\PictureController@destroy')->name('pictures.destroy');
 });
