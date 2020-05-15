@@ -26,6 +26,11 @@ class Event extends Model
     
     }
 
+    public function scopeEndDateBefore($query, $date)
+    {
+    
+    }
+
     public static $rules = [
         'title' => ['required', 'max:255'],
         'release_date' => ['required', 'date', 'after_or_equal:today'],
