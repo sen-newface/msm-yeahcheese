@@ -14,7 +14,8 @@ class EventController extends Controller
     {
         $today = CarbonImmutable::now()->toDateString();
         $id = Auth::id();
-        $events = Event::where('user_id', $id)->with('pictures')->get();
+        // $events = Event::where('user_id', $id)->with('pictures')->get();
+        $events = Event::userIdEquals($id)->with('pictures')->get();
         return view('events_list', ['events' => $events, 'today' => $today]);
     }
 
