@@ -12,7 +12,8 @@ class EventController extends Controller
 {
     public function fetch($auth_key)
     {
-        $event = Event::AuthKeyEquals($auth_key)->first();
+        $event = Event::AuthKeyEquals($auth_key)
+            ->first();
         return new EventResources($event);
     }
 
