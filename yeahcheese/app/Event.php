@@ -28,7 +28,7 @@ class Event extends Model
 
     public function scopeEndDateBefore($query, $date)
     {
-    
+        return $query->where('end_date', '<', $date);
     }
 
     public static $rules = [
