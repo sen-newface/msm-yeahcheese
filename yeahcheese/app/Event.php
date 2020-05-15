@@ -21,6 +21,11 @@ class Event extends Model
         return $query->where('user_id', $id);
     }
 
+    public function scopeEndDateAfter($query, $date)
+    {
+    
+    }
+
     public static $rules = [
         'title' => ['required', 'max:255'],
         'release_date' => ['required', 'date', 'after_or_equal:today'],
