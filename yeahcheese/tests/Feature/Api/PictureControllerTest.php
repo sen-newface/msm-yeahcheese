@@ -22,6 +22,16 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessIndex()
     {
-        # code...
+        $response = $this->get('api/pictures/index');
+
+        $response->assertStatus(200);
+        
+        $response->assertJson([
+            'data' => [
+                ['path' => 'neko_magazine04.jpg'],
+                ['path' => 'neko_magazine04.jpg'],
+                ['path' => 'neko_magazine04.jpg'],
+            ]
+        ]);
     }
 }
