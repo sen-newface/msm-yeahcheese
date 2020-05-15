@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    //
+    public function fetch(\App\Event $event)
+    {
+        # code...
+    }
 }
