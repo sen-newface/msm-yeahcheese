@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('events')->group(function () {
-    Route::get('/fetch', 'Api\EventController@fetch')->name('events.fetch');
+    Route::get('/fetch/{auth_key}', 'Api\EventController@fetch')->name('events.fetch');
     Route::put('/update', 'Api\EventController@update')->name('events.update');
 });
 
