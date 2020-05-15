@@ -21,6 +21,11 @@ class Event extends Model
         return $query->where('user_id', $id);
     }
 
+    public function scopeAuthKeyEquals($query, $auth_key)
+    {
+        return $query->where('auth_key', $auth_key);
+    }
+
     public function scopeEndDateAfter($query, $date)
     {
         return $query->where('end_date', '>', $date);
