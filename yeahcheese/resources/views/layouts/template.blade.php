@@ -69,6 +69,7 @@
         <nav class="navbar nabvar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <p>YeahCheese</p>
+                <a href="{{ route('events.search') }}">イベント検索</a>
                 <!--ログインしてたら-->
                 @if (Auth::check())
                     <a href="{{ route('events.index') }}">イベント一覧</a>
