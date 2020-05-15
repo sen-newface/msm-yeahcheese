@@ -10,8 +10,9 @@ use App\Http\Resources\EventResources;
 
 class EventController extends Controller
 {
-    public function fetch(Event $event)
+    public function fetch($auth_key)
     {
+        $event = Event::AuthKeyEquals($auth_key)->first();
         return new EventResources($event);
     }
 
