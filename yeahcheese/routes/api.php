@@ -21,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('events')->group(function () {
     Route::get('/', 'Api\EventController@fetch')->name('events.fetch');
     Route::put('/', 'Api\EventController@update')->name('events.update');
+},
+
+Route::prefix('pictures')->group(function () {
 }
