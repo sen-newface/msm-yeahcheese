@@ -18,7 +18,7 @@ class Event extends Model
 
     public function scopeUserIdEquals($query, $id)
     {
-        return $query->where('id', '==', $id);
+        return $query->where('user_id', $id);
     }
 
     public static $rules = [
