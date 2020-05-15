@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('events')->group(function () {
+    Route::get('/fetch', 'Api\EventController@fetch')->name('events.fetch');
+    Route::put('/update', 'Api\EventController@update')->name('events.update');
+});
+
+Route::prefix('pictures')->group(function () {
+    Route::get('/fetch', 'Api\PictureController@fetch')->name('pictures.fetch');
+    Route::post('/store', 'Api\PictureController@store')->name('pictures.store');
+    Route::delete('/destroy', 'Api\PictureController@destroy')->name('pictures.destroy');
+});
