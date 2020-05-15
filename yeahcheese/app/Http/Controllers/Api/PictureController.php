@@ -19,10 +19,8 @@ class PictureController extends Controller
         $path = \Storage::putFile('public', $request->file);
         // DBに保存
         Picture::create(['path' => $path]);
-        // 保存されたら編集画面に画像を表示するので
-        // イベント編集画面をリダイレクト
-        // イベント編集画面のrouteがupdate
-        return redirect()->route('events.update');
+        // fetchに返す
+        return;
     }
 
     public function destroy(Picture $picture)
