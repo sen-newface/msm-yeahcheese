@@ -33,7 +33,7 @@ class Event extends Model
 
     public function scopeReleaseDateAfter($query, $date)
     {
-    
+        return $query->where('release_date', '>', $date);
     }
 
     public static $rules = [
