@@ -38,7 +38,7 @@ class Event extends Model
 
     public function scopeReleaseDateBefore($query, $date)
     {
-
+        return $query->where('release_date', '<', $date);
     }
 
     public static $rules = [
