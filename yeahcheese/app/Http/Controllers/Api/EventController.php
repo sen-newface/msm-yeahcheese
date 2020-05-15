@@ -11,4 +11,9 @@ class EventController extends Controller
     {
         # code...
     }
+
+    public function update(\App\Event $event)
+    {
+        #
+    }
 }
