@@ -14,6 +14,8 @@ class Picture extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return[
+            'path' => $this->path
+        ];
     }
 }
