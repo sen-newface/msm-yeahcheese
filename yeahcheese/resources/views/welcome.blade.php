@@ -74,7 +74,7 @@
                     <div class="links">
                         @auth
                             <a href="{{ route('events.index') }}">イベント一覧</a>
-                            <a href="{{ route('events.search') }}">認証キー入力</a>
+                            <a href="{{ route('events.search') }}">イベント検索</a>
                         @else
                             <a href="{{ route('login') }}">ログイン</a>
 
