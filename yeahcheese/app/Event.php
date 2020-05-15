@@ -16,6 +16,11 @@ class Event extends Model
         return $this->hasMany('App\Picture');
     }
 
+    public function scopeUserIdEquals($query, $id)
+    {
+    
+    }
+
     public static $rules = [
         'title' => ['required', 'max:255'],
         'release_date' => ['required', 'date', 'after_or_equal:today'],
