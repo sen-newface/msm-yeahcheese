@@ -8,6 +8,11 @@ use App\Picture;
 
 class PictureController extends Controller
 {
+    public function index()
+    {
+        # code...
+    }
+
     public function fetch(Picture $picture)
     {
         # code...
