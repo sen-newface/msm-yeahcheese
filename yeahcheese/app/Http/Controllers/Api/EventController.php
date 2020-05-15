@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
 
+use App\Http\Resources\EventResources;
+
 class EventController extends Controller
 {
     public function fetch(Event $event)
     {
-        # code...
+        return new EventResource($event);
     }
 
     public function update(Event $event)
