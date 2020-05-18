@@ -9,7 +9,7 @@ use App\Picture;
 
 class PictureController extends Controller
 {
-    public function index()
+    public function list()
     {
         $picture = Picture::all();
         return PictureResources::Collection($picture);
