@@ -28,8 +28,8 @@ class PictureController extends Controller
         # code...
     }
 
-    public function destroy(Picture $picture)
+    public function destroy($picture_id)
     {
-        # code...
+        Picture::where('id', $picture_id)->delete();
     }
 }
