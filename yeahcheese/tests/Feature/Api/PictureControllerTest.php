@@ -7,7 +7,7 @@ class PictureControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testSuccessIndex()
+    public function testSuccessGetPathList()
     {
         $this->seed();
         $response = $this->getJson('api/pictures/index');
