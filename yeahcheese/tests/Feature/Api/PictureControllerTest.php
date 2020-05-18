@@ -29,6 +29,7 @@ class PictureControllerTest extends TestCase
         $this->seed();
         $picture = Picture::find('1');
         $response = $this->getJson('api/pictures/fetch/' . $picture->id);
+
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
