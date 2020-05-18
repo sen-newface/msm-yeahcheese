@@ -4,11 +4,19 @@ namespace Tests\Feature\Api;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use UsersTableSeeder;
+use EventsTableSeeder;
+use PicturesTableSeeder;
 use Tests\TestCase;
 
 class EventControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp()
+    {
+    
+    }
 
     /**
      * A basic feature test example.
