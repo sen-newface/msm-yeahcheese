@@ -66,7 +66,7 @@ class EventController extends Controller
     // TODO: resquestに認証キー
     public function show(Request $request)
     {
-        $event = Event::where('auth_key', $request->auth_key)->first();
+        $event = Event::AuthKeyEquals($request->auth_key)->first();
         if(is_null($event))
         {
             $pictures = null;
