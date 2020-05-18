@@ -15,7 +15,7 @@ class EventControllerTest extends TestCase
 
     protected function setUp()
     {
-    
+        $this->seed();
     }
 
     /**
