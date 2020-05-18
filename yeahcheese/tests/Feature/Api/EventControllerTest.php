@@ -29,4 +29,8 @@ class EventControllerTest extends TestCase
             ]
         ]);
     }
+
+    public function testSuccessUpdate()
+    {
+    }
 }
