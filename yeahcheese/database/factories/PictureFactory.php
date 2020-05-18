@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Picture::class, function (Faker $faker) {
     return [
-        'path' => $faker->word,
+        'path' => $faker->word . '.jpeg',
         'event_id' => factory(App\Event::class),
     ];
 });
