@@ -70,7 +70,7 @@ class EventController extends Controller
         $today = CarbonImmutable::now()->toDateString();
 
         $event = Event::authKeyEquals($request->auth_key)
-            ->releaseDateBefore($today)
+            ->releaseDateBeforeOrEquals($today)
             ->endDateAfter($today)
             ->first();
 
