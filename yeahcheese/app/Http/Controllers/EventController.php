@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\CarbonImmutable;
 use App\Event;
 
 class EventController extends Controller
@@ -66,7 +67,13 @@ class EventController extends Controller
     // TODO: resquestに認証キー
     public function show(Request $request)
     {
-        $event = Event::AuthKeyEquals($request->auth_key)->first();
+
+        $today = CarbonImmutable::now()->toDateString();
+
+        $event = Event::AuthKeyEquals($request->auth_key)
+            ->ReleaseDateBefore($today)
+            ->EndDateAfter($today)
+            ->first();
 
         if(!is_null($event))
         {
