@@ -67,7 +67,6 @@ class EventController extends Controller
     // TODO: resquestに認証キー
     public function show(Request $request)
     {
-
         $today = CarbonImmutable::now()->toDateString();
 
         $event = Event::AuthKeyEquals($request->auth_key)
@@ -81,7 +80,7 @@ class EventController extends Controller
             return view('event', [
                 'event' => $event,
                 'pictures' => $pictures,
-            ]);
+            ])->with($request->auth_key);
         } else {
             return redirect('events/search');
         }
