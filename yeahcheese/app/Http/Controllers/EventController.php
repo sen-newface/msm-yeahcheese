@@ -75,18 +75,16 @@ class EventController extends Controller
             ->EndDateAfter($today)
             ->first();
 
-        if(!is_null($event))
-        {
+        if (!is_null($event)) {
             $pictures = $event->pictures()->get();
 
             return view('event', [
-                'event' => $event, 
+                'event' => $event,
                 'pictures' => $pictures,
             ]);
         } else {
             return redirect('events/search');
         }
-
     }
 
     public function search()
