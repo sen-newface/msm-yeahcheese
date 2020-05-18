@@ -1,5 +1,6 @@
 <?php
 
+use App\Picture;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -21,5 +22,16 @@ class PictureControllerTest extends TestCase
                 ['path' => 'neko_magazine04.jpg'],
             ]
         ]);
+    }
+
+    public function testSuccessDeletePicture()
+    {
+        $this->seed();
+        $picture = Picture::find('1');
+        $response = $this->deleteJson('api/pictures/destroy/'. $picture->id);
+        
+        $this->assertDatabaseMissing('pictures', ['id' => '1']);
+        $response->assertStatus(200);
+        
     }
 }
