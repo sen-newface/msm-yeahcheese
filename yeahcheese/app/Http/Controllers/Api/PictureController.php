@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PictureResources;
 use Illuminate\Http\Request;
 use App\Picture;
 
@@ -17,9 +16,11 @@ class PictureController extends Controller
         return PictureResources::Collection($picture);
     }
 
-    public function fetch(Picture $picture)
+    public function fetch($id)
     {
-        # code...
+        $picture = Picture::where('id', $id)
+            ->get();
+        return PictureResources::Collection($picture);
     }
 
     public function store(Request $request)
