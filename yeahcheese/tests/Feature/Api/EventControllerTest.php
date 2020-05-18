@@ -16,18 +16,6 @@ class EventControllerTest extends TestCase
         $this->seed();
     }
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
     public function testSuccessFetch()
     {
         $auth_key = '12345678';
