@@ -4,9 +4,6 @@ namespace Tests\Feature\Api;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use UsersTableSeeder;
-use EventsTableSeeder;
-use PicturesTableSeeder;
 use Tests\TestCase;
 
 class EventControllerTest extends TestCase
@@ -33,9 +30,9 @@ class EventControllerTest extends TestCase
 
     public function testSuccessFetch()
     {
-        $request = ['auth_key' => '12345678'];
+        $auth_key = '12345678';
 
-        $response = $this->getJson('api/events/fetch', $request);
+        $response = $this->getJson('api/events/fetch/' . $auth_key);
 
         $response->assertStatus(200);
 
@@ -44,8 +41,6 @@ class EventControllerTest extends TestCase
                 'title' => 'テストイベント１',
                 'release_date' => '2020-05-12',
                 'end_date' => '2020-05-30',
-                'auth_key' => '12345678',
-                'user_id' => 1,
             ]
         ]);
     }
