@@ -2,11 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\Picture;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Picture::class, function (Faker $faker) {
     return [
-        //
+        'path' => $faker->word,
+        'event_id' => factory(App\Event::class),
     ];
 });
