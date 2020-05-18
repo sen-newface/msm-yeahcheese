@@ -11,7 +11,8 @@ class PictureController extends Controller
 {
     public function index()
     {
-        return new PictureResources(Picture::all());
+        $picture = Picture::all();
+        return PictureResources::Collection($picture);
     }
 
     public function fetch(Picture $picture)
