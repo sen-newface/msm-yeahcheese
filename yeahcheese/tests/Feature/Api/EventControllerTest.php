@@ -33,5 +33,20 @@ class EventControllerTest extends TestCase
 
     public function testSuccessFetch()
     {
+        $request = ['auth_key' => '12345678'];
+
+        $response = $this->getJson('api/events/fetch', $request);
+
+        $response->assertStatus(200);
+
+        $response->assertJson([
+            'data' => [
+                'title' => 'テストイベント１',
+                'release_date' => '2020-05-12',
+                'end_date' => '2020-05-30',
+                'auth_key' => '12345678',
+                'user_id' => 1,
+            ]
+        ]);
     }
 }
