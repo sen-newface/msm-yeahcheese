@@ -7,6 +7,8 @@ use App\Http\Resources\PictureResources;
 use Illuminate\Http\Request;
 use App\Picture;
 
+use App\Http\Resources\PictureResources;
+
 class PictureController extends Controller
 {
     public function list()
