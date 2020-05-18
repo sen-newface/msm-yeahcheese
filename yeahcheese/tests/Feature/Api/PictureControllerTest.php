@@ -29,6 +29,7 @@ class PictureControllerTest extends TestCase
         $this->seed();
         $picture = Picture::find('1');
         $response = $this->deleteJson('api/pictures/destroy/'. $picture->id);
+        
         $this->assertDatabaseMissing('pictures', ['id' => '1']);
         $response->assertStatus(200);
         
