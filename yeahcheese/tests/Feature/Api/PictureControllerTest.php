@@ -5,6 +5,9 @@ namespace Tests\Feature\Api;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use PicturesTableSeeder;
+use EventsTableSeeder;
+use UsersTableSeeder;
 
 class PictureControllerTest extends TestCase
 {
@@ -24,7 +27,8 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessIndex()
     {
-        $response = $this->get('api/pictures/index');
+        $this->seed();
+        $response = $this->getJson('api/pictures/index');
 
         $response->assertStatus(200);
         
