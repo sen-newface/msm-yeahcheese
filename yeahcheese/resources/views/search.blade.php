@@ -7,7 +7,6 @@
     <h1>認証キー入力</h1>
     <div>
         <form method="GET" action="{{ route('events.show') }}">
-            @csrf
             <input type="text" name="auth_key" placeholder="認証キーを入力">
             <button type="submit">閲覧</button>
         </form>
