@@ -1,5 +1,6 @@
 <?php
 
+use App\Picture;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
