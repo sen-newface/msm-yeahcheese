@@ -67,13 +67,19 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $event = Event::AuthKeyEquals($request->auth_key)->first();
-        if(is_null($event))
+
+        if(!is_null($event))
         {
-            $pictures = null;
-        } else {
             $pictures = $event->pictures();
+
+            return view('event', [
+                'event' => $event, 
+                'pictures' => $pictures,
+            ]);
+        } else {
+            return redirect('events/search');
         }
-        return view('event', compact('event', 'pictures'));
+
     }
 
     public function search()
