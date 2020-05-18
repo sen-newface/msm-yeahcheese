@@ -70,7 +70,7 @@ class EventController extends Controller
 
         if(!is_null($event))
         {
-            $pictures = $event->pictures();
+            $pictures = $event->pictures()->get();
 
             return view('event', [
                 'event' => $event, 
