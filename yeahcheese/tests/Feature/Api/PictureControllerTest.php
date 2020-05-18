@@ -10,7 +10,7 @@ class PictureControllerTest extends TestCase
     public function testSuccessGetPathList()
     {
         $this->seed();
-        $response = $this->getJson('api/pictures/index');
+        $response = $this->getJson('api/pictures/list');
 
         $response->assertStatus(200);
 
