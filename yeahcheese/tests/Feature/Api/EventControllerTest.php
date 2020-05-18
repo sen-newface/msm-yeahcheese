@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class EventControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -18,5 +20,9 @@ class EventControllerTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    public function testSuccessFetch()
+    {
     }
 }
