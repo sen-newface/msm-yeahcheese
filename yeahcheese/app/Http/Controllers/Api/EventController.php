@@ -23,6 +23,7 @@ class EventController extends Controller
 
         if (!is_null($event)) {
             $event->fill($request->all())->save();
+            return new EventResources($event);
         }
     }
 }
