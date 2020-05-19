@@ -13,5 +13,6 @@ class Picture extends Model
     
     protected $fillable = [
         'path',
+        'event_id'
     ];
 }
