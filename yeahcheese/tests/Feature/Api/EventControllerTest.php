@@ -55,4 +55,25 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($request, $actual);
     }
+
+    public function testSuccessUpdateTitle()
+    {
+        $event = factory(Event::class)->create();
+
+        $request = [
+            'id' => $event->id,
+            'title' => 'update event title',
+        ];
+
+        $response = $this->put('api/events/update', $request);
+
+        $response->assertStatus(200);
+
+        $actual = [
+            'id' => $event->id,
+            'title' => Event::find($event->id)->title,
+        ];
+
+        $this->assertEquals($request, $actual);
+    }
 }
