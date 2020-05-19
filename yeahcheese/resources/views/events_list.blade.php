@@ -17,7 +17,7 @@
             @foreach($event->pictures as $picture)
                 <div class="pictures">
                     <img class="picture" src="{{ \Storage::url($picture->path) }}"><br>
-                    Updated<br>{{ $picture->updated_at }}
+                    Updated<br>{{ $picture->updated_at->format('Y/m/d') }}
                 </div>
             @endforeach
         </div>
