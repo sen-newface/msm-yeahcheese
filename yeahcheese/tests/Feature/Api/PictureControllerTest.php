@@ -8,9 +8,14 @@ class PictureControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
     public function testSuccessGetPathList()
     {
-        $this->seed();
         $response = $this->getJson('api/pictures/list');
 
         $response->assertStatus(200);
@@ -26,12 +31,10 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessDeletePicture()
     {
-        $this->seed();
         $picture = Picture::find('1');
         $response = $this->deleteJson('api/pictures/destroy/'. $picture->id);
-        
+
         $this->assertDatabaseMissing('pictures', ['id' => '1']);
         $response->assertStatus(200);
-        
     }
 }
