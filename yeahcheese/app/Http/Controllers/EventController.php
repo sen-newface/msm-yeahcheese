@@ -82,7 +82,7 @@ class EventController extends Controller
                 'pictures' => $pictures,
             ])->with($request->auth_key);
         } else {
-            return redirect('events/search');
+            return redirect('events/search')->withErrors('イベントが見つかりませんでした。');
         }
     }
 
