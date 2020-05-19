@@ -61,6 +61,19 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .pictures {
+                margin: 5px;
+                border: 1px solid;
+                width: 170px;
+                display: inline-block;
+            }
+
+            .picture {
+                width: 150px;
+                height: 100px;
+            }
+
         </style>
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
