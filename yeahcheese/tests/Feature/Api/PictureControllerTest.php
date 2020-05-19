@@ -44,10 +44,10 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessDeletePicture()
     {
-        $picture = Picture::find('1');
+        $picture = factory(Picture::class)->create();
         $response = $this->deleteJson('api/pictures/destroy/'. $picture->id);
 
-        $this->assertDatabaseMissing('pictures', ['id' => '1']);
+        $this->assertDatabaseMissing('pictures', ['id' => $picture->id]);
         $response->assertStatus(200);
     }
 }
