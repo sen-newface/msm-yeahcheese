@@ -15,8 +15,8 @@
                 <a href="{{ route('events.update') }}">編集する</a><br>
             </p>
             @foreach($event->pictures as $picture)
-                <div class="pictures">
-                    <img class="picture" src="{{ \Storage::url($picture->path) }}"><br>
+                <div class="picture">
+                    <img class="picture-thumbnail" src="{{ \Storage::url($picture->path) }}"><br>
                     Updated<br>{{ $picture->updated_at->format('Y/m/d') }}
                 </div>
             @endforeach

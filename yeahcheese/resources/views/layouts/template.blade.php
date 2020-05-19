@@ -62,14 +62,14 @@
                 margin-bottom: 30px;
             }
 
-            .pictures {
+            .picture {
                 margin: 5px;
                 border: 1px solid;
                 width: 170px;
                 display: inline-block;
             }
 
-            .picture {
+            .picture-thumbnail {
                 width: 150px;
                 height: 100px;
             }
