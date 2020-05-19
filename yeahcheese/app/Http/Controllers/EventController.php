@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\CarbonImmutable;
 use App\Event;
 
 class EventController extends Controller
@@ -66,14 +67,23 @@ class EventController extends Controller
     // TODO: resquestに認証キー
     public function show(Request $request)
     {
-        $event = Event::where('auth_key', $request->auth_key)->first();
-        if(is_null($event))
-        {
-            $pictures = null;
+        $today = CarbonImmutable::now()->toDateString();
+
+        $event = Event::authKeyEquals($request->auth_key)
+            ->releaseDateBeforeOrEquals($today)
+            ->endDateAfter($today)
+            ->first();
+
+        if (!is_null($event)) {
+            $pictures = $event->pictures()->get();
+
+            return view('event', [
+                'event' => $event,
+                'pictures' => $pictures,
+            ])->with($request->auth_key);
         } else {
-            $pictures = $event->pictures();
+            return redirect('events/search');
         }
-        return view('event', compact('event', 'pictures'));
     }
 
     public function search()
