@@ -31,7 +31,6 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessGetPath()
     {
-        $this->seed();
         $picture = Picture::find('1');
         $response = $this->getJson('api/pictures/fetch/' . $picture->id);
 
