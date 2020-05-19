@@ -76,4 +76,25 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($request, $actual);
     }
+
+    public function testSuccessUpdateReleaseDate()
+    {
+        $event = factory(Event::class)->create();
+
+        $request = [
+            'id' => $event->id,
+            'release_date' => '2020-06-01',
+        ];
+
+        $response = $this->put('api/events/update', $request);
+
+        $response->assertStatus(200);
+
+        $actual = [
+            'id' => $event->id,
+            'release_date' => Event::find($event->id)->release_date,
+        ];
+
+        $this->assertEquals($request, $actual);
+    }
 }
