@@ -7,7 +7,7 @@ class EventControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->seed();
