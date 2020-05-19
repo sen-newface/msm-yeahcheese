@@ -36,6 +36,5 @@ class PictureControllerTest extends TestCase
 
         $this->assertDatabaseMissing('pictures', ['id' => '1']);
         $response->assertStatus(200);
-
     }
 }
