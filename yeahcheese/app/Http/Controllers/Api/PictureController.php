@@ -16,7 +16,7 @@ class PictureController extends Controller
         return PictureResources::Collection($picture);
     }
 
-    public function fetch($id)
+    public function fetch(int $id)
     {
         $picture = Picture::where('id', $id)
             ->get();
@@ -28,7 +28,7 @@ class PictureController extends Controller
         # code...
     }
 
-    public function destroy($picture_id)
+    public function destroy(int $picture_id)
     {
         Picture::where('id', $picture_id)->delete();
     }
