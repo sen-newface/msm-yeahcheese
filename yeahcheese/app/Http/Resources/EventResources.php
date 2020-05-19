@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PictureResources extends JsonResource
+class EventResources extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,9 @@ class PictureResources extends JsonResource
     public function toArray($request)
     {
         return[
-            'path' => $this->path
+            'title' => $this->title,
+            'release_date' => $this->release_date,
+            'end_date' => $this->end_date,
         ];
     }
 }
