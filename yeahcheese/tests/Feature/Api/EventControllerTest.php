@@ -34,17 +34,18 @@ class EventControllerTest extends TestCase
     public function testSuccessUpdate()
     {
         $event = factory(Event::class)->create();
-        $title = factory(Event::class)->create()->title;
 
         $request = [
             'id' => $event->id,
-            'title' => $title,
+            'title' => 'update event title',
+            'release_date' => '2020-06-01',
+            'end_date' => '2020-06-30',
         ];
 
         $response = $this->put('api/events/update', $request);
 
         $response->assertStatus(200);
 
-        $this->assertDatabaseHas('events', ['title' => $title]);
+        $this->assertDatabaseHas('events', ['title' => $request->title]);
     }
 }
