@@ -6,17 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\CarbonImmutable;
 use App\Event;
+use App\Picture;
 
 class EventController extends Controller
 {
     public function index()
     {
+        $pictures = Picture::get();
         $id = Auth::id();
         $events = Event::userIdEquals($id)
             ->with('pictures')
             ->get();
 
-        return view('events_list', ['events' => $events]);
+        return view('events_list', ['events' => $events, 'pictures' => $pictures]);
     }
 
     /**
