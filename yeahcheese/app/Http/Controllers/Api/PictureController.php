@@ -16,9 +16,9 @@ class PictureController extends Controller
         return PictureResources::Collection($picture);
     }
 
-    public function fetch(int $id)
+    public function fetch(int $picture_id)
     {
-        $picture = Picture::where('id', $id)
+        $picture = Picture::where('id', $picture_id)
             ->get();
         return PictureResources::Collection($picture);
     }
