@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Event;
 
 class EventControllerTest extends TestCase
 {
@@ -32,5 +33,18 @@ class EventControllerTest extends TestCase
 
     public function testSuccessUpdate()
     {
+        $event = factory(Event::class)->create();
+        $title = factory(Event::class)->create()->title;
+
+        $request = [
+            'id' => $event->id,
+            'title' => $title,
+        ];
+
+        $response = $this->put('api/events/update', $request);
+
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('events', ['title' => $title]);
     }
 }
