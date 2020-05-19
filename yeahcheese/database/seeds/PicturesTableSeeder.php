@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Picture;
 
 class PicturesTableSeeder extends Seeder
 {
@@ -11,19 +12,6 @@ class PicturesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pictures')->insert([
-            [
-                'event_id' => 1,
-                'path' => 'neko_magazine04.jpg',
-            ],
-            [
-                'event_id' => 2,
-                'path' => 'neko_magazine04.jpg',
-            ],
-            [
-                'event_id' => 3,
-                'path' => 'neko_magazine04.jpg',
-            ],
-        ]);
+        factory(Picture::class, 5)->create();
     }
 }
