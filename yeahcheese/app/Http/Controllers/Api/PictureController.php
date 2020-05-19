@@ -27,7 +27,7 @@ class PictureController extends Controller
         // DBに保存
         Picture::create(['path' => $path]);
         // fetchに返す
-        return;
+        return PictureResources::collection($picture);
     }
 
     public function destroy($picture_id)
