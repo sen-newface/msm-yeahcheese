@@ -1,0 +1,43 @@
+name: laravel-test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  laravel-tests:
+
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:10.1
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: postgres_test
+          POSTGRES_USER: db_user
+          POSTGRES_PASSWORD: db_password
+    env:
+      APP_ENV: testing
+      DB_HOST: localhost
+      DB_PORT: 5432
+      PAGER: cat # prevent psql commands using less
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up php 7.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.3.x
+      - name: Install Dependencies
+        run: composer install
+        working-directory: /home/runner/work/qoo-cheese/qoo-cheese/yeahcheese
+      - name: Generate key
+        run: php artisan key:generate
+        working-directory: /home/runner/work/qoo-cheese/qoo-cheese/yeahcheese
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+        working-directory: /home/runner/work/qoo-cheese/qoo-cheese/yeahcheese
+      - run: ./vendor/bin/phpunit
+        working-directory: /home/runner/work/qoo-cheese/qoo-cheese/yeahcheese
