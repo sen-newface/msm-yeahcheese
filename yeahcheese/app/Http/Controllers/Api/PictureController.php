@@ -24,13 +24,12 @@ class PictureController extends Controller
 
     public function store(Request $request)
     {
-        // $requestにファイル, ファイル名, event_idが含まれる
         // 画像を保存
         $path = Storage::putFile('public', $request->file);
         // DBに保存
         $picture = Picture::create(['path' => $path, 'event_id' => $request->event_id]);
-        // fetchに返す
-        return PictureResources::collection($picture);
+        // 保存したpictureのpathを返す
+        return new PictureResources($picture);
     }
 
     public function destroy($picture_id)
