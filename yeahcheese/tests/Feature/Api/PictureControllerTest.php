@@ -37,6 +37,14 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessStorePicture()
     {
-        
+        $this->seed();
+        $picture = factory(Picture::class)->create();
+        //dd($picture->path);
+        $response = $this->postJson('api/pictures/store', ['path' => $picture->path]);
+
+        $this->assertDatabaseHas('pictures', [
+            'path' => $picture->path
+        ]);
+        $response->assertStatus(200);
     }
 }
