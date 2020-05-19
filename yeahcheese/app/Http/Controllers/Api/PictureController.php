@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PictureResources;
 use Illuminate\Http\Request;
 use App\Picture;
+
+use App\Http\Resources\PictureResources;
 
 class PictureController extends Controller
 {
@@ -15,9 +16,11 @@ class PictureController extends Controller
         return PictureResources::Collection($picture);
     }
 
-    public function fetch(Picture $picture)
+    public function fetch(int $picture_id)
     {
-        # code...
+        $picture = Picture::where('id', $picture_id)
+            ->get();
+        return PictureResources::Collection($picture);
     }
 
     public function store(Request $request)
@@ -25,7 +28,7 @@ class PictureController extends Controller
         # code...
     }
 
-    public function destroy($picture_id)
+    public function destroy(int $picture_id)
     {
         Picture::where('id', $picture_id)->delete();
     }
