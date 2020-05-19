@@ -46,6 +46,13 @@ class EventControllerTest extends TestCase
 
         $response->assertStatus(200);
 
-        $this->assertDatabaseHas('events', ['title' => $request->title]);
+        $actual = [
+            'id' => $event->id,
+            'title' => Event::find($event->id)->title,
+            'release_date' => Event::find($event->id)->release_date,
+            'end_date' => Event::find($event->id)->end_date,
+        ];
+
+        $this->assertEquals($request, $actual);
     }
 }
