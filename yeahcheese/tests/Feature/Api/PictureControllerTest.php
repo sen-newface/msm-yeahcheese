@@ -1,10 +1,8 @@
 <?php
 
 use App\Picture;
-//use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
@@ -57,18 +55,20 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessStorePicture()
     {
-        $this->seed();
         $picture = factory(Picture::class)->create();
         Storage::fake('picture');
         $file = UploadedFile::fake()->image($picture->path);
-        //dd($picture);
+        
         $response = $this->json('POST', 'api/pictures/store', [
             'file' => $file,
             'event_id' => $picture->event_id,
         ]);
-
         $response->assertStatus(201);
-        Storage::disk('storage/app/public')->assertExists($file->hashName());
-        //Storage::disk('storage/app/public')->assertMissing('missing.jpg');
+
+        $this->assertDatabaseHas('pictures', [
+            'id' => $picture->id,
+        ]);
+
+        Storage::disk('public')->assertExists($file->hashName());
     }
 }
