@@ -52,7 +52,7 @@ class PictureControllerTest extends TestCase
             'event_id' => $picture->event_id,
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         Storage::disk('storage/app/public')->assertExists($file->hashName());
         //Storage::disk('storage/app/public')->assertMissing('missing.jpg');
     }
