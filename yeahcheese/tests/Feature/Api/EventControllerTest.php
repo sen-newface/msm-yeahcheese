@@ -16,17 +16,17 @@ class EventControllerTest extends TestCase
 
     public function testSuccessFetch()
     {
-        $auth_key = '12345678';
+        $event = factory(Event::class)->create();
 
-        $response = $this->getJson('api/events/fetch/' . $auth_key);
+        $response = $this->getJson('api/events/fetch/' . $event->auth_key);
 
         $response->assertStatus(200);
 
         $response->assertJson([
             'data' => [
-                'title' => 'テストイベント１',
-                'release_date' => '2020-05-12',
-                'end_date' => '2020-05-30',
+                'title' => $event->title,
+                'release_date' => $event->release_date,
+                'end_date' => $event->end_date,
             ]
         ]);
     }
