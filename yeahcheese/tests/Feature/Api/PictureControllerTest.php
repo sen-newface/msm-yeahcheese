@@ -39,7 +39,6 @@ class PictureControllerTest extends TestCase
     {
         $this->seed();
         $picture = factory(Picture::class)->create();
-        //dd($picture->path);
         $response = $this->postJson('api/pictures/store', ['path' => $picture->path]);
 
         $this->assertDatabaseHas('pictures', [
