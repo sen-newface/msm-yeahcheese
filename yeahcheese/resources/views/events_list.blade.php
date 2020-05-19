@@ -13,13 +13,13 @@
             <h3>{{ $event->title }}</h3>
             <p>掲載期間：{{ $event->release_date }} - {{ $event->end_date }} 枚数：{{ $event->pictures->count() }}／キー：{{ $event->auth_key }}
                 <a href="{{ route('events.update') }}">編集する</a><br>
-                @foreach($pictures as $picture)
-                    <div style="margin:5px; border:1px solid; width:170px; display:inline-block;">
-                        <img src="{{ \Storage::url($picture->path) }}" style="width:150px; height:100px;"><br>
-                        Updated<br>{{ $picture->updated_at }}
-                    </div>
-                @endforeach
             </p>
+            @foreach($event->pictures as $picture)
+                <div style="margin:5px; border:1px solid; width:170px; display:inline-block;">
+                    <img src="{{ \Storage::url($picture->path) }}" style="width:150px; height:100px;"><br>
+                    Updated<br>{{ $picture->updated_at }}
+                </div>
+            @endforeach
         </div>
     @endforeach
 @endsection
