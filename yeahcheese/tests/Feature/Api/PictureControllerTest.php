@@ -16,17 +16,22 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessGetPathList()
     {
+
+        $data = [];
+
+        $pictures = Picture::All();
+
+        foreach($pictures as $picture) {
+            $data[] = ['path' => $picture->path];
+        }
+
+        $expect = ['data'=>$data];
+
         $response = $this->getJson('api/pictures/list');
 
         $response->assertStatus(200);
 
-        $response->assertJson([
-            'data' => [
-                ['path' => 'neko_magazine04.jpg'],
-                ['path' => 'neko_magazine04.jpg'],
-                ['path' => 'neko_magazine04.jpg'],
-            ]
-        ]);
+        $response->assertJson($expect);
     }
 
     public function testSuccessGetPath()
