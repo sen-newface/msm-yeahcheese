@@ -18,7 +18,7 @@ class EventController extends Controller
             ->with('pictures')
             ->get();
 
-        return view('events_list', ['events' => $events, 'pictures' => $pictures]);
+        return view('events_list', ['events' => $events]);
     }
 
     /**
