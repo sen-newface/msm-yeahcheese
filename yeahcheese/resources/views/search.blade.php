@@ -7,9 +7,7 @@
     <h1>認証キー入力</h1>
     <div>
     @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <p>{{ $error }}</p>
-        @endforeach
+        <p>{{ $errors->first() }}</p>
     @endif
         <form method="GET" action="{{ route('events.show') }}">
             <input type="text" name="auth_key" placeholder="認証キーを入力">
