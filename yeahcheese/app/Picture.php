@@ -10,7 +10,9 @@ class Picture extends Model
     {
         return $this->belongsTo('App\Event');
     }
+    
     protected $fillable = [
         'path',
+        'event_id'
     ];
 }
