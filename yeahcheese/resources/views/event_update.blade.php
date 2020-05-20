@@ -4,7 +4,6 @@
 
 @section('content')
     <h2>イベント編集</h2>
-
     <div id="update">
         <p>イベントタイトル</p>
         <input v-model="title">
