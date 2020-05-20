@@ -1,6 +1,7 @@
 <?php
 
 use App\Picture;
+use App\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
@@ -18,6 +19,8 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessGetPathList()
     {
+        $all_pictures = Picture::All();
+        $event = Event::find($all_pictures->random()->event_id);
 
         $data = [];
 
