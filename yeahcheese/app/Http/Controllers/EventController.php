@@ -77,6 +77,14 @@ class EventController extends Controller
         if (!is_null($event)) {
             $pictures = $event->pictures()->get();
 
+            if ($pictures->isEmpty()) 
+            {
+                return view('event', [
+                    'event' => $event,
+                    'pictures' => $pictures,
+                ])->with($request->auth_key)->withErrors('写真が登録されていません。');
+            }
+
             return view('event', [
                 'event' => $event,
                 'pictures' => $pictures,
