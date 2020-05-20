@@ -31,13 +31,14 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessGetPath()
     {
-        $picture = Picture::find('1');
+        $picture = factory(Picture::class)->create();
+
         $response = $this->getJson('api/pictures/fetch/' . $picture->id);
 
         $response->assertStatus(200);
         $response->assertJson([
             'data' => [
-                ['path' => 'neko_magazine04.jpg'],
+                ['path' => $picture->path],
             ]
         ]);
     }
