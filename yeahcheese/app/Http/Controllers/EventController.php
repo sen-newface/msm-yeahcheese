@@ -66,7 +66,8 @@ class EventController extends Controller
 
     public function update(Request $request)
     {
-        $event = Event::find($request->id);
+        $event = Event::authKeyEquals($request->auth_key)
+            ->first();
         return view('event_update', ['event' => $event]);
     }
 
