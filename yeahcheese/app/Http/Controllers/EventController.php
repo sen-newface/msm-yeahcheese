@@ -67,6 +67,7 @@ class EventController extends Controller
     public function update(Request $request)
     {
         $event = Event::authKeyEquals($request->auth_key)
+            ->UserIdEquals(Auth::id())
             ->first();
 
         if (!is_null($event)) {
