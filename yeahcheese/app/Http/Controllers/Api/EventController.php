@@ -17,8 +17,13 @@ class EventController extends Controller
         return new EventResources($event);
     }
 
-    public function update(Event $event)
+    public function update(Request $request)
     {
-        #
+        $event = Event::find($request->id);
+
+        if (!is_null($event)) {
+            $event->fill($request->all())->save();
+            return new EventResources($event);
+        }
     }
 }
