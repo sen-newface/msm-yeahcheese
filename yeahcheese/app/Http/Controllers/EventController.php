@@ -68,7 +68,14 @@ class EventController extends Controller
     {
         $event = Event::authKeyEquals($request->auth_key)
             ->first();
-        return view('event_update', ['event' => $event]);
+
+        if (!is_null($event)) {
+            return view('event_update')->with($request->auth_key);
+        } else {
+            // TODO リダイレクト時にイベントが見つらかなかったことを通知
+            return redirect('events');
+        }
+
     }
 
     // TODO: resquestに認証キー
