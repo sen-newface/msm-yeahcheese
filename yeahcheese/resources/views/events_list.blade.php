@@ -15,10 +15,14 @@
                 <a href="{{ route('events.update') }}">編集する</a><br>
             </p>
             @foreach($event->pictures as $picture)
+                @if ($loop->iteration <= 3)
                 <div class="picture">
                     <img class="picture-thumbnail" src="{{ \Storage::url($picture->path) }}"><br>
                     Updated<br>{{ $picture->updated_at->format('Y/m/d H:i') }}
                 </div>
+                @else
+                    @break
+                @endif
             @endforeach
         </div>
     @endforeach
