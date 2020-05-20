@@ -22,17 +22,18 @@ class PictureControllerTest extends TestCase
         $all_pictures = Picture::All();
         $event = Event::find($all_pictures->random()->event_id);
 
+        $response = $this->getJson('api/pictures/list/' . $event->id);
+
+        $pictures = Picture::where('event_id', $event->id)->get();
         $data = [];
-
-        $pictures = Picture::All();
-
-        foreach($pictures as $picture) {
-            $data[] = ['path' => $picture->path];
+        foreach ($pictures as $picture) {
+            $data[] = [
+                'event_id' => $picture->event_id,
+                'path' => $picture->path,
+            ];
         }
 
         $expect = ['data'=>$data];
-
-        $response = $this->getJson('api/pictures/list');
 
         $response->assertStatus(200);
 
@@ -67,7 +68,7 @@ class PictureControllerTest extends TestCase
         $picture = factory(Picture::class)->create();
         Storage::fake('storage/app/public');
         $file = UploadedFile::fake()->image($picture->path);
-        
+
         $response = $this->json('POST', 'api/pictures/store', [
             'file' => $file,
             'event_id' => $picture->event_id,
