@@ -24,7 +24,7 @@ Route::prefix('events')->group(function () {
 });
 
 Route::prefix('pictures')->group(function () {
-    Route::get('/list', 'Api\PictureController@list')->name('pictures.list');
+    Route::get('/list/{event_id}', 'Api\PictureController@list')->name('pictures.list');
     Route::get('/fetch/{picture_id}', 'Api\PictureController@fetch')->name('pictures.fetch');
     Route::post('/store', 'Api\PictureController@store')->name('pictures.store');
     Route::delete('/destroy/{picture_id}', 'Api\PictureController@destroy')->name('pictures.destroy');
