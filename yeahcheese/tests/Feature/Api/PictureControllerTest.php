@@ -62,7 +62,7 @@ class PictureControllerTest extends TestCase
     public function testSuccessStorePicture()
     {
         $picture = factory(Picture::class)->create();
-        Storage::fake('picture');
+        Storage::fake('storage/app/public');
         $file = UploadedFile::fake()->image($picture->path);
         
         $response = $this->json('POST', 'api/pictures/store', [
