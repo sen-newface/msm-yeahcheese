@@ -66,6 +66,7 @@ class EventController extends Controller
 
     public function update(Request $request)
     {
+        return view('event_update', $request->id);
     }
 
     // TODO: resquestに認証キー
