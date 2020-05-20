@@ -64,6 +64,10 @@ class EventController extends Controller
         return redirect('events');
     }
 
+    public function update(Request $request)
+    {
+    }
+
     // TODO: resquestに認証キー
     public function show(Request $request)
     {
