@@ -6,7 +6,7 @@
 <div class="container">
     <div class="jumbotron">
         <h2 class="">イベント一覧</h2>
-        <a href="{{ route('events.create') }}"><button type="button" class="btn btn-primary btn-md">新規作成</button></a>
+        <a href="{{ route('events.create') }}"><button type="button" class="btn btn-primary btn-lg">新規作成</button></a>
     </div>
     <!-- $eventsはで現在のユーザが作成したイベントの配列が渡される想定です --> 
     @foreach($events as $event)
