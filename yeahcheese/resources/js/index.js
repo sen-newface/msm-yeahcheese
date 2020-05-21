@@ -9,8 +9,13 @@ new Vue({
     end_date : '',
   },
   created: function() {
+    let url = new URL(document.location);
+    let id = url.pathname.split('/')[3];
+
+    /*
     let params = (new URL(document.location)).searchParams;
     let auth_key = params.get('auth_key');
+    */
 
     api.fetchEvent(auth_key).then(
       ev => {
