@@ -19,6 +19,8 @@ class EventController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, Event::$updateRules);
+
         $event = Event::find($request->id);
 
         if (!is_null($event)) {
