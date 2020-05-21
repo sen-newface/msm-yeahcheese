@@ -21,7 +21,7 @@
                             枚数：{{ $event->pictures->count() }}<br>
                             キー：{{ $event->auth_key }}
                         </p>
-                        <a class="btn btn-primary" href="{{ route('events.update') }}" role="button">編集する</a>
+                        <a class="btn btn-primary" href="{{ route('events.edit', ['event' => $event]) }}" role="button">編集する</a>
                     </div>
                     <div class="col-md-8">
                         <div class="row">
