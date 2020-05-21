@@ -14,7 +14,7 @@
     <body>
         <nav class="navbar nabvar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <p>YeahCheese</p>
+                <p class="navbar-brand mb-0 h1">YeahCheese</p>
                 <a href="{{ route('events.search') }}">イベント検索</a>
                 <!--ログインしてたら-->
                 @if (Auth::check())
@@ -28,7 +28,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <p>{{ Auth::user()->email }}</p>
+                    <p class="mb-0">{{ Auth::user()->email }}</p>
                 <!--ログインしてなかったら-->
                 @else
                     <a href="/login">login</a>
