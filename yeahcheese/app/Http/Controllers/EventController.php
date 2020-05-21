@@ -64,14 +64,16 @@ class EventController extends Controller
         return redirect('events');
     }
 
-    public function edit(Request $request)
+    public function edit(Event $event)
     {
+        /*
         $event = Event::authKeyEquals($request->auth_key)
             ->UserIdEquals(Auth::id())
             ->first();
+         */
 
-        if (!is_null($event)) {
-            return view('event_update')->with($request->auth_key);
+        if (Auth::id() == $event->user_id) {
+            return view('event_update', ['event' => $event]);
         } else {
             // TODO リダイレクト時にイベントが見つらかなかったことを通知
             return redirect('events');

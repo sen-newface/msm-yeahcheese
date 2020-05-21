@@ -25,9 +25,9 @@ Route::prefix('events')->group(function () {
         Route::get('/', 'EventController@index')->name('events.index');
         Route::get('create', 'EventController@create')->name('events.create');
         Route::post('/', 'EventController@store')->name('events.store');
-        Route::get('edit', 'EventController@edit')->name('events.edit');
+        Route::get('edit/{event}', 'EventController@edit')->name('events.edit');
     });
     # テスト表示用なのでputは用意しません
     Route::get('search', 'EventController@search')->name('events.search');
-    Route::get('show', 'EventController@show')->name('events.show');
+    Route::get('show/{auth_key}', 'EventController@show')->name('events.show');
 });
