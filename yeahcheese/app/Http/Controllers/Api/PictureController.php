@@ -14,9 +14,9 @@ class PictureController extends Controller
 {
     public function list(int $event_id)
     {
-        $picture = Picture::where('event_id', $event_id)
+        $pictures = Picture::where('event_id', $event_id)
             ->get();
-        return PictureResources::Collection($picture);
+        return PictureResources::Collection($pictures);
     }
 
     public function fetch(int $picture_id)
