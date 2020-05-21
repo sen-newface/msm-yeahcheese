@@ -15,6 +15,7 @@ class PictureResources extends JsonResource
     public function toArray($request)
     {
         return[
+            'event_id' => $this->event_id,
             'path' => $this->path
         ];
     }
