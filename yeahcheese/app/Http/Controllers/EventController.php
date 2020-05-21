@@ -64,7 +64,16 @@ class EventController extends Controller
         return redirect('events');
     }
 
-    // TODO: resquestに認証キー
+    public function edit(Event $event)
+    {
+        if (Auth::id() === $event->user_id) {
+            return view('event_update', ['event' => $event]);
+        } else {
+            // TODO リダイレクト時にイベントが見つらかなかったことを通知
+            return redirect('events');
+        }
+    }
+
     public function show(Request $request)
     {
         $today = CarbonImmutable::now()->toDateString();
@@ -76,6 +85,14 @@ class EventController extends Controller
 
         if (!is_null($event)) {
             $pictures = $event->pictures()->get();
+
+            if ($pictures->isEmpty()) 
+            {
+                return view('event', [
+                    'event' => $event,
+                    'pictures' => $pictures,
+                ])->with($request->auth_key)->withErrors('写真が登録されていません。');
+            }
 
             return view('event', [
                 'event' => $event,
