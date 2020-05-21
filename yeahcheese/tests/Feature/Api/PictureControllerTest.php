@@ -33,7 +33,7 @@ class PictureControllerTest extends TestCase
             ];
         }
 
-        $expect = ['data'=>$data];
+        $expect = ['data' => $data];
 
         $response->assertStatus(200);
 
