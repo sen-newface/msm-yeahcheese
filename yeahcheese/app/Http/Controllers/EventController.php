@@ -64,7 +64,7 @@ class EventController extends Controller
         return redirect('events');
     }
 
-    public function update(Request $request)
+    public function edit(Request $request)
     {
         $event = Event::authKeyEquals($request->auth_key)
             ->UserIdEquals(Auth::id())

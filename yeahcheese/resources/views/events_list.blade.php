@@ -12,12 +12,12 @@
         <div>
             <h3>{{ $event->title }}</h3>
             <p>掲載期間：{{ $event->release_date }} - {{ $event->end_date }} 枚数：{{ $event->pictures->count() }}／キー：{{ $event->auth_key }}
-                <a href="{{ route('events.update', ['auth_key' => $event->auth_key]) }}">編集する</a><br>
+                <a href="{{ route('events.edit', ['auth_key' => $event->auth_key]) }}">編集する</a><br>
             </p>
             @foreach($event->pictures as $picture)
                 <div class="picture">
                     <img class="picture-thumbnail" src="{{ \Storage::url($picture->path) }}"><br>
-                    Updated<br>{{ $picture->updated_at->format('Y/m/d H:i') }}
+                    Updated<br>{{ $picture->edit->format('Y/m/d H:i') }}
                 </div>
             @endforeach
         </div>
