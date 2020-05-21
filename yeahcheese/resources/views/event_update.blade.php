@@ -13,5 +13,5 @@
         <input v-model="end_date">
     </div>
 
-    <script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}" data-event-id="@json($event->id)"></script>
 @endsection

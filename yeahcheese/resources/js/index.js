@@ -4,15 +4,13 @@ import api from './api';
 new Vue({
   el: '#update',
   data: {
+    event_id: JSON.parse(document.currentScript.dataset.eventId),
     title : '',
     release_date : '',
     end_date : '',
   },
   created: function() {
-    const url = new URL(document.location);
-    const id = url.pathname.split('/')[3];
-
-    api.fetchEvent(id).then(
+    api.fetchEvent(this.event_id).then(
       ev => {
         const data = ev.data.data;
         this.title = data.title;
