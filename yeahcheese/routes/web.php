@@ -29,5 +29,5 @@ Route::prefix('events')->group(function () {
     });
     # テスト表示用なのでputは用意しません
     Route::get('search', 'EventController@search')->name('events.search');
-    Route::get('show/{auth_key}', 'EventController@show')->name('events.show');
+    Route::get('show', 'EventController@show')->name('events.show');
 });
