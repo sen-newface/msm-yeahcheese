@@ -38,8 +38,8 @@ class EventControllerTest extends TestCase
         $request = [
             'id' => $event->id,
             'title' => 'update event title',
-            'release_date' => '2020-06-01',
-            'end_date' => '2020-06-30',
+            'release_date' => (new DateTime($event->release_date))->modify('+1 day')->format('Y-m-d H:i'),
+            'end_date' => (new DateTime($event->release_date))->modify('+7 days')->format('Y-m-d H:i'),
         ];
 
         $response = $this->put('api/events/update', $request);
@@ -83,7 +83,7 @@ class EventControllerTest extends TestCase
 
         $request = [
             'id' => $event->id,
-            'release_date' => '2020-06-01',
+            'release_date' => (new DateTime($event->release_date))->modify('+1 day')->format('Y-m-d H:i'),
         ];
 
         $response = $this->put('api/events/update', $request);
@@ -104,7 +104,7 @@ class EventControllerTest extends TestCase
 
         $request = [
             'id' => $event->id,
-            'end_date' => '2020-06-30',
+            'end_date' => (new DateTime($event->release_date))->modify('+7 days')->format('Y-m-d H:i'),
         ];
 
         $response = $this->put('api/events/update', $request);
