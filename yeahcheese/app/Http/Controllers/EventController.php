@@ -66,7 +66,7 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-        if (Auth::id() == $event->user_id) {
+        if (Auth::id() === $event->user_id) {
             return view('event_update', ['event' => $event]);
         } else {
             // TODO リダイレクト時にイベントが見つらかなかったことを通知
