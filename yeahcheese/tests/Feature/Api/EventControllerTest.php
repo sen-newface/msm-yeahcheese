@@ -118,4 +118,29 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($request, $actual);
     }
+
+    public function testDenyUpdateRequestWithoutId()
+    {
+        
+    }
+
+    public function testDenyInvalidUpdateRequest()
+    {
+    
+    }
+
+    public function testDenyInvalidTitle()
+    {
+    
+    }
+
+    public function testDenyInvalidReleaseDate()
+    {
+    
+    }
+
+    public function testDenyInvalidEndDate()
+    {
+    
+    }
 }
