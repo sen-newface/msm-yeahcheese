@@ -11,6 +11,9 @@
     <div class="container-fluid">
     <div class="row">
         <!-- 写真一覧表示 -->
+        @if ($errors->any())
+            <p>{{ $errors->first() }}</p>
+        @endif
         @foreach($pictures as $picture)
         <div class="col-4 my-2">
             <img src="{{ \Storage::url($picture->path) }}" width="100%" class="img img-thumbnail">
