@@ -56,7 +56,7 @@ class Event extends Model
         return $query->where('release_date', '<=', $date);
     }
 
-    public static $rules = [
+    public static $storeRules = [
         'title' => ['required', 'max:255'],
         'release_date' => ['required', 'date', 'after_or_equal:today'],
         'end_date' => ['required', 'date', 'after:release_date'],
