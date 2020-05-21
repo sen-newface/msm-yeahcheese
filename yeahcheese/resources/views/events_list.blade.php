@@ -4,32 +4,42 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <h2 class="col-md-6 offset-md-3 text-center">イベント一覧</h2>
+    <div class="jumbotron">
+        <h2 class="">イベント一覧</h2>
+        <a href="{{ route('events.create') }}"><button type="button" class="btn btn-primary btn-md">新規作成</button></a>
     </div>
-    <div class="row">
-    <a class="col-md-2 offset-md-5" href="{{ route('events.create') }}">
-        <button type="button" class="btn btn-primary btn-lg btn-block">新規作成</button>
-    </a>
-    </div>
-    <!-- $eventsはで現在のユーザが作成したイベントの配列が渡される想定です -->
-    <div class="row">
+    <!-- $eventsはで現在のユーザが作成したイベントの配列が渡される想定です --> 
     @foreach($events as $event)
-        <div class="col-md-6 offset-md-3 text-center">
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
-            <h3 class="card-title">{{ $event->title }}</h3>
-            <p class="card-text">掲載期間：{{ $event->release_date }} - {{ $event->end_date }} 枚数：{{ $event->pictures->count() }}／キー：{{ $event->auth_key }}</p>
-                <a href="{{ route('events.update') }}" ><button type="button" class="btn btn-primary">編集する</button></a>
-            <div class="row">
-            @foreach($event->pictures as $picture)
-                <div class="col-md-4">
-                    <img class="img img-thumbnail" src="{{ Storage::url($picture->path) }}"><br>
-                    <!--Updated<br>{{ $picture->updated_at->format('Y/m/d H:i') }}-->
+                <h3 class="card-header">{{ $event->title }}</h3>
+                <div class="card-body row">
+                    <div class="col-md-4">
+                        <p class="card-text">
+                            掲載期間：{{ $event->release_date }} - {{ $event->end_date }}<br>
+                            枚数：{{ $event->pictures->count() }}<br>
+                            キー：{{ $event->auth_key }}
+                        </p>
+                        <a class="btn btn-primary" href="{{ route('events.update') }}" role="button">編集する</a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            @foreach($event->pictures as $picture)
+                                @if ($loop->iteration <= 3)
+                                    <div class="col-md-4">
+                                        <img class="img img-thumbnail" width="80%" src="{{ Storage::url($picture->path) }}">
+                                    </div>
+                                @else
+                                    @break
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
-            @endforeach
-            </div>
             </div>
         </div>
+    </div>
     @endforeach
     </div>
 </div>
