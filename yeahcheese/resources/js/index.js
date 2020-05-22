@@ -10,6 +10,7 @@ new Vue(
             title : '',
             release_date : '',
             end_date : '',
+            message : '',
         },
         created: function () {
             api.fetchEvent(this.event_id).then(
@@ -32,7 +33,7 @@ new Vue(
                 }
                 api.updateEvent(request).then(
                     response => {
-                        console.log(response)
+                        this.message = "イベント情報が更新されました";
                     },
                 )
             }

@@ -13,6 +13,7 @@
         <p>公開終了日</p>
         <input type="date" v-model="end_date">
         <button type="submit" @click="updateEvent">更新</button>
+        <p>@{{ message }}</p>
     </div>
 
     <script src="{{ asset('js/index.js') }}" data-event-id="@json($event->id)"></script>
