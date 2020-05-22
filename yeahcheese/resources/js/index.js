@@ -18,8 +18,8 @@ new Vue(
         },
         watch:{
             title: function (newTitle) {
-                if (newTitle.length > 255) {
-                    this.title_error_msg = "255文字以下にしてください"
+                if (newTitle.length > 255 || newTitle.length < 1) {
+                    this.title_error_msg = "255文字以下のタイトルを入力してください"
                     this.error_flag = false
                 } else {
                     this.title_error_msg = ""
