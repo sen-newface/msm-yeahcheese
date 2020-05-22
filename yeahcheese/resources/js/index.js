@@ -44,3 +44,20 @@ Vue.component('picture-item',
     }
 );
 
+new Vue(
+    {
+        el: '#picture-list',
+        data: {
+            event_id: JSON.parse(document.currentScript.dataset.eventId),
+            pictures: [],
+        },
+        created: function () {
+            api.getPicturesList(this.event_id).then(
+                picturesResponse => {
+                    this.pictures = picturesResponse.data.data;
+                },
+                errors => console.error(errors)
+            );
+        },
+    }
+);
