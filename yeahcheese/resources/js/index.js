@@ -38,7 +38,7 @@ Vue.component('picture-item',
         template: '\
                 <div>\
                     <img v-bind:src="this.path" width="100%" class="img">\
-                    <a  v-on:click="$emit(\'removePicture\', )"\
+                    <a  v-on:click="$emit(\'remove-picture\', id)"\
                         class="btn btn-primary">削除する</a>\
                 </div>\
             ',
@@ -62,12 +62,12 @@ new Vue(
                 errors => console.error(errors)
             );
         },
-        method: {
+        methods: {
             removePicture (id) {
                 // TODO: 画像を削除する処理を書く
                 // TODO: 画像を表示しているコンポーネントを除去する処理を書く
-                console.log("removePicture called");
-            }
+                console.log(id);
+            },
         },
     }
 );

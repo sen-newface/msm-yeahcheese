@@ -19,8 +19,9 @@
             <div class="row">
                 <div class="col-4 my-2" v-for="p in pictures">
                     <picture-item
+                        :id = "p.id"
                         :received-path = 'p.path'
-                        @remove-picture='removePicture()'
+                        @remove-picture='removePicture($event)'
                     ></picture-item>
                 </div>
             </div>
