@@ -14,5 +14,9 @@ export default {
     postPicture(image) {
         return axios.post(url + 'pictures/store', image);
     },
+
+    removePicture(id) {
+        return axios.delete(url + 'pictures/destroy\/' + id);
+    },
 }
 
