@@ -38,7 +38,8 @@ Vue.component('picture-item',
         template: '\
                 <div>\
                     <img v-bind:src="this.path" width="100%" class="img">\
-                    <a class="btn btn-primary" href="">削除する</a>\
+                    <a  v-on:click="$emit(\'removePicture\', )"\
+                        class="btn btn-primary">削除する</a>\
                 </div>\
             ',
     }
@@ -50,14 +51,23 @@ new Vue(
         data: {
             event_id: JSON.parse(document.currentScript.dataset.eventId),
             pictures: [],
+            uploadImage: null,
         },
         created: function () {
             api.getPicturesList(this.event_id).then(
                 picturesResponse => {
                     this.pictures = picturesResponse.data.data;
                 },
+                // TODO: API利用に失敗した際の処理を記述する
                 errors => console.error(errors)
             );
+        },
+        method: {
+            removePicture (id) {
+                // TODO: 画像を削除する処理を書く
+                // TODO: 画像を表示しているコンポーネントを除去する処理を書く
+                console.log("removePicture called");
+            }
         },
     }
 );

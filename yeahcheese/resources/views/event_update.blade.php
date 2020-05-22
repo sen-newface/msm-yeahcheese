@@ -14,11 +14,13 @@
     </div>
 
     <div id="picture-list">
+        <input v-on:change="" type="file">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-4 my-2" v-for="p in pictures">
                     <picture-item
                         :received-path = 'p.path'
+                        @remove-picture='removePicture()'
                     ></picture-item>
                 </div>
             </div>
