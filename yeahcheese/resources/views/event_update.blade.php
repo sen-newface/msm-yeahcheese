@@ -13,5 +13,17 @@
         <input v-model="end_date">
     </div>
 
+    <div id="picture-list">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 my-2" v-for="p in pictures">
+                    <picture-item
+                        :received-path = 'p.path'
+                    ></picture-item>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('js/index.js') }}" data-event-id="@json($event->id)"></script>
 @endsection
