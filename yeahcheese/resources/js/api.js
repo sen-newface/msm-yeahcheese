@@ -5,6 +5,10 @@ const url = 'https://yeahcheese.localapp.jp/api/';
 export default {
     fetchEvent(id) {
         return axios.get(url + 'events/fetch\/' + id);
-    }
+    },
+
+    getPicturesList(id) {
+        return axios.get(url + 'pictures/list\/' + id);
+    },
 }
 
