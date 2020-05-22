@@ -65,8 +65,13 @@ new Vue(
         methods: {
             removePicture (id) {
                 // TODO: 画像を削除する処理を書く
-                // TODO: 画像を表示しているコンポーネントを除去する処理を書く
-                console.log(id);
+                api.removePicture(id).then(
+                    pictureRemoveResponse => {
+                        // TODO: 画像を表示しているコンポーネントを除去する処理を書く
+                        
+                    },
+                    // TODO: API利用に失敗した際の処理を記述する
+                );
             },
         },
     }
