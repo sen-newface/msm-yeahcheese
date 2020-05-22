@@ -21,5 +21,10 @@ new Vue(
                 errors => console.error(errors)
             );
         },
+        methods: {
+            updateEvent() { // 更新ボタンを押したときに呼ばれる
+
+            }
+        }
     }
 );
