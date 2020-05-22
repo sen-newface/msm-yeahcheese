@@ -18,6 +18,10 @@ class EventController extends Controller
 
     public function update(Request $request)
     {
+        if (!$request->has('id')) {
+            abort(response()->json(['messages' => ['IDが見つかりませんでした']]));
+        }
+
         $this->validate($request, Event::$updateRules);
 
         $event = Event::find($request->id);
