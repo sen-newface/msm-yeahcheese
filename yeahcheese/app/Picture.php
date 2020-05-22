@@ -17,8 +17,7 @@ class Picture extends Model
 
     public static $messages = [
         'file.mimes' => 'jpgまたはjpeg形式にしてください',
-        'file_size.max' => '最大容量は200MBです',
-        // 'file.min' => '100KB以上の画像にしてください',
+        'file.between' => '100KB以上、1MB以下の画像にしてください',
     ];
 
     protected $fillable = [
