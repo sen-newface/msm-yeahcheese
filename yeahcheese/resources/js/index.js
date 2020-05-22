@@ -66,10 +66,11 @@ new Vue(
             removePicture (id) {
                 api.removePicture(id).then(
                     pictureRemoveResponse => {
-                        let index = this.pictures.findIndex((p) => p.id == id);
+                        let index = this.pictures.findIndex((p) => p.id === id);
                         this.pictures.splice(index, 1);
                     },
                     // TODO: API利用に失敗した際の処理を記述する
+                    errors => console.error(errors),
                 );
             },
         },
