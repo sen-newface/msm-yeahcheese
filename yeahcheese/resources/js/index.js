@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import api from './api';
+import Axios from 'axios';
 
 new Vue(
     {
@@ -22,8 +23,18 @@ new Vue(
             );
         },
         methods: {
-            updateEvent() { // 更新ボタンを押したときに呼ばれる
-
+            updateEvent: function() { // 更新ボタンを押したときに呼ばれる
+                const request = {
+                    id : this.event_id,
+                    title : this.title,
+                    release_date : this.release_date,
+                    end_date : this.end_date
+                }
+                api.updateEvent(request).then(
+                    response => {
+                        console.log(response)
+                    },
+                )
             }
         }
     }
