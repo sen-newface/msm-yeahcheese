@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Http\Requests\UpdateEventRequest;
 
 use App\Http\Resources\EventResources;
 
@@ -16,13 +17,11 @@ class EventController extends Controller
         return new EventResources($event);
     }
 
-    public function update(Request $request)
+    public function update(UpdateEventRequest $request)
     {
         if (!$request->has('id')) {
             abort(response()->json(['messages' => ['IDが見つかりませんでした']]));
         }
-
-        $this->validate($request, Event::$updateRules);
 
         $event = Event::find($request->id);
 
