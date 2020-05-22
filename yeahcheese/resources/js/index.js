@@ -23,3 +23,24 @@ new Vue(
         },
     }
 );
+
+Vue.component('picture-item',
+    {
+        props: [
+            'id',
+            'receivedPath',
+        ],
+        data(){
+            return {
+              path: 'https://yeahcheese.localapp.jp/storage/app/' + this.receivedPath
+            };
+        },
+        template: '\
+                <div>\
+                    <img v-bind:src="this.path" width="100%" class="img">\
+                    <a class="btn btn-primary" href="">削除する</a>\
+                </div>\
+            ',
+    }
+);
+
