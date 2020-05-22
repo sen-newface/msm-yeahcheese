@@ -18,7 +18,7 @@ class EventControllerTest extends TestCase
     {
         $event = factory(Event::class)->create();
 
-        $response = $this->getJson('api/events/fetch/' . $event->auth_key);
+        $response = $this->getJson('api/events/fetch/' . $event->id);
 
         $response->assertStatus(200);
 

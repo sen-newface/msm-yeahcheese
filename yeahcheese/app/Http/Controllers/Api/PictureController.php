@@ -12,10 +12,11 @@ use App\Http\Resources\PictureResources;
 
 class PictureController extends Controller
 {
-    public function list()
+    public function list(int $event_id)
     {
-        $picture = Picture::all();
-        return PictureResources::Collection($picture);
+        $pictures = Picture::where('event_id', $event_id)
+            ->get();
+        return PictureResources::Collection($pictures);
     }
 
     public function fetch(int $picture_id)

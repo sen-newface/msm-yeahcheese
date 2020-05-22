@@ -1,6 +1,7 @@
 <?php
 
 use App\Picture;
+use App\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
@@ -18,18 +19,21 @@ class PictureControllerTest extends TestCase
 
     public function testSuccessGetPathList()
     {
+        $all_pictures = Picture::All();
+        $event = Event::find($all_pictures->random()->event_id);
 
+        $response = $this->getJson('api/pictures/list/' . $event->id);
+
+        $pictures = Picture::where('event_id', $event->id)->get();
         $data = [];
-
-        $pictures = Picture::All();
-
-        foreach($pictures as $picture) {
-            $data[] = ['path' => $picture->path];
+        foreach ($pictures as $picture) {
+            $data[] = [
+                'event_id' => $picture->event_id,
+                'path' => $picture->path,
+            ];
         }
 
-        $expect = ['data'=>$data];
-
-        $response = $this->getJson('api/pictures/list');
+        $expect = ['data' => $data];
 
         $response->assertStatus(200);
 
