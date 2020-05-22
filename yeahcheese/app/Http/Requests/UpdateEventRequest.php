@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class UpdateEventRequest extends FormRequest
+class UpdateEventRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +11,7 @@ class UpdateEventRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +22,25 @@ class UpdateEventRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['max:255'],
+            'release_date' => ['date', 'before:end_date'],
+            'end_date' => ['date', 'after:release_date'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'イベントタイトルは必須項目です',
+            'title.max' => 'イベントタイトルは255文字まで設定できます',
+
+            'release_date.required' => 'イベント公開開始日は必須項目です',
+            'release_date.date' => 'イベント公開開始日は日付形式で入力してください',
+            'release_date.before' => 'イベント公開開始日は公開終了日より前の日付である必要があります',
+
+            'end_date.required' => 'イベント公開終了日は必須項目です',
+            'end_date.date' => 'イベント公開終了日は日付形式で入力してください',
+            'end_date.after' => 'イベント公開終了日はイベント公開開始日より後の日付である必要があります',
         ];
     }
 }

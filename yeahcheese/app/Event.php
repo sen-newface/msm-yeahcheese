@@ -62,12 +62,6 @@ class Event extends Model
         'end_date' => ['required', 'date', 'after:release_date'],
     ];
 
-    public static $updateRules = [
-        'title' => ['max:255'],
-        'release_date' => ['date'],
-        'end_date' => ['date', 'after:release_date'],
-    ];
-
     public static $messages = [
         'title.required' => 'イベントタイトルは必須項目です',
         'title.max' => 'イベントタイトルは255文字まで設定できます',
