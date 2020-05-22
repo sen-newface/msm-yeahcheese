@@ -88,6 +88,8 @@ class EventControllerTest extends TestCase
 
         $response = $this->put('api/events/update', $request);
 
+        dd($event, $response);
+
         $response->assertStatus(200);
 
         $actual = [
@@ -145,7 +147,7 @@ class EventControllerTest extends TestCase
         $request = [
             'id' => $event->id,
             'title' => '96y82AhDHF4ghuzFUsVbeFxEsiQTPGikPSGWwMeiJhDxaGBD2YsfCRN3txBJPGKf986WLGAAj5arsN6eTX8KWtnFaM96i5FUiV5nYrcWpVtiynMGnPa9bm684UJ4YnSmcJ4iWZxEAZUkz8m38fEGyxYZHkLc7butrB4EaxTrPRKcbCTwYSfTVjZ2NuAQmuRwWaas9xT5hBMQ3rr3FG2JBWjhDPKKyiEu68eW5EuscF6ynBB6HxuKGub9LgDiMmeNhue4JjXgXwZ5Ca9yzj8NXep2mxG9PGmj59arQRWnjJbW',
-            'release_date' => strtotime('+7 day' . $event->end_date),
+            'release_date' => (new DateTime($event->end_date))->modify('+7 day')->format('Y-m-d H:i'),
             'end_date' => $event->end_date,
         ];
 
@@ -155,8 +157,8 @@ class EventControllerTest extends TestCase
 
         $response->assertJson([
             'messages' => [
-                'イベントタイトルは255文字まで設定できます',
-                'イベント公開開始日は公開終了日より前の日付である必要があります',
+                'title' => ['イベントタイトルは255文字まで設定できます'],
+                'release_date' => ['イベント公開開始日は公開終了日より前の日付である必要があります'],
             ]
         ]);
     }
@@ -168,6 +170,8 @@ class EventControllerTest extends TestCase
         $request = [
             'id' => $event->id,
             'title' => '96y82AhDHF4ghuzFUsVbeFxEsiQTPGikPSGWwMeiJhDxaGBD2YsfCRN3txBJPGKf986WLGAAj5arsN6eTX8KWtnFaM96i5FUiV5nYrcWpVtiynMGnPa9bm684UJ4YnSmcJ4iWZxEAZUkz8m38fEGyxYZHkLc7butrB4EaxTrPRKcbCTwYSfTVjZ2NuAQmuRwWaas9xT5hBMQ3rr3FG2JBWjhDPKKyiEu68eW5EuscF6ynBB6HxuKGub9LgDiMmeNhue4JjXgXwZ5Ca9yzj8NXep2mxG9PGmj59arQRWnjJbW',
+            'release_date' => $event->release_date,
+            'end_date' => $event->end_date,
         ];
 
         $response = $this->put('api/events/update', $request);
@@ -176,7 +180,7 @@ class EventControllerTest extends TestCase
 
         $response->assertJson([
             'messages' => [
-                'イベントタイトルは255文字まで設定できます',
+                'title' => ['イベントタイトルは255文字まで設定できます'],
             ]
         ]);
     }
@@ -187,7 +191,9 @@ class EventControllerTest extends TestCase
 
         $request = [
             'id' => $event->id,
-            'release_date' => strtotime('+7 day' . $event->end_date),
+            'title' => $event->title,
+            'release_date' => (new DateTime($event->end_date))->modify('+7 day')->format('Y-m-d H:i'),
+            'end_date' => $event->end_date,
         ];
 
         $response = $this->put('api/events/update', $request);
@@ -196,7 +202,7 @@ class EventControllerTest extends TestCase
 
         $response->assertJson([
             'messages' => [
-                'イベント公開開始日は公開終了日より前の日付である必要があります',
+                'release_date' => ['イベント公開開始日は公開終了日より前の日付である必要があります'],
             ]
         ]);
     }
@@ -207,7 +213,9 @@ class EventControllerTest extends TestCase
 
         $request = [
             'id' => $event->id,
-            'end_date' => strtotime('-7 day' . $event->release_date),
+            'title' => $event->title,
+            'release_date' => $event->release_date,
+            'end_date' => (new DateTime($event->release_date))->modify('-7 days')->format('Y-m-d H:i'),
         ];
 
         $response = $this->put('api/events/update', $request);
@@ -216,7 +224,7 @@ class EventControllerTest extends TestCase
 
         $response->assertJson([
             'messages' => [
-                'イベント公開終了日はイベント公開開始日より後の日付である必要があります',
+                'end_date' => ['イベント公開終了日はイベント公開開始日より後の日付である必要があります'],
             ]
         ]);
     }
