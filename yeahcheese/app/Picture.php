@@ -12,7 +12,7 @@ class Picture extends Model
     }
 
     public static $rules = [
-        'file' => ['required', 'file', 'mimes:jpeg,jpg', 'between:100,204800'],
+        'file' => ['required', 'file', 'mimes:jpeg,jpg', 'between:100,1024'],
     ];
 
     public static $messages = [
