@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="jumbotron col-md-8 offset-md-2 bg-white border">
-        <h2 class="">イベント閲覧</h2>
+        <h2>イベント閲覧</h2>
         <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます</p>
     </div>
 
