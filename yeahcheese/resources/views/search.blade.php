@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <h2 class="my-2">イベント閲覧</h2>
-        </div>
+    <div class="jumbotron col-md-8 offset-md-2 bg-white border">
+        <h2 class="">イベント閲覧</h2>
+        <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます</p>
     </div>
+
     <div class="row">
         <!--<div class="col-md-4 offset-md-4">-->
         <div class="col-md-4 offset-md-4">
