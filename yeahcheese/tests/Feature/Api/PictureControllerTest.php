@@ -103,4 +103,25 @@ class PictureControllerTest extends TestCase
             ]
         ]);
     }
+
+    public function testDenyInvalidStorePictureMimesRequest()
+    {
+        $picture = factory(Picture::class)->create();
+        /*png形式なので保存失敗*/
+        Storage::fake('storage/app/public');
+        $file = UploadedFile::fake()->image('testPath.png')
+            ->size(200);
+
+        $response = $this->json('POST', 'api/pictures/store', [
+            'file' => $file,
+            'event_id' => $picture->event_id,
+        ]);
+        $response->assertStatus(200);
+
+        $response->assertJson([
+            'messages' => [
+                'file' => ['jpgまたはjpeg形式にしてください'],
+            ]
+        ]);
+    }
 }
