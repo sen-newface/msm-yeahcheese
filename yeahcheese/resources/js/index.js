@@ -26,10 +26,10 @@ new Vue(
 
 Vue.component('picture-item',
   {
-    props: [
-      'id',
-      'receivedPath',
-    ],
+    props: {
+      id: Number,
+      receivedPath: String,
+    },
     computed: {
       path: function () {
         return 'https://yeahcheese.localapp.jp/storage/app/' + this.receivedPath;
