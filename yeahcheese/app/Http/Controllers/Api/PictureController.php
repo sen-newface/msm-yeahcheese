@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StorePictureRequest;
 use App\Picture;
 
 use App\Http\Resources\PictureResources;
@@ -26,10 +27,10 @@ class PictureController extends Controller
         return PictureResources::Collection($picture);
     }
 
-    public function store(Request $request)
+    public function store(StorePictureRequest $request)
     {
         // 画像サイズ、形式を確認
-        $this->validate($request, Picture::$rules, Picture::$messages);
+        $this->validate($request, Picture::$storeRules, Picture::$messages);
         // 画像を保存
         $path = Storage::putFile('public', $request->file);
         // DBに保存

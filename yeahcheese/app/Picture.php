@@ -11,7 +11,7 @@ class Picture extends Model
         return $this->belongsTo('App\Event');
     }
 
-    public static $rules = [
+    public static $storeRules = [
         'file' => ['required', 'file', 'mimes:jpeg,jpg', 'between:100,1024'],
     ];
 
