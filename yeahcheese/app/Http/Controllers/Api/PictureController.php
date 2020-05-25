@@ -28,6 +28,8 @@ class PictureController extends Controller
 
     public function store(Request $request)
     {
+        // 画像サイズ、形式を確認
+        $this->validate($request, Picture::$rules, Picture::$messages);
         // 画像を保存
         $path = Storage::putFile('public', $request->file);
         // DBに保存
