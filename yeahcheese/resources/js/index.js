@@ -12,8 +12,8 @@ new Vue(
     },
     created: function () {
       api.fetchEvent(this.event_id).then(
-        ev => {
-          const data = ev.data.data;
+        eventResponse => {
+          const data = eventResponse.data.data;
           this.title = data.title;
           this.release_date = data.release_date;
           this.end_date = data.end_date;
