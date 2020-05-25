@@ -28,6 +28,7 @@ class PictureControllerTest extends TestCase
         $data = [];
         foreach ($pictures as $picture) {
             $data[] = [
+                'id' => $picture->id,
                 'event_id' => $picture->event_id,
                 'path' => $picture->path,
             ];
