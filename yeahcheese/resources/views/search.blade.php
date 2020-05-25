@@ -20,8 +20,8 @@
         <div class="col-md-4 offset-md-4">
             <form method="GET" action="{{ route('events.show') }}">
                 <label>認証キー</label>
-                <div class="form-group form-inline">
-                    <input type="text" class="form-control" name="auth_key" placeholder="認証キーを入力">
+                <div class="form-group form-row form-inline">
+                    <input type="text" class="form-control col" name="auth_key" placeholder="認証キーを入力">
                     <button type="submit" class="btn btn-primary mx-2">閲覧</button>
                 </div>
             </form>
