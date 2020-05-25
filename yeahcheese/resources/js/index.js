@@ -11,7 +11,7 @@ new Vue(
             release_date : '',
             end_date : '',
             message : '',
-            title_error_msg : '',
+            error_title_msg : '',
             error_release_date_msg : '',
             error_end_date_msg : '',
             error_flag : false,
@@ -19,10 +19,10 @@ new Vue(
         watch:{
             title: function (newTitle) {
                 if (newTitle.length > 255 || newTitle.length < 1) {
-                    this.title_error_msg = "255文字以下のタイトルを入力してください"
+                    this.error_title_msg = "255文字以下のタイトルを入力してください"
                     this.error_flag = false
                 } else {
-                    this.title_error_msg = ""
+                    this.error_title_msg = ""
                     this.error_flag = true
                 }
             },

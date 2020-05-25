@@ -8,7 +8,7 @@
     <div id="update">
         <p>イベントタイトル</p>
         <input v-model="title">
-        <p>@{{ title_error_msg }}</p>
+        <p>@{{ error_title_msg }}</p>
 
         <p>公開開始日</p>
         <input type="date" v-model="release_date">
