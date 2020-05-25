@@ -39,7 +39,8 @@ new Vue(
                     this.error_release_date_msg = "公開開始日は公開終了日以前にしてください"
                     this.error_flag = false
                 } else {
-                    this.error_release_date_msg = ""
+                    this.error_release_date_msg = ''
+                    this.error_end_date_msg = ''
                     this.error_flag = true
                 }
             },
@@ -48,7 +49,8 @@ new Vue(
                     this.error_end_date_msg = "公開終了日は公開開始日以降にしてください"
                     this.error_flag = false
                 } else {
-                    this.error_end_date_msg = ""
+                    this.error_end_date_msg = ''
+                    this.error_release_date_msg = ''
                     this.error_flag = true
                 }
             }
