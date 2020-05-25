@@ -17,7 +17,7 @@
                 <div class="card-body row">
                     <div class="col-md-4">
                         <p class="card-text">
-                            掲載期間：{{ $event->release_date }} - {{ $event->end_date }}<br>
+                            掲載期間：{{ $event->release_date }} / {{ $event->end_date }}<br>
                             枚数：{{ $event->pictures->count() }}<br>
                             キー：{{ $event->auth_key }}
                         </p>
