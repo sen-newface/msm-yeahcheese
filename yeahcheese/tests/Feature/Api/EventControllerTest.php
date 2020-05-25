@@ -81,7 +81,7 @@ class EventControllerTest extends TestCase
 
         $request = [
             'id' => $event->id,
-            'title' => '96y82AhDHF4ghuzFUsVbeFxEsiQTPGikPSGWwMeiJhDxaGBD2YsfCRN3txBJPGKf986WLGAAj5arsN6eTX8KWtnFaM96i5FUiV5nYrcWpVtiynMGnPa9bm684UJ4YnSmcJ4iWZxEAZUkz8m38fEGyxYZHkLc7butrB4EaxTrPRKcbCTwYSfTVjZ2NuAQmuRwWaas9xT5hBMQ3rr3FG2JBWjhDPKKyiEu68eW5EuscF6ynBB6HxuKGub9LgDiMmeNhue4JjXgXwZ5Ca9yzj8NXep2mxG9PGmj59arQRWnjJbW',
+            'title' => str_repeat('a', 256),
             'release_date' => (new DateTime($event->end_date))->modify('+7 day')->format('Y-m-d H:i'),
             'end_date' => $event->end_date,
         ];
@@ -104,7 +104,7 @@ class EventControllerTest extends TestCase
 
         $request = [
             'id' => $event->id,
-            'title' => '96y82AhDHF4ghuzFUsVbeFxEsiQTPGikPSGWwMeiJhDxaGBD2YsfCRN3txBJPGKf986WLGAAj5arsN6eTX8KWtnFaM96i5FUiV5nYrcWpVtiynMGnPa9bm684UJ4YnSmcJ4iWZxEAZUkz8m38fEGyxYZHkLc7butrB4EaxTrPRKcbCTwYSfTVjZ2NuAQmuRwWaas9xT5hBMQ3rr3FG2JBWjhDPKKyiEu68eW5EuscF6ynBB6HxuKGub9LgDiMmeNhue4JjXgXwZ5Ca9yzj8NXep2mxG9PGmj59arQRWnjJbW',
+            'title' => str_repeat('a', 256),
             'release_date' => $event->release_date,
             'end_date' => $event->end_date,
         ];
