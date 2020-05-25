@@ -88,13 +88,13 @@ class EventController extends Controller
 
             if ($pictures->isEmpty()) 
             {
-                return view('event', [
+                return view('event_show', [
                     'event' => $event,
                     'pictures' => $pictures,
                 ])->with($request->auth_key)->withErrors('写真が登録されていません。');
             }
 
-            return view('event', [
+            return view('event_show', [
                 'event' => $event,
                 'pictures' => $pictures,
             ])->with($request->auth_key);
