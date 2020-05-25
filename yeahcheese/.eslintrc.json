@@ -1,0 +1,17 @@
+{
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "warnOnUnsupportedTypeScriptVersion": false
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
+}
