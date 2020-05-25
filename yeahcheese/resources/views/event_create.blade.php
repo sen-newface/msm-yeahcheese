@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4">
-            <h2 class="text-center my-2">イベント新規作成</h2>
+            <h2 class="my-2">イベント新規作成</h2>
         </div>
     </div>
 
