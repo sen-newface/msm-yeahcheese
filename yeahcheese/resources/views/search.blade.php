@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <div class="jumbotron col-md-8 offset-md-2 bg-white border">
+    <div class="jumbotron bg-white border">
         <h2>イベント閲覧</h2>
         <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます</p>
     </div>
@@ -17,7 +17,7 @@
             @endif
         </div>
         <!-- フォームとボタンだけinlineになるように修正する -->
-        <div class="col-md-4 offset-md-4">
+        <div class="col-md-6 offset-md-3">
             <form method="GET" action="{{ route('events.show') }}">
                 <label>認証キー</label>
                 <div class="form-group form-row form-inline">
