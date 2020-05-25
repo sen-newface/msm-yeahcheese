@@ -4,8 +4,9 @@
 
 @section('content')
 <div class="container">
-    <div class="jumbotron">
-        <h2 class="">{{ $event->title }}</h2>
+    <div class="jumbotron bg-white border">
+        <h2>{{ $event->title }}</h2>
+        <p>掲載期間 : {{ $event->release_date }} / {{ $event->end_date }}</p>
     </div>
 
     <div class="container-fluid">
