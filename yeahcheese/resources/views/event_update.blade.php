@@ -13,20 +13,7 @@
         <input v-model="end_date">
     </div>
 
-    <div id="picture-list">
-        <input v-on:change="" type="file">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-4 my-2" v-for="p in pictures">
-                    <picture-item
-                        :id = "p.id"
-                        :received-path = 'p.path'
-                        @remove-picture='removePicture($event)'
-                    ></picture-item>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="picture-list" />
 
     <script src="{{ asset('js/index.js') }}" data-event-id="@json($event->id)"></script>
 @endsection

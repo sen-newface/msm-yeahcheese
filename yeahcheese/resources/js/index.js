@@ -75,5 +75,21 @@ new Vue(
         );
       },
     },
+    template: '\
+        <div>\
+          <input v-on:change="" type="file">\
+          <div class="container-fluid">\
+              <div class="row">\
+                  <div class="col-4 my-2" v-for="p in pictures">\
+                      <picture-item\
+                          :id = "p.id"\
+                          :received-path = "p.path"\
+                          @remove-picture="removePicture($event)"\
+                      ></picture-item>\
+                  </div>\
+              </div>\
+          </div>\
+        </div>\
+    '
   }
 );
