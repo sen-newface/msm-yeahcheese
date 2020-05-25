@@ -6,6 +6,7 @@
 <div class="container">
     <div class="jumbotron bg-white border">
         <h2 class="">イベント一覧</h2>
+        <p class="text-secondary">イベントタイトルをクリックするとイベント画面を表示する事ができます。</p>
         <a href="{{ route('events.create') }}"><button type="button" class="btn btn-outline-primary btn-lg">新規作成</button></a>
     </div>
     <!-- ユーザーが作成した全イベント情報を表示 --> 
