@@ -68,7 +68,7 @@ class PictureControllerTest extends TestCase
         $picture = factory(Picture::class)->create();
         Storage::fake('storage/app/public');
         $file = UploadedFile::fake()->image($picture->path)
-            ->size(200); //200kbなので保存成功
+            ->size(200);
 
         $response = $this->json('POST', 'api/pictures/store', [
             'file' => $file,
