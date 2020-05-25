@@ -16,7 +16,7 @@
         @endif
         @foreach($pictures as $picture)
         <div class="col-4 my-2">
-            <img src="{{ \Storage::url($picture->path) }}" width="100%" class="img img-thumbnail">
+            <img src="{{ \Storage::url($picture->path) }}" width="100%" class="img">
         </div>
         @endforeach
     </div>
