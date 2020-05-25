@@ -3,20 +3,20 @@ import axios from 'axios';
 const url = 'https://yeahcheese.localapp.jp/api/';
 
 export default {
-    fetchEvent(id) {
-        return axios.get(url + 'events/fetch\/' + id);
-    },
+  fetchEvent(id) {
+    return axios.get(url + 'events/fetch/' + id);
+  },
 
-    getPicturesList(id) {
-        return axios.get(url + 'pictures/list\/' + id);
-    },
+  getPicturesList(id) {
+    return axios.get(url + 'pictures/list/' + id);
+  },
 
-    postPicture(image) {
-        return axios.post(url + 'pictures/store', image);
-    },
+  postPicture(image) {
+    return axios.post(url + 'pictures/store', image);
+  },
 
-    removePicture(id) {
-        return axios.delete(url + 'pictures/destroy\/' + id);
-    },
+  removePicture(id) {
+    return axios.delete(url + 'pictures/destroy/' + id);
+  },
 }
 
