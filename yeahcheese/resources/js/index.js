@@ -52,15 +52,20 @@ new Vue(
       event_id: JSON.parse(document.currentScript.dataset.eventId),
       pictures: [],
       uploadImage: null,
+      getError: false,
       removeError: false,
     },
     created: function () {
       api.getPicturesList(this.event_id).then(
         picturesResponse => {
+          this.getError = false;
           this.pictures = picturesResponse.data.data;
         },
         // TODO: API利用に失敗した際の処理を記述する
-        errors => console.error(errors)
+        errors => {
+          this.getError = true;
+          console.error(errors);
+        }
       );
     },
     methods: {
@@ -81,6 +86,7 @@ new Vue(
     template: '\
         <div>\
           <input v-on:change="" type="file">\
+          <p v-if="this.getError">画像の取得に失敗しました。時間を置いてやりなおしてください。</p>\
           <p v-if="this.removeError">削除に失敗しました。時間を置いてやりなおしてください。</p>\
           <div class="container-fluid">\
               <div class="row">\
