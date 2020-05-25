@@ -82,4 +82,25 @@ class PictureControllerTest extends TestCase
 
         Storage::disk('public')->assertExists($file->hashName());
     }
+
+    public function testDenyInvalidStorePictureSizeRequest()
+    {
+        $picture = factory(Picture::class)->create();
+        Storage::fake('storage/app/public');
+        /*20000kbなので保存失敗*/
+        $file = UploadedFile::fake()->image($picture->path)
+            ->size(20000);
+
+        $response = $this->json('POST', 'api/pictures/store', [
+            'file' => $file,
+            'event_id' => $picture->event_id,
+        ]);
+        $response->assertStatus(200);
+
+        $response->assertJson([
+            'messages' => [
+                'file' => ['100KB以上、1MB以下の画像にしてください'],
+            ]
+        ]);
+    }
 }
