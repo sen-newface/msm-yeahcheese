@@ -22,7 +22,7 @@ class StorePictureRequest extends ApiRequest
     public function rules()
     {
         return [
-            'file' => ['file', 'mimes:jpeg,jpg', 'between:100,1024'],
+            'file' => ['file', 'mimes:jpeg,jpg', 'between:100,1024'],
         ];
     }
 
