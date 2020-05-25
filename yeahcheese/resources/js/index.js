@@ -18,6 +18,7 @@ new Vue(
           this.release_date = data.release_date;
           this.end_date = data.end_date;
         },
+        // TODO: API利用に失敗した際の処理を記述する リクエストの再送信など
         errors => console.error(errors)
       );
     },
@@ -61,7 +62,7 @@ new Vue(
           this.getError = false;
           this.pictures = picturesResponse.data.data;
         },
-        // TODO: API利用に失敗した際の処理を記述する
+        // TODO: API利用に失敗した際の処理を記述する リクエストの再送信など
         errors => {
           this.getError = true;
           console.error(errors);
@@ -76,6 +77,7 @@ new Vue(
             this.pictures.splice(index, 1);
             this.removeError = false;
           },
+          // TODO: API利用に失敗した際の処理を記述する
           errors => {
             this.removeError = true;
             console.error(errors);
