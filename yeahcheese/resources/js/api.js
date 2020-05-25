@@ -7,6 +7,10 @@ export default {
     return axios.get(url + 'events/fetch/' + id);
   },
 
+  updateEvent(data) {
+    return axios.put(url + 'events/update', data);
+  },
+
   getPicturesList(id) {
     return axios.get(url + 'pictures/list/' + id);
   },
