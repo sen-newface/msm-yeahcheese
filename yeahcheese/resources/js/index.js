@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import api from './api';
+import PictureItemComponent from './components/PictureItemComponent.vue';
+
+Vue.component('PictureItemComponent', PictureItemComponent);
 
 new Vue(
   {
@@ -89,6 +92,7 @@ new Vue(
   }
 );
 
+/*
 Vue.component('picture-item',
   {
     props: {
@@ -109,6 +113,7 @@ Vue.component('picture-item',
           ',
   }
 );
+*/
 
 new Vue(
   {
@@ -124,7 +129,7 @@ new Vue(
     computed: {
       // 写真を新しい順に表示
       reversePictures() {
-          return this.pictures.slice().reverse();
+        return this.pictures.slice().reverse();
       }
     },
     created: function () {
@@ -188,12 +193,12 @@ new Vue(
           <div class="container-fluid">\
               <div class="row">\
                   <div class="col-4 my-2" v-for="p in reversePictures">\
-                      <picture-item\
+                      <picture-item-component\
                           :id = "p.id"\
                           :received-path = "p.path"\
                           :remove-error = false\
                           @remove-picture="removePicture($event)"\
-                      ></picture-item>\
+                      ></picture-item-component>\
                   </div>\
               </div>\
           </div>\
