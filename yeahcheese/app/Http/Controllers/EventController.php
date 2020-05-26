@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\CarbonImmutable;
 use App\Event;
+use DateTime;
 
 class EventController extends Controller
 {
@@ -76,15 +76,19 @@ class EventController extends Controller
 
     public function show(Request $request)
     {
-        $today = CarbonImmutable::now()->toDateString();
+        $today = new DateTime(date('Y-m-d'));
 
         $event = Event::authKeyEquals($request->auth_key)
-            ->releaseDateBeforeOrEquals($today)
-            ->endDateAfter($today)
             ->first();
 
         if (!is_null($event)) {
             $pictures = $event->pictures()->get();
+            
+            $release_date = new DateTime($event->release_date);
+            $end_date = new DateTime($event->end_date);
+            if ($today < $release_date || $today > $end_date) {
+                return redirect('events/search')->withErrors('イベントの公開期間外です。');
+            }
 
             if ($pictures->isEmpty()) 
             {
