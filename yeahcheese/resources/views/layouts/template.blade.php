@@ -10,6 +10,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
     </head>
     <body>
         <nav class="navbar nabvar-expand-md navbar-light bg-white shadow-sm">
