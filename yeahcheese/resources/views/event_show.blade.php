@@ -17,8 +17,17 @@
         @endif
         @foreach($pictures as $picture)
         <div class="col-4 my-2 d-flex align-items-center">
-            <img src="{{ \Storage::url($picture->path) }}" class="show_item">
+            <img src="{{ \Storage::url($picture->path) }}" class="show_item" data-toggle="modal" data-target="#picture{{ $picture->id }}">
         </div>
+
+        <div class="modal fade" id="picture{{ $picture->id }}">
+            <div class="modal-dialog">
+                <div class="modal-body">
+                <img src="{{ \Storage::url($picture->path) }}" class="aligncenter size-full w-100">
+                </div>
+            </div>
+        </div>
+        
         @endforeach
     </div>
     </div>
