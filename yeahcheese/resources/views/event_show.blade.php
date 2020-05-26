@@ -4,8 +4,9 @@
 
 @section('content')
 <div class="container">
-    <div class="jumbotron">
-        <h2 class="">{{ $event->title }}</h2>
+    <div class="jumbotron bg-white border">
+        <h2>{{ $event->title }}</h2>
+        <p>掲載期間 : {{ $event->release_date }} / {{ $event->end_date }}</p>
     </div>
 
     <div class="container-fluid">
@@ -16,7 +17,7 @@
         @endif
         @foreach($pictures as $picture)
         <div class="col-4 my-2">
-            <img src="{{ \Storage::url($picture->path) }}" width="100%" class="img img-thumbnail">
+            <img src="{{ \Storage::url($picture->path) }}" width="100%" class="img">
         </div>
         @endforeach
     </div>
