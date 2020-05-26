@@ -15,8 +15,9 @@ export default {
     return axios.get(url + 'pictures/list/' + id);
   },
 
-  postPicture(image) {
-    return axios.post(url + 'pictures/store', image);
+  postPicture(request) {
+    //console.log(request);
+    return axios.post(url + 'pictures/store', request);
   },
 
   removePicture(id) {
