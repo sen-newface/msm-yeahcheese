@@ -16,7 +16,6 @@ export default {
   },
 
   postPicture(request) {
-    //console.log(request);
     return axios.post(url + 'pictures/store', request);
   },
 
