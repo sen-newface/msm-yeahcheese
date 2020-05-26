@@ -120,6 +120,7 @@ new Vue(
       uploadImage: null,
       getError: false,
       removeError: false,
+      storeError: false,
     },
     created: function () {
       api.getPicturesList(this.event_id).then(
@@ -178,6 +179,7 @@ new Vue(
           </form>\
           <p v-if="this.getError">画像の取得に失敗しました。時間を置いてやりなおしてください。</p>\
           <p v-if="this.removeError">削除に失敗しました。時間を置いてやりなおしてください。</p>\
+          <p v-if="this.storeError">画像の保存に失敗しました。時間を置いてやりなおしてください。</p>\
           <div class="container-fluid">\
               <div class="row">\
                   <div class="col-4 my-2" v-for="p in pictures">\
