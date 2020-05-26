@@ -14,7 +14,7 @@ class EventController extends Controller
         $id = Auth::id();
         $events = Event::userIdEquals($id)
             ->with('pictures')
-            ->get();
+            ->paginate(5);
 
         return view('events_list', ['events' => $events]);
     }
@@ -86,7 +86,7 @@ class EventController extends Controller
         if (!is_null($event)) {
             $pictures = $event->pictures()->get();
 
-            if ($pictures->isEmpty()) 
+            if ($pictures->isEmpty())
             {
                 return view('event_show', [
                     'event' => $event,
