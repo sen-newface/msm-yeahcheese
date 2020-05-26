@@ -152,7 +152,10 @@ new Vue(
     },
     template: '\
         <div>\
-          <input v-on:change="" type="file">\
+          <form @submit.prevent="postPicture">\
+            <input type="file" name="file" @change="selectedFile">\
+            <button type="submit">送信</button>\
+          </form>\
           <p v-if="this.getError">画像の取得に失敗しました。時間を置いてやりなおしてください。</p>\
           <p v-if="this.removeError">削除に失敗しました。時間を置いてやりなおしてください。</p>\
           <div class="container-fluid">\
