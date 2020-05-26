@@ -16,8 +16,8 @@
             <p>{{ $errors->first() }}</p>
         @endif
         @foreach($pictures as $picture)
-        <div class="col-4 my-2">
-            <img src="{{ \Storage::url($picture->path) }}" width="100%" class="img">
+        <div class="col-4 my-2 d-flex align-items-center">
+            <img src="{{ \Storage::url($picture->path) }}" class="show_item">
         </div>
         @endforeach
     </div>
