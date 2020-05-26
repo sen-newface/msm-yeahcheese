@@ -76,7 +76,7 @@ class EventController extends Controller
 
     public function show(Request $request)
     {
-        $today = CarbonImmutable::now();
+        $today = CarbonImmutable::today();
 
         $event = Event::authKeyEquals($request->auth_key)
             ->first();
