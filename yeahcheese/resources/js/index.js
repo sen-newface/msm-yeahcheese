@@ -149,6 +149,26 @@ new Vue(
           },
         );
       },
+      selectedFile (e) {
+        // 選択された File の情報を保存
+        let files = e.target.files;
+        this.uploadImage = files[0];
+      },
+      postPicture () {
+        // FormData を利用して File を POST する
+        let data = new FormData();
+        data.append('event_id', this.event_id);
+        data.append('file', this.uploadImage);
+        api.postPicture(data).then(
+          picturePostResponse => {
+            this.pictures.push(picturePostResponse.data.data);
+          },
+          errors => {
+            this.storeError = true;
+            console.error(errors);
+          },
+        )
+      }
     },
     template: '\
         <div>\
