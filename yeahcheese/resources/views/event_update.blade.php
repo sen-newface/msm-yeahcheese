@@ -4,26 +4,12 @@
 
 @section('content')
 <!--CSS変更時にボタン位置など修正-->
-    <h2>イベント編集</h2>
-    <div id="update">
-        <p>イベントタイトル</p>
-        <input v-model="title">
-        <p>@{{ error_title_msg }}</p>
-
-        <p>公開開始日</p>
-        <input type="date" v-model="release_date">
-        <p>@{{ error_release_date_msg }}</p>
-
-        <p>公開終了日</p>
-        <input type="date" v-model="end_date">
-        <p>@{{ error_end_date_msg }}</p>
-
-        <button type="submit" @click="updateEvent">更新</button>
-
-        <p>@{{ message }}</p>
+    <div id="app">
+        <event-editor-component
+            :event-id="{{ $event->id }}"></event-editor-component>
+        <picture-component
+            :event-id="{{ $event->id }}"></picture-component>
     </div>
 
-    <div id="picture-list" />
-
-    <script src="{{ asset('js/index.js') }}" data-event-id="@json($event->id)"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection
