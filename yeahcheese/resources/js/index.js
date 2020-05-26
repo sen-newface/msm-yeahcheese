@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import api from './api';
-import Axios from 'axios';
 
 new Vue(
   {
@@ -122,6 +121,12 @@ new Vue(
       removeError: false,
       storeError: false,
     },
+    computed: {
+      // 写真を新しい順に表示
+      reversePictures() {
+          return this.pictures.slice().reverse();
+      }
+    },
     created: function () {
       api.getPicturesList(this.event_id).then(
         picturesResponse => {
@@ -182,7 +187,7 @@ new Vue(
           <p v-if="this.storeError">画像の保存に失敗しました。時間を置いてやりなおしてください。</p>\
           <div class="container-fluid">\
               <div class="row">\
-                  <div class="col-4 my-2" v-for="p in pictures">\
+                  <div class="col-4 my-2" v-for="p in reversePictures">\
                       <picture-item\
                           :id = "p.id"\
                           :received-path = "p.path"\
