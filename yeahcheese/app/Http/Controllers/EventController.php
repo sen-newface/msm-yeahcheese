@@ -90,7 +90,7 @@ class EventController extends Controller
                 return redirect('events/search')->withErrors('イベントの公開期間外です。');
             }
 
-            if ($pictures->isEmpty()) 
+            if ($pictures->isEmpty())
             {
                 return view('event_show', [
                     'event' => $event,
