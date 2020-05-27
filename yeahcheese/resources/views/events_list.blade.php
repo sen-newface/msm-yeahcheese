@@ -26,14 +26,10 @@
                     </div>
                     <div class="col-md-8">
                         <div class="row">
-                            @foreach($event->pictures as $picture)
-                                @if ($loop->iteration <= 3)
-                                    <div class="col-md-4">
-                                        <img class="img img-thumbnail" width="80%" src="{{ Storage::url($picture->path) }}">
-                                    </div>
-                                @else
-                                    @break
-                                @endif
+                            @foreach($event->pictures->take(3) as $picture)
+                                <div class="col-md-4">
+                                    <img class="img img-thumbnail" width="80%" src="{{ Storage::url($picture->path) }}">
+                                </div>
                             @endforeach
                         </div>
                     </div>
