@@ -9,6 +9,15 @@
         <p class="text-secondary">イベントタイトルをクリックするとイベント画面を表示する事ができます。</p>
         <a href="{{ route('events.create') }}"><button type="button" class="btn btn-outline-primary btn-lg">新規作成</button></a>
     </div>
+
+    <form method="get" action="/events">
+        <div class="form-inline">
+            <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="open">公開中のイベント</label>
+            <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="close">公開期間外のイベント</label>
+            <button type="submit" class="btn btn-primary mx-2">絞り込む</button><br>
+        </div>
+    </form>
+
     <!-- ユーザーが作成した全イベント情報を表示 -->
     @foreach($events as $event)
     <div class="row mb-4">
