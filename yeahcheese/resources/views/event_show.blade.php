@@ -10,7 +10,7 @@
         <p class="text-secondary">画像をクリックすると拡大表示されます</p>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
     <div class="row">
         <!-- 写真一覧表示 -->
         @if ($errors->any())
