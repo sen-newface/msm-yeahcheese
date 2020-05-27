@@ -9,10 +9,9 @@ use App\Event;
 
 class EventController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $today = CarbonImmutable::now()->toDateString();
-        $sort = $request->sort;
         $id = Auth::id();
 
         $events = Event::userIdEquals($id)
@@ -26,7 +25,7 @@ class EventController extends Controller
                 ->ReleaseDateBeforeAndEndDateAfter($today)
                 ->paginate(5);
 
-            return view('events_list', ['events' => $events, 'sort' => $sort]);
+            return view('events_list', ['events' => $events]);
         }
 
         if (isset($_GET['close']))
@@ -36,10 +35,10 @@ class EventController extends Controller
                 ->ReleaseDateAfterAndEndDateBefore($today)
                 ->paginate(5);
 
-            return view('events_list', ['events' => $events, 'sort' => $sort]);
+            return view('events_list', ['events' => $events]);
         }
 
-        return view('events_list', ['events' => $events, 'sort' => $sort]);
+        return view('events_list', ['events' => $events]);
     }
 
     /**
