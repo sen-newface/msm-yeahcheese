@@ -9,14 +9,37 @@ use App\Event;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $today = CarbonImmutable::now()->toDateString();
+        $sort = $request->sort;
         $id = Auth::id();
+
         $events = Event::userIdEquals($id)
             ->with('pictures')
             ->paginate(5);
 
-        return view('events_list', ['events' => $events]);
+        if (isset($_GET['open']))
+        {
+            $events = Event::userIdEquals($id)
+                ->with('pictures')
+                ->ReleaseDateBeforeAndEndDateAfter($today)
+                ->paginate(5);
+
+            return view('events_list', ['events' => $events, 'sort' => $sort]);
+        }
+
+        if (isset($_GET['close']))
+        {
+            $events = Event::userIdEquals($id)
+                ->with('pictures')
+                ->ReleaseDateAfterAndEndDateBefore($today)
+                ->paginate(5);
+
+            return view('events_list', ['events' => $events, 'sort' => $sort]);
+        }
+
+        return view('events_list', ['events' => $events, 'sort' => $sort]);
     }
 
     /**
