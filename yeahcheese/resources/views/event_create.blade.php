@@ -36,9 +36,6 @@
                 @if($errors->has('end_date'))
                 <div class="alert alert-danger" role="alert">{{ $errors->first('end_date') }}</div>
                 @endif
-                @if($errors->any())
-                <div class="alert alert-danger" role="alert">入力した値が正しくありません。</div>
-                @endif
                 </div>
 
                 <button type="submit" class="btn btn-primary">作成</button>
