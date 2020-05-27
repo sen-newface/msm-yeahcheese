@@ -83,7 +83,7 @@ class EventController extends Controller
 
         if (!is_null($event)) {
             $pictures = $event->pictures()->get();
-            
+
             $release_date = CarbonImmutable::parse($event->release_date);
             $end_date = CarbonImmutable::parse($event->end_date);
             if ($today < $release_date || $today > $end_date) {
