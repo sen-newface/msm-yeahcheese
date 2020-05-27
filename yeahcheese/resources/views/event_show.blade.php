@@ -16,7 +16,7 @@
             <p>{{ $errors->first() }}</p>
         @endif
         @foreach($pictures as $picture)
-        <div class="col-4 my-2 d-flex align-items-center justify-content-center">
+        <div class="col-sm-4 my-2 d-flex align-items-center justify-content-center">
             <img src="{{ \Storage::url($picture->path) }}" class="show_item" data-toggle="modal" data-target="#picture{{ $picture->id }}">
         </div>
 
