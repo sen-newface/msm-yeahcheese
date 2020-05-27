@@ -53,7 +53,6 @@ export default {
   },
   data: function() {
     return {
-      // eventId: JSON.parse(document.currentScript.dataset.eventId),
       pictures: [],
       uploadImage: null,
       getError: false,
