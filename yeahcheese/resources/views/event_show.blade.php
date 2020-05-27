@@ -22,7 +22,7 @@
         </div>
 
         <div class="modal fade" id="picture{{ $picture->id }}">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-body">
                 <img src="{{ \Storage::url($picture->path) }}" class="aligncenter size-full w-100">
                 </div>
