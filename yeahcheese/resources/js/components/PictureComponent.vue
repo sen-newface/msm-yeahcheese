@@ -107,6 +107,10 @@ export default {
       api.postPicture(data).then(
         picturePostResponse => {
           this.pictures.push(picturePostResponse.data.data);
+          // 追加された要素がundefinedならその場で削除する
+          if (this.pictures[this.pictures.length - 1] == null) {
+            this.pictures.splice(-1)[0];
+          }
         },
         errors => {
           this.storeError = true;
