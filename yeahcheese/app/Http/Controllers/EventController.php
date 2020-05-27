@@ -68,10 +68,11 @@ class EventController extends Controller
     {
         if (Auth::id() === $event->user_id) {
             return view('event_update', ['event' => $event]);
-        } else {
-            // TODO リダイレクト時にイベントが見つらかなかったことを通知
-            return redirect('events');
         }
+
+        // TODO リダイレクト時にイベントが見つらかなかったことを通知
+        // TODO イベント一覧画面にエラー表示用の要素を用意してから
+        return redirect('events');
     }
 
     public function show(Request $request)
