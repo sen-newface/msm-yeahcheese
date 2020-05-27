@@ -1,28 +1,28 @@
 <template>
   <div class="row">
     <div class="col-md-6 offset-3">
+      <div class="alert alert-primary my-2" v-if="message === 'イベント情報が更新されました'">{{ message }}</div>
+      <div class="alert alert-danger my-2" v-if="message === '更新できませんでした'">{{ message }}</div>
+      <div class="form-group">
+        <label>イベントタイトル</label>
+        <input type="text" class="form-control" v-model="title">
+        <div class="alert alert-danger my-2" role="alert" v-if="error_title_msg != ''">{{ error_title_msg }}</div>
+      </div>
 
-        <div class="form-group">
-          <label>イベントタイトル</label>
-          <input type="text" class="form-control" v-model="title">
-          <div class="alert alert-danger my-2" role="alert" v-if="error_title_msg != ''">{{ error_title_msg }}</div>
-        </div>
+      <div class="form-group">
+        <label>公開開始日</label>
+        <input type="date" class="form-control"  v-model="release_date">
+        <div class="alert alert-danger my-2" role="alert" v-if="error_release_date_msg != ''">{{ error_release_date_msg }}</div>
+      </div>
 
-        <div class="form-group">
-          <label>公開開始日</label>
-          <input type="date" class="form-control"  v-model="release_date">
-          <div class="alert alert-danger my-2" role="alert" v-if="error_release_date_msg != ''">{{ error_release_date_msg }}</div>
-        </div>
+      <div class="form-group">
+        <label>公開終了日</label>
+        <input type="date" class="form-control" v-model="end_date">
+        <div class="alert alert-danger my-2" role="alert" v-if="error_end_date_msg != ''">{{ error_end_date_msg }}</div>
+      </div>
 
-        <div class="form-group">
-          <label>公開終了日</label>
-          <input type="date" class="form-control" v-model="end_date">
-          <div class="alert alert-danger my-2" role="alert" v-if="error_end_date_msg != ''">{{ error_end_date_msg }}</div>
-        </div>
-        <button type="submit" class="col-sm-2 offset-sm-5 btn btn-primary" @click="updateEvent">更新</button>
-
-    <p>{{ message }}</p>
-  </div>
+      <button type="submit" class="col-sm-2 offset-sm-5 btn btn-primary" @click="updateEvent">更新</button>
+    </div>
   </div>
 </template>
 
