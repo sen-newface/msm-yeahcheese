@@ -51,6 +51,6 @@
         </div>
     </div>
     @endforeach
-    {{ $events->links()}}
+    {{ $events->links() }}
 </div>
 @endsection
