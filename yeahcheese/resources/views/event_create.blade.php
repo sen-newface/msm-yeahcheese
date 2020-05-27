@@ -40,7 +40,7 @@
                 @endif
                 </div>
 
-                <button type="submit" class="col-2 offset-5 btn btn-primary">作成</button>
+                <button type="submit" class="col-sm-2 offset-sm-5 btn btn-primary">作成</button>
             </form>
         </div>
     </div>
