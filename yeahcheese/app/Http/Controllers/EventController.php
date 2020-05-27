@@ -67,10 +67,11 @@ class EventController extends Controller
     {
         if (Auth::id() === $event->user_id) {
             return view('event_update', ['event' => $event]);
-        } else {
-            // TODO リダイレクト時にイベントが見つらかなかったことを通知
-            return redirect('events');
         }
+
+        // TODO リダイレクト時にイベントが見つらかなかったことを通知
+        // TODO イベント一覧画面にエラー表示用の要素を用意してから
+        return redirect('events');
     }
 
     public function show(Request $request)
@@ -80,29 +81,23 @@ class EventController extends Controller
         $event = Event::authKeyEquals($request->auth_key)
             ->first();
 
-        if (!is_null($event)){
-            $pictures = $event->pictures()->get();
+        if (is_null($event)) {
+            return redirect('events/search')->withErrors('イベントが見つかりませんでした。');
+        }
 
-            $release_date = CarbonImmutable::parse($event->release_date);
-            $end_date = CarbonImmutable::parse($event->end_date);
-            if ($today < $release_date || $today > $end_date) {
-                return redirect('events/search')->withErrors('イベントの公開期間外です。');
-            }
+        $pictures = $event->pictures()->get();
 
-            if ($pictures->isEmpty()) {
-                return view('event_show', [
-                    'event' => $event,
-                    'pictures' => $pictures,
-                ])->with($request->auth_key)->withErrors('写真が登録されていません。');
-            }
-
+        if ($pictures->isEmpty()) {
             return view('event_show', [
                 'event' => $event,
                 'pictures' => $pictures,
-            ])->with($request->auth_key);
-        } else {
-            return redirect('events/search')->withErrors('イベントが見つかりませんでした。');
+            ])->with($request->auth_key)->withErrors('写真が登録されていません。');
         }
+
+        return view('event_show', [
+            'event' => $event,
+            'pictures' => $pictures,
+        ])->with($request->auth_key);
     }
 
     public function search()
