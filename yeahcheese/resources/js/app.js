@@ -4,9 +4,17 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+/*
 require('./bootstrap');
 
 window.Vue = require('vue');
+*/
+
+import './bootstrap'
+import Vue from 'vue'
+import PictureItemComponent from './components/PictureItemComponent'
+import PictureComponent from './components/PictureComponent'
+import EventEditorComponent from './components/EventEditorComponent'
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +27,9 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('picture-item-component', require('./components/PictureItemComponent.vue').default);
+Vue.component('picture-component', require('./components/PictureComponent.vue').default);
+Vue.component('event-editor-component', require('./components/EventEditorComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,5 +38,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+  el: '#app',
+  components: {
+    PictureComponent,
+    PictureItemComponent,
+    EventEditorComponent,
+  }
 });
