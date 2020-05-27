@@ -27,15 +27,17 @@ export default {
   props: {
     eventId: Number,
   },
-  data: {
-    title : '',
-    release_date : '',
-    end_date : '',
-    message : '',
-    error_title_msg : '',
-    error_release_date_msg : '',
-    error_end_date_msg : '',
-    error_flag : false,
+  data: function () {
+    return {
+      title : '',
+      release_date : '',
+      end_date : '',
+      message : '',
+      error_title_msg : '',
+      error_release_date_msg : '',
+      error_end_date_msg : '',
+      error_flag : false,
+    }
   },
   created: function () {
     api.fetchEvent(this.eventId).then(
@@ -52,6 +54,7 @@ export default {
   watch: {
     title: function (newTitle) {
       if (newTitle.length > 255 || newTitle.length < 1) {
+        // TODO: 1 < newTitle.length < 255でよくない？
         this.error_title_msg = "255文字以下のタイトルを入力してください"
         this.error_flag = false
       } else {
@@ -60,14 +63,6 @@ export default {
       }
     },
     release_date: function (newDate) {
-      /* 開始日を今日以降にするかどうか?
-      const today = new Date()
-      const YYYY = today.getFullYear()
-      const MMint = today.getMonth()+1;
-      const MMstr = ('0' + MMint).slice(-2)
-      const DD = ('0' + today.getDate()).slice(-2)
-      const todaystr = YYYY + '-' + MMstr + '-' + DD
-      */
       if ( Date.parse(newDate) > Date.parse(this.end_date) ) {
         this.error_release_date_msg = "公開開始日は公開終了日以前にしてください"
         this.error_flag = false
@@ -89,7 +84,7 @@ export default {
     },
   },
   methods: {
-    updateEvent: function() { // 更新ボタンを押したときに呼ばれる
+    updateEvent: function() { 
       const request = {
         id : this.eventId,
         title : this.title,
@@ -100,7 +95,6 @@ export default {
         api.updateEvent(request).then(
           response => {
             this.message = "イベント情報が更新されました";
-            console.log(new Date());
           },
         )
       } else {
