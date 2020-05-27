@@ -84,24 +84,23 @@ class EventController extends Controller
             ->endDateAfter($today)
             ->first();
 
-        if (!is_null($event)) {
-            $pictures = $event->pictures()->get();
+        if (is_null($event)) {
+            return redirect('events/search')->withErrors('イベントが見つかりませんでした。');
+        }
 
-            if ($pictures->isEmpty()) 
-            {
-                return view('event_show', [
-                    'event' => $event,
-                    'pictures' => $pictures,
-                ])->with($request->auth_key)->withErrors('写真が登録されていません。');
-            }
+        $pictures = $event->pictures()->get();
 
+        if ($pictures->isEmpty()) {
             return view('event_show', [
                 'event' => $event,
                 'pictures' => $pictures,
-            ])->with($request->auth_key);
-        } else {
-            return redirect('events/search')->withErrors('イベントが見つかりませんでした。');
+            ])->with($request->auth_key)->withErrors('写真が登録されていません。');
         }
+
+        return view('event_show', [
+            'event' => $event,
+            'pictures' => $pictures,
+        ])->with($request->auth_key);
     }
 
     public function search()
