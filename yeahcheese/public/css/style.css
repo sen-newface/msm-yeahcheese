@@ -1,8 +1,8 @@
 @media screen and (min-width:992px) {
     .show_item {
-        width: 250px;
-        height: 250px;
-        object-fit: contain;
+        width: 200px;
+        height: 200px;
+        object-fit: cover; /* or contain */
     }
     .list_thumbnail {
         width: 150px;
@@ -12,9 +12,9 @@
 }
 @media screen and (max-width:991px) and (min-width:768px) {
     .show_item {
-        width: 200px;
-        height: 200px;
-        object-fit: contain;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
     }
     .list_thumbnail {
         width: 100px;
@@ -24,9 +24,9 @@
 }
 @media screen and (max-width:767px) and (min-width:577px) {
     .show_item {
-        width: 140px;
-        height: 140px;
-        object-fit: contain;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
     }
     .list_thumbnail {
         width: 90px;
@@ -37,7 +37,9 @@
 
 @media screen and (max-width:576px) {
     .show_item {
-        width: 90%;
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
     }
     .list_thumbnail {
         width: 50px;
