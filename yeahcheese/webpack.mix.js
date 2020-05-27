@@ -12,5 +12,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .js('resources/js/index.js', 'public/js');
+  .sass('resources/sass/app.scss', 'public/css')
+  .js('resources/js/index.js', 'public/js');
+
+/*
+  下記警告が出るので対策として
+  DevTools failed to load SourceMap: Could not load content for https://yeahcheese.localapp.jp/js/popper.js.map:
+  HTTP error: status code 404, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+ */
+mix.sourceMaps().js('node_modules/popper.js/dist/popper.js', 'public/js').sourceMaps();
