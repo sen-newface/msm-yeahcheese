@@ -56,6 +56,18 @@ class Event extends Model
         return $query->where('release_date', '<=', $date);
     }
 
+    public function scopeReleaseDateBeforeAndEndDateAfter($query, $date) /*公開期間内のイベント*/
+    {
+        return $query->where('release_date', '<', $date)
+            ->where('end_date', '>', $date);
+    }
+
+    public function scopeReleaseDateAfterAndEndDateBefore($query, $date) /*公開期間外のイベント*/
+    {
+        return $query->where('release_date', '>', $date)
+            ->orWhere('end_date', '<', $date);
+    }
+
     public static $storeRules = [
         'title' => ['required', 'max:255'],
         'release_date' => ['required', 'date', 'after_or_equal:today'],
