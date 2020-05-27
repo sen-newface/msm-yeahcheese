@@ -10,7 +10,8 @@
   "rules": {
     "indent": ["error", 2]
   },
-  "overrides": [{
+  "overrides": [
+    {
       "files": ["*.ts"],
       "extends": [
         "plugin:@typescript-eslint/recommended"
