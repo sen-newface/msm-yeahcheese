@@ -80,7 +80,7 @@ class EventController extends Controller
         $event = Event::authKeyEquals($request->auth_key)
             ->first();
 
-        if (!is_null($event)) {
+        if (!is_null($event)){
             $pictures = $event->pictures()->get();
 
             $release_date = CarbonImmutable::parse($event->release_date);
@@ -89,8 +89,7 @@ class EventController extends Controller
                 return redirect('events/search')->withErrors('イベントの公開期間外です。');
             }
 
-            if ($pictures->isEmpty())
-            {
+            if ($pictures->isEmpty()) {
                 return view('event_show', [
                     'event' => $event,
                     'pictures' => $pictures,
