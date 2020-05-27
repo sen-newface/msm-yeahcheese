@@ -17,10 +17,10 @@
                     @csrf
                     <label>イベント名</label>
                     <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                    @if($errors->has('title'))
+                    <div class="alert alert-danger" role="alert">{{ $errors->first('title') }}</div>
+                    @endif
                 </div>
-                @if($errors->has('title'))
-                <div class="alert alert-danger" role="alert">{{ $errors->first('title') }}</div>
-                @endif
 
                 <div class="form-group">
                     <label>公開開始日</label>
