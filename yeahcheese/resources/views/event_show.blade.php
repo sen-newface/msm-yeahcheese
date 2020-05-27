@@ -23,8 +23,15 @@
 
         <div class="modal fade" id="picture{{ $picture->id }}">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-body">
-                <img src="{{ \Storage::url($picture->path) }}" class="aligncenter size-full w-100">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{ \Storage::url($picture->path) }}" class="aligncenter size-full w-100">
+                    </div>
                 </div>
             </div>
         </div>
