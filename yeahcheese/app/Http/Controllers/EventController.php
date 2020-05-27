@@ -76,17 +76,21 @@ class EventController extends Controller
 
     public function show(Request $request)
     {
-        $today = CarbonImmutable::now()->toDateString();
+        $today = CarbonImmutable::today();
 
         $event = Event::authKeyEquals($request->auth_key)
-            ->releaseDateBeforeOrEquals($today)
-            ->endDateAfter($today)
             ->first();
 
         if (!is_null($event)) {
             $pictures = $event->pictures()->get();
+            
+            $release_date = CarbonImmutable::parse($event->release_date);
+            $end_date = CarbonImmutable::parse($event->end_date);
+            if ($today < $release_date || $today > $end_date) {
+                return redirect('events/search')->withErrors('イベントの公開期間外です。');
+            }
 
-            if ($pictures->isEmpty()) 
+            if ($pictures->isEmpty())
             {
                 return view('event_show', [
                     'event' => $event,
