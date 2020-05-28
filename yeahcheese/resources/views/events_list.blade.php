@@ -10,7 +10,7 @@
         <a href="{{ route('events.create') }}"><button type="button" class="btn btn-outline-primary btn-lg">新規作成</button></a>
     </div>
 
-    <form method="get" action="/events">
+    <form  class="mb-4" method="get" action="/events">
         <div class="form-inline">
             <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="open">公開中のイベント</label>
             <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="close">公開期間外のイベント</label>
