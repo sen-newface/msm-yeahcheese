@@ -9,6 +9,8 @@ use App\Event;
 
 class EventController extends Controller
 {
+    const EVENT_NUM_PER_PAGE = 5;
+
     public function index()
     {
         $today = CarbonImmutable::now()->toDateString();
