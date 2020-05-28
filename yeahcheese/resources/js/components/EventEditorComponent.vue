@@ -26,7 +26,6 @@
 
 <script>
 import api from '../api';
-import Vue from 'vue';
 
 export default {
   name: 'EventEditorComponent',
