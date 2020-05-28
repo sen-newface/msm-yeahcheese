@@ -20,7 +20,7 @@
 
     <button type="submit" @click="updateEvent">更新</button>
 
-    <p>{{ message }}</p>
+    <p>{{ postStatusMessage }}</p>
   </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
       title : '',
       release_date : '',
       end_date : '',
-      message : '',
+      postStatusMessage : '',
       validateStatus: {
         title: false,
         releaseDate: false,
@@ -106,11 +106,11 @@ export default {
         api.updateEvent(request).then(
           // TODO: この部分、Laravelから更新後の値が返ってきてるし比較してから処理抜けたほうがいいかも？
           () => {
-            this.message = "イベント情報が更新されました";
+            this.postStatusMessage = "イベント情報が更新されました";
           },
         )
       } else {
-        this.message = "更新できませんでした"
+        this.postStatusMessage = "更新できませんでした"
       }
     }
   },
