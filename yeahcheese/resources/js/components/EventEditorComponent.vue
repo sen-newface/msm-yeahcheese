@@ -186,7 +186,6 @@ export default {
             const responseDataProperties = Object.getOwnPropertyNames(updateResponse.data);
             const responseData = updateResponse.data;
             
-            // TODO: 午後からここ エラーメッセージを取り出す
             if (responseDataProperties.includes("messages")) {
               const responseErrors = responseData.messages;
 
