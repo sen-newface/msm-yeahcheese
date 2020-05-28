@@ -36,7 +36,12 @@ class EventController extends Controller
         if (isset($_GET['close'])) {
             $events = Event::userIdEquals($id)
                 ->with('pictures')
-                ->releaseDateAfterAndEndDateBefore($today)
+                ->where(function($query) use($today) {
+                    return $query->releaseDateAfter($today)
+                    ->orWhere(function($query) use($today) {
+                        $query->endDateBefore($today);
+                    });
+                })
                 ->orderBy('id', 'DESC')
                 ->paginate(self::EVENT_NUM_PER_PAGE);
 
