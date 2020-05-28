@@ -12,9 +12,9 @@
 
     <form  class="mb-4" method="get" action="/events">
         <div class="form-inline">
-            <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="open">公開中のイベント</label>
+            <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="open" value="1" value="1" {{ "1", old("open"), true ? 'checked="checked"' : '' }}>公開中のイベント</label>
             <label class="checkbox-inline"><input class="form-check-input" type="checkbox" name="close">公開期間外のイベント</label>
-            <button type="submit" class="btn btn-primary mx-2">絞り込む</button><br>
+            <button type="submit" class="btn btn-primary mx-2">絞り込む</button>
         </div>
     </form>
 
