@@ -21,4 +21,9 @@ class EventControllerTest extends TestCase
             ->assertSee('ようこそ')
             ->assertSee('YeahCheese');
     }
+
+    public function testEventList()
+    {
+        
+    }
 }
