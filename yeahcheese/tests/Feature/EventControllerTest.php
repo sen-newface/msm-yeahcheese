@@ -13,10 +13,12 @@ class EventControllerTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testHome()
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->assertSee('ようこそ')
+            ->assertSee('YeahCheese');
     }
 }
