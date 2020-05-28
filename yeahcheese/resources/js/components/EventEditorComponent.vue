@@ -9,6 +9,20 @@
         {{ postStatusMessage }}
       </div>
 
+      <div
+        v-if="errorMessages.length != 0"
+        class="alert my-2 alert-danger"
+      >
+        <p>不正な値が送信されました。</p>
+        <ul>
+          <li
+            v-for="message in errorMessages"
+          >
+            {{ message }}
+          </li>
+        </ul>
+      </div>
+
       <div class="form-group">
         <label>イベントタイトル</label>
         <input
@@ -105,7 +119,7 @@ export default {
       title : '',
       release_date : '',
       end_date : '',
-      errorMessages: '',
+      errorMessages: [],
       postStatusMessage : '',
       validateStatus: {
         title: true,
@@ -174,17 +188,17 @@ export default {
             
             // TODO: 午後からここ エラーメッセージを取り出す
             if (responseDataProperties.includes("messages")) {
-              const responseErrors = Object.values(responseData.messages);
-              console.log(responseErrors);
+              const responseErrors = responseData.messages;
 
               for (var error in responseErrors) {
-                console.log(typeof error);
-                // this.errorMessages += ;
+                console.log(responseErrors[error].toString());
+                this.errorMessages.push(responseErrors[error].toString());
               }
 
               return;
             }
 
+            this.errorMessages = [];
             this.postStatusMessage = this.postStatusMessages.success;
           },
         )
