@@ -10,15 +10,11 @@
         送信
       </button>
     </form>
-    <p v-if="this.getError">
-      画像の取得に失敗しました。時間を置いてやりなおしてください。
+
+    <p v-if="errorMessage">
+      エラー表示 : {{ errorMessage }}
     </p>
-    <p v-if="this.removeError">
-      削除に失敗しました。時間を置いてやりなおしてください。
-    </p>
-    <p v-if="this.storeError">
-      画像の保存に失敗しました。時間を置いてやりなおしてください。
-    </p>
+
     <div class="container-fluid">
       <div class="row">
         <div
@@ -49,15 +45,26 @@ export default {
     PictureItemComponent,
   },
   props: {
-    eventId: Number,
+    eventId: {
+      type: Number,
+      require: true,
+      'default': -1,
+    },
+    errorMessages: {
+      type: Object,
+      require: false,
+      'default': () => ({
+        getError: "画像の取得に失敗しました。",
+        removeError: "削除に失敗しました。",
+        storeError: "画像の送信に失敗しました。",
+      }),
+    },
   },
   data: function() {
     return {
       pictures: [],
       uploadImage: null,
-      getError: false,
-      removeError: false,
-      storeError: false,
+      errorMessage: "",
     };
   },
   computed: {
@@ -67,14 +74,18 @@ export default {
     }
   },
   created: function () {
+    if (this.eventId === -1) {
+      return;
+    }
+
     api.getPicturesList(this.eventId).then(
       picturesResponse => {
-        this.getError = false;
+        this.errorMessage = "";
         this.pictures = picturesResponse.data.data;
       },
       // TODO: API利用に失敗した際の処理を記述する リクエストの再送信など
       errors => {
-        this.getError = true;
+        this.errorMessage = this.errorMessages.getError;
         console.error(errors);
       }
     );
@@ -85,12 +96,12 @@ export default {
 
       api.removePicture(id).then(
         pictureRemoveResponse => {
+          this.errorMessage = "";
           this.pictures.splice(index, 1);
-          this.removeError = false;
         },
         // TODO: API利用に失敗した際の処理を記述する
         errors => {
-          this.removeError = true;
+          this.errorMessage = this.errorMessages.removeError;
           console.error(errors);
         },
       );
@@ -109,19 +120,27 @@ export default {
 
       api.postPicture(data).then(
         picturePostResponse => {
-          const responseData = Object.getOwnPropertyNames(picturePostResponse.data);
+          const responseDataProperties = Object.getOwnPropertyNames(picturePostResponse.data);
+          const responseData = picturePostResponse.data;
 
-          if (responseData.includes("messages")) {
-            // TODO: picturePostResponseに含まれているエラー内容を画面に出す
+          if (responseDataProperties.includes("messages")) {
+            this.errorMessage = responseData.messages.file.toString();
             return;
           }
 
-          this.pictures.push(picturePostResponse.data.data);
+          this.errorMessage = "";
+          this.pictures.push(responseData.data);
         },
         errors => {
-          // TODO: nginxの1MB制限超過はここで拾えるみたいなのでここに処理書く
-          this.storeError = true;
-          console.error(errors);
+          /*
+           * TODO: 返ってきたステータスコードで表示を切りかえたい
+           * ここのエラー表示についてのメモ
+           * 想定しているエラー番号は413(nginxの1MB制限超過)と500
+           * 状態としてはどちらもサーバーに画像を送信できなかった、なので
+           * エラーメッセージは同じものを出している
+           * あんまりよくない状態なのでTODOとしてコメントを残している
+           */
+          this.errorMessage = this.errorMessages.storeError;
         },
       )
     }
