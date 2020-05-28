@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-md-6 offset-3">
-      <div class="alert alert-primary my-2" v-if="message === 'イベント情報が更新されました'">{{ message }}</div>
+      <div class="alert alert-success my-2" v-if="message === 'イベント情報が更新されました'">{{ message }}</div>
       <div class="alert alert-danger my-2" v-if="message === '更新できませんでした'">{{ message }}</div>
       <div class="form-group">
         <label>イベントタイトル</label>
