@@ -29,6 +29,11 @@ class EventControllerTest extends TestCase
 
     public function testEventShow()
     {
+
+    }
+
+    public function testEventSearch()
+    {
         
     }
 }
