@@ -14,7 +14,7 @@
         <button type="submit">登録</button>
       </form>
     </div>
-    
+
     <div class="col my-2">
     <div class="alert alert-danger" v-if="this.getError">
       画像の取得に失敗しました。時間を置いてやりなおしてください。

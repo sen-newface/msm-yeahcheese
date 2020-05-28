@@ -92,7 +92,7 @@ export default {
     },
   },
   methods: {
-    updateEvent: function() { 
+    updateEvent: function() {
       const request = {
         id : this.eventId,
         title : this.title,
