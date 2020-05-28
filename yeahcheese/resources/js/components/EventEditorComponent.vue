@@ -1,37 +1,73 @@
 <template>
-  <div>
-    <p>
-      イベントタイトル
-    </p>
-    <input v-model="title">
-    <p v-if="!validateStatus.title">
-      {{ validateErrorMessages.title }}
-    </p>
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <div
+        v-if="postStatusMessage"
+        class="alert my-2"
+        :class="{'alert-success': isUpdateSuccess, 'alert-danger': !isUpdateSuccess}"
+      >
+        {{ postStatusMessage }}
+      </div>
 
-    <p>
-      公開開始日
-    </p>
-    <input type="date" v-model="release_date">
-    <p v-if="!validateStatus.releaseDate">
-      {{ validateErrorMessages.releaseDate }}
-    </p>
+      <div class="form-group">
+        <label>イベントタイトル</label>
+        <input
+          v-model="title"
+          type="text"
+          class="form-control"
+        >
 
-    <p>
-      公開終了日
-    </p>
-    <input type="date" v-model="end_date">
-    <p v-if="!validateStatus.endDate">
-      {{ validateErrorMessages.endDate }}
-    </p>
+        <div
+          v-if="!validateStatus.title"
+          class="alert alert-danger my-2"
+          role="alert"
+        >
+          <p>{{ validateErrorMessages.title }}</p>
+        </div>
+      </div>
 
-    <button type="submit" @click="updateEvent">
-      更新
-    </button>
+      <div class="form-group">
+        <label>公開開始日</label>
+        <input
+          v-model="release_date"
+          type="date"
+          class="form-control"
+        >
 
-    <p>{{ postStatusMessage }}</p>
-    <p v-if="errorMessages">
-      {{ errorMessages }}
-    </p>
+        <div
+          v-if="!validateStatus.releaseDate"
+          class="alert alert-danger my-2"
+          role="alert"
+        >
+          <p>{{ validateErrorMessages.releaseDate }}</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>公開終了日</label>
+        <input
+          v-model="end_date"
+          type="date"
+          class="form-control"
+        >
+
+        <div
+          v-if="!validateStatus.endDate"
+          class="alert alert-danger my-2"
+          role="alert"
+        >
+          <p>{{ validateErrorMessages.endDate }}</p>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="col-sm-2 offset-sm-5 btn btn-primary"
+        @click="updateEvent"
+      >
+        更新
+      </button>
+    </div>
   </div>
 </template>
 
@@ -72,10 +108,15 @@ export default {
       errorMessages: '',
       postStatusMessage : '',
       validateStatus: {
-        title: false,
-        releaseDate: false,
-        endDate: false,
+        title: true,
+        releaseDate: true,
+        endDate: true,
       }
+    }
+  },
+  computed: {
+    isUpdateSuccess () {
+      return (this.postStatusMessage == this.postStatusMessages.success ? true : false);
     }
   },
   watch: {
@@ -152,3 +193,5 @@ export default {
       }
     }
   },
+}
+</script>

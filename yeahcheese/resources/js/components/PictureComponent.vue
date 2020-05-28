@@ -1,26 +1,44 @@
 <template>
-  <div>
-    <form @submit.prevent="postPicture">
-      <input
-        type="file"
-        name="file"
-        @change="selectedFile"
-      >
-      <button type="submit">
-        送信
-      </button>
-    </form>
+  <div class="row m-2">
+    <div class="col-12">
+      <h2><span>写真を登録</span></h2>
+      <p class="text-secondary">
+        1MB以下の写真を登録することができます。
+      </p>
 
-    <p v-if="errorMessage">
-      エラー表示 : {{ errorMessage }}
-    </p>
+      <form
+        class="form-inline"
+        @submit.prevent="postPicture"
+      >
+        <div class="form-group px-0">
+          <input
+            type="file"
+            name="file"
+            @change="selectedFile"
+          >
+        </div>
+
+        <button type="submit">
+          登録
+        </button>
+      </form>
+    </div>
+
+    <div
+      v-if="errorMessage"
+      class="col my-2"
+    >
+      <div class="alert alert-danger">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </div>
 
     <div class="container-fluid">
       <div class="row">
         <div
           v-for="p in reversePictures"
           :key="p.id"
-          class="col-4 my-2"
+          class="col-sm-4 my-2"
         >
           <picture-item-component
             :id="p.id"

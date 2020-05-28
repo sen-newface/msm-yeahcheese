@@ -33,5 +33,4 @@ class StorePictureRequest extends ApiRequest
             'file.between' => '100KB以上、1MB以下の画像にしてください',
         ];
     }
-
 }

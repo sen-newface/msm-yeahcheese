@@ -4,23 +4,22 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-4 offset-md-4">
-            <h2 class="my-2">イベント新規作成</h2>
-        </div>
+    <div class="jumbotron bg-white border">
+        <h2>イベント作成</h2>
+        <p class="text-secondary">イベントの公開期間は今日以降の日付を指定してください。</p>
     </div>
 
     <div class="row my-2">
-        <div class="col-md-4 offset-md-4">
+        <div class="col-md-6 offset-md-3">
             <form method="POST" action="/events/">
                 <div class="form-group">
                     @csrf
                     <label>イベント名</label>
                     <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                    @if($errors->has('title'))
+                    <div class="alert alert-danger" role="alert">{{ $errors->first('title') }}</div>
+                    @endif
                 </div>
-                @if($errors->has('title'))
-                <div class="alert alert-danger" role="alert">{{ $errors->first('title') }}</div>
-                @endif
 
                 <div class="form-group">
                     <label>公開開始日</label>
@@ -36,12 +35,9 @@
                 @if($errors->has('end_date'))
                 <div class="alert alert-danger" role="alert">{{ $errors->first('end_date') }}</div>
                 @endif
-                @if($errors->any())
-                <div class="alert alert-danger" role="alert">入力した値が正しくありません。</div>
-                @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary">作成</button>
+                <button type="submit" class="col-sm-2 offset-sm-5 btn btn-primary">作成</button>
             </form>
         </div>
     </div>
