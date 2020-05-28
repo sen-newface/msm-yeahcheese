@@ -104,7 +104,8 @@ export default {
       }
       if (Object.values(this.validateStatus).every(v => v == true)) {
         api.updateEvent(request).then(
-          response => {
+          // TODO: この部分、Laravelから更新後の値が返ってきてるし比較してから処理抜けたほうがいいかも？
+          () => {
             this.message = "イベント情報が更新されました";
           },
         )
