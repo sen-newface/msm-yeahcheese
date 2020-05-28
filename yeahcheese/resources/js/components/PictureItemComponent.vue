@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="card card-body">
     <img
       class="img"
       width="100%"
       :src="this.path"
     >
-    <a
-      class="btn btn-primary"
+    <button
+      class="btn btn-danger my-2"
       @click="$emit('remove-picture', id)"
-    >削除する</a>
+    >削除する</button>
   </div>
 </template>
 
