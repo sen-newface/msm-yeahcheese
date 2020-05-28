@@ -19,6 +19,7 @@
       <div class="row">
         <div
           v-for="p in reversePictures"
+          :key="p.id"
           class="col-4 my-2"
         >
           <picture-item-component
