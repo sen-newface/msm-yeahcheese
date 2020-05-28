@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\CarbonImmutable;
 use App\Event;
+use App\Http\Requests\StoreEventRequest;
 
 class EventController extends Controller
 {
@@ -70,10 +71,8 @@ class EventController extends Controller
      * @param $event 新規作成するEventの情報を格納する
      * @return イベント一覧画面を表示する
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        $this->validate($request, Event::$storeRules, Event::$messages);
-
         $form = $request->all();
         unset($form['_token']);
 
