@@ -19,6 +19,7 @@ class EventController extends Controller
 
         $events = Event::userIdEquals($id)
             ->with('pictures')
+            ->orderBy('id', 'DESC')
             ->paginate(self::EVENT_NUM_PER_PAGE);
 
         if (isset($_GET['open'])) {
@@ -26,6 +27,7 @@ class EventController extends Controller
                 ->with('pictures')
                 ->releaseDateBeforeOrEquals($today)
                 ->endDateAfterOrEquals($today)
+                ->orderBy('id', 'DESC')
                 ->paginate(self::EVENT_NUM_PER_PAGE);
 
             return view('events_list', ['events' => $events]);
@@ -35,6 +37,7 @@ class EventController extends Controller
             $events = Event::userIdEquals($id)
                 ->with('pictures')
                 ->releaseDateAfterAndEndDateBefore($today)
+                ->orderBy('id', 'DESC')
                 ->paginate(self::EVENT_NUM_PER_PAGE);
 
             return view('events_list', ['events' => $events]);
