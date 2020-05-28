@@ -141,6 +141,7 @@ export default {
            * あんまりよくない状態なのでTODOとしてコメントを残している
            */
           this.errorMessage = this.errorMessages.storeError;
+          console.error(errors);
         },
       )
     }
