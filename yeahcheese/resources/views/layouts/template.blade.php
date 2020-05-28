@@ -33,8 +33,8 @@
                     <p class="mb-0">{{ Auth::user()->email }}</p>
                 <!--ログインしてなかったら-->
                 @else
-                    <a href="/login">login</a>
-                    <a href="/register">register</a>
+                    <a href="/login">{{ __('Login') }}</a>
+                    <a href="/register">{{ __('Register') }}</a>
                 @endif
             </div>
         </nav>
