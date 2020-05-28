@@ -22,7 +22,7 @@
           class="alert alert-danger my-2"
           role="alert"
         >
-          <p>{{ validateErrorMessages.title }}</p>
+          {{ validateErrorMessages.title }}
         </div>
       </div>
 
@@ -39,7 +39,7 @@
           class="alert alert-danger my-2"
           role="alert"
         >
-          <p>{{ validateErrorMessages.releaseDate }}</p>
+          {{ validateErrorMessages.releaseDate }}
         </div>
       </div>
 
@@ -56,7 +56,7 @@
           class="alert alert-danger my-2"
           role="alert"
         >
-          <p>{{ validateErrorMessages.endDate }}</p>
+          {{ validateErrorMessages.endDate }}
         </div>
       </div>
 

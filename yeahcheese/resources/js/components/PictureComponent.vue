@@ -29,7 +29,7 @@
       class="col my-2"
     >
       <div class="alert alert-danger">
-        <p>{{ errorMessage }}</p>
+        {{ errorMessage }}
       </div>
     </div>
 
