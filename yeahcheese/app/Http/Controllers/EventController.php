@@ -18,24 +18,23 @@ class EventController extends Controller
 
         $events = Event::userIdEquals($id)
             ->with('pictures')
-            ->paginate(5);
+            ->paginate(self::EVENT_NUM_PER_PAGE);
 
-        if (isset($_GET['open']))
-        {
+        if (isset($_GET['open'])) {
             $events = Event::userIdEquals($id)
                 ->with('pictures')
-                ->ReleaseDateBeforeAndEndDateAfter($today)
-                ->paginate(5);
+                ->releaseDateBeforeOrEquals($today)
+                ->endDateAfterOrEquals($today)
+                ->paginate(self::EVENT_NUM_PER_PAGE);
 
             return view('events_list', ['events' => $events]);
         }
 
-        if (isset($_GET['close']))
-        {
+        if (isset($_GET['close'])) {
             $events = Event::userIdEquals($id)
                 ->with('pictures')
-                ->ReleaseDateAfterAndEndDateBefore($today)
-                ->paginate(5);
+                ->releaseDateAfterAndEndDateBefore($today)
+                ->paginate(self::EVENT_NUM_PER_PAGE);
 
             return view('events_list', ['events' => $events]);
         }
