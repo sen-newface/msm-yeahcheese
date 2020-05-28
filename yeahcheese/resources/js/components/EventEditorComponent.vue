@@ -60,12 +60,11 @@ export default {
   },
   watch: {
     title: function (newTitle) {
-      if (newTitle.length > 255 || newTitle.length < 1) {
-        // TODO: 1 < newTitle.length < 255でよくない？
-        this.validateStatus.title = false;
-      } else {
+      if (1 <= newTitle.length && newTitle.length <= 255) {
         this.validateStatus.title = true;
+        return;
       }
+      this.validateStatus.title = false;
     },
     release_date: function (newDate) {
       if ( Date.parse(newDate) > Date.parse(this.end_date) ) {
