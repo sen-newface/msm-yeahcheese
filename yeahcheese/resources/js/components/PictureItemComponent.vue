@@ -6,7 +6,7 @@
       :src="this.path"
     >
     <button
-      class="btn btn-primary my-2"
+      class="btn btn-danger my-2"
       @click="$emit('remove-picture', id)"
     >削除する</button>
   </div>
