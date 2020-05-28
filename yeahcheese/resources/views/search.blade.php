@@ -6,7 +6,7 @@
 <div class="container">
     <div class="jumbotron bg-white border">
         <h2>イベント閲覧</h2>
-        <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます</p>
+        <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます。</p>
     </div>
 
     <div class="row">

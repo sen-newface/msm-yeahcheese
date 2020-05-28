@@ -6,7 +6,7 @@
 <div class="container">
     <div class="jumbotron bg-white border">
         <h2>イベント作成</h2>
-        <p class="text-secondary">イベントの公開期間は今日以降の日付を指定してください。</p>
+        <p class="text-secondary">イベント情報を入力してイベントを作成しましょう。イベントの写真はイベントを編集する際に登録することができます。</p>
     </div>
 
     <div class="row my-2">
