@@ -1,26 +1,37 @@
 <template>
   <div>
-    <p>イベントタイトル</p>
+    <p>
+      イベントタイトル
+    </p>
     <input v-model="title">
     <p v-if="!validateStatus.title">
       {{ validateErrorMessages.title }}
     </p>
 
-    <p>公開開始日</p>
+    <p>
+      公開開始日
+    </p>
     <input type="date" v-model="release_date">
     <p v-if="!validateStatus.releaseDate">
       {{ validateErrorMessages.releaseDate }}
     </p>
 
-    <p>公開終了日</p>
+    <p>
+      公開終了日
+    </p>
     <input type="date" v-model="end_date">
     <p v-if="!validateStatus.endDate">
       {{ validateErrorMessages.endDate }}
     </p>
 
-    <button type="submit" @click="updateEvent">更新</button>
+    <button type="submit" @click="updateEvent">
+      更新
+    </button>
 
     <p>{{ postStatusMessage }}</p>
+    <p v-if="errorMessages">
+      {{ errorMessages }}
+    </p>
   </div>
 </template>
 
@@ -58,6 +69,7 @@ export default {
       title : '',
       release_date : '',
       end_date : '',
+      errorMessages: '',
       postStatusMessage : '',
       validateStatus: {
         title: false,
@@ -95,6 +107,7 @@ export default {
     api.fetchEvent(this.eventId).then(
       eventResponse => {
         const data = eventResponse.data.data;
+
         this.title = data.title;
         this.release_date = data.release_date;
         this.end_date = data.end_date;
@@ -114,7 +127,23 @@ export default {
       if (Object.values(this.validateStatus).every(v => v == true)) {
         api.updateEvent(request).then(
           // TODO: この部分、Laravelから更新後の値が返ってきてるし比較してから処理抜けたほうがいいかも？
-          () => {
+          updateResponse => {
+            const responseDataProperties = Object.getOwnPropertyNames(updateResponse.data);
+            const responseData = updateResponse.data;
+            
+            // TODO: 午後からここ エラーメッセージを取り出す
+            if (responseDataProperties.includes("messages")) {
+              const responseErrors = Object.values(responseData.messages);
+              console.log(responseErrors);
+
+              for (var error in responseErrors) {
+                console.log(typeof error);
+                // this.errorMessages += ;
+              }
+
+              return;
+            }
+
             this.postStatusMessage = this.postStatusMessages.success;
           },
         )
@@ -123,5 +152,3 @@ export default {
       }
     }
   },
-}
-</script>
