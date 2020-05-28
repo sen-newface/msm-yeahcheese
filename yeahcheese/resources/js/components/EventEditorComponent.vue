@@ -44,6 +44,14 @@ export default {
         endDate: "公開終了日は公開開始日以降にしてください。",
       }),
     },
+    postStatusMessages: {
+      type: Object,
+      require: false,
+      'default': () => ({
+        success: "イベント情報が更新されました",
+        failed: "更新できませんでした",
+      }),
+    },
   },
   data: function () {
     return {
@@ -107,11 +115,11 @@ export default {
         api.updateEvent(request).then(
           // TODO: この部分、Laravelから更新後の値が返ってきてるし比較してから処理抜けたほうがいいかも？
           () => {
-            this.postStatusMessage = "イベント情報が更新されました";
+            this.postStatusMessage = this.postStatusMessages.success;
           },
         )
       } else {
-        this.postStatusMessage = "更新できませんでした"
+        this.postStatusMessage = this.postStatusMessages.failed;
       }
     }
   },
