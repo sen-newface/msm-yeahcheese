@@ -1,8 +1,8 @@
 <template>
   <div class="row m-2">
     <div class="col-12">
-      <h2><span>写真を登録</span></h2>
-      <p class="text-secondary">1MB以下の写真を登録することができます。</p>
+      <h2 class="my-2">写真を登録</h2>
+      <p class="text-secondary">データサイズが1MB以下の写真を登録することができます。</p>
       
         <form @submit.prevent="postPicture" class="col-sm-6 px-0">
           <div class="input-group">

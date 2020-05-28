@@ -1,8 +1,13 @@
 <template>
-  <div class="row">
-    <div class="col-md-6 offset-3">
+  <div class="row m-2">
+    <div class="col-12 my-2">
+      <h2>イベント情報を編集</h2>
+      <p class="text-secondary">255文字以下のタイトルを設定することができます。イベントの公開開始日は公開終了日より先の日付を指定することはできません。</p>
+
       <div class="alert alert-success my-2" v-if="message === 'イベント情報が更新されました'">{{ message }}</div>
       <div class="alert alert-danger my-2" v-if="message === '更新できませんでした'">{{ message }}</div>
+
+      <div class="col-sm-6 px-0">
       <div class="form-group">
         <label>イベントタイトル</label>
         <input type="text" class="form-control" v-model="title">
@@ -20,8 +25,9 @@
         <input type="date" class="form-control" v-model="end_date">
         <div class="alert alert-danger my-2" role="alert" v-if="error_end_date_msg">{{ error_end_date_msg }}</div>
       </div>
+      </div>
 
-      <button type="submit" class="col-sm-2 offset-sm-5 btn btn-primary" @click="updateEvent">更新</button>
+      <button type="submit" class="col-sm-2 btn btn-primary" @click="updateEvent">更新</button>
     </div>
   </div>
 </template>
