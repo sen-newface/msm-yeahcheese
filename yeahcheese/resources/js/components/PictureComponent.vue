@@ -2,7 +2,7 @@
   <div class="row m-2">
     <div class="col-12">
       <h2><span>写真を登録</span></h2>
-      <p class="text-secondary">写真は1MB以下にしてください。</p>
+      <p class="text-secondary">1MB以下の写真を登録することができます。</p>
       <form @submit.prevent="postPicture" class="form-inline">
         <div class="form-group px-0">
           <input

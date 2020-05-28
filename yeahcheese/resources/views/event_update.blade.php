@@ -7,7 +7,7 @@
 <div class="container">
     <div class="jumbotron bg-white border">
         <h2 class="">イベント編集</h2>
-        <p class="text-secondary">イベントの公開期間は今日以降に指定してください</p>
+        <p class="text-secondary">ファイルを選択して写真を登録しましょう。</p>
     </div>
 
     <div id="app">
