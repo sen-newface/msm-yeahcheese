@@ -82,6 +82,7 @@ export default {
   methods: {
     removePicture (id) {
       let index = this.pictures.findIndex((p) => p.id === id);
+
       api.removePicture(id).then(
         pictureRemoveResponse => {
           this.pictures.splice(index, 1);
@@ -102,17 +103,23 @@ export default {
     postPicture () {
       // FormData を利用して File を POST する
       let data = new FormData();
+
       data.append('event_id', this.eventId);
       data.append('file', this.uploadImage);
+
       api.postPicture(data).then(
         picturePostResponse => {
-          if (Object.getOwnPropertyNames(picturePostResponse.data).includes("messages")) {
+          const responseData = Object.getOwnPropertyNames(picturePostResponse.data);
+
+          if (responseData.includes("messages")) {
+            // TODO: picturePostResponseに含まれているエラー内容を画面に出す
             return;
           }
 
           this.pictures.push(picturePostResponse.data.data);
         },
         errors => {
+          // TODO: nginxの1MB制限超過はここで拾えるみたいなのでここに処理書く
           this.storeError = true;
           console.error(errors);
         },
