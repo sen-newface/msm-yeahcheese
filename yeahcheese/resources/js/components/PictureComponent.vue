@@ -3,28 +3,37 @@
     <div class="col-12">
       <h2><span>写真を登録</span></h2>
       <p class="text-secondary">1MB以下の写真を登録することができます。</p>
-      <form @submit.prevent="postPicture" class="form-inline">
-        <div class="form-group px-0">
-          <input
-            type="file"
-            name="file"
-            @change="selectedFile"
-          >
-        </div>
-        <button type="submit">登録</button>
-      </form>
+      
+        <form @submit.prevent="postPicture" class="col-sm-6 px-0">
+          <div class="input-group">
+            <div class="custom-file">
+              <input
+                type="file"
+                name="file"
+                @change="selectedFile"
+                class="custom-file-input"
+                id="customFile"
+              >
+              <label class="custom-file-label" for="customFile" data-browse="参照">ファイルを選択</label>
+            </div>
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-primary">登録</button>
+            </div>
+          </div>
+        </form>
+      
     </div>
     
     <div class="col my-2">
-    <div class="alert alert-danger" v-if="this.getError">
-      画像の取得に失敗しました。時間を置いてやりなおしてください。
-    </div>
-    <div class="alert alert-danger" v-if="this.removeError">
-      削除に失敗しました。時間を置いてやりなおしてください。
-    </div>
-    <div class="alert alert-danger" v-if="this.storeError">
-      画像の保存に失敗しました。時間を置いてやりなおしてください。
-    </div>
+      <div class="alert alert-danger" v-if="this.getError">
+        画像の取得に失敗しました。時間を置いてやりなおしてください。
+      </div>
+      <div class="alert alert-danger" v-if="this.removeError">
+        削除に失敗しました。時間を置いてやりなおしてください。
+      </div>
+      <div class="alert alert-danger" v-if="this.storeError">
+        画像の保存に失敗しました。時間を置いてやりなおしてください。
+      </div>
     </div>
 
 
