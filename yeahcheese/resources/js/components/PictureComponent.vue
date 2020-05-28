@@ -95,7 +95,7 @@ export default {
       let index = this.pictures.findIndex((p) => p.id === id);
 
       api.removePicture(id).then(
-        pictureRemoveResponse => {
+        () => {
           this.errorMessage = "";
           this.pictures.splice(index, 1);
         },
