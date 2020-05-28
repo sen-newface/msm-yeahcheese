@@ -69,16 +69,18 @@ export default {
     release_date: function (newDate) {
       if ( Date.parse(newDate) > Date.parse(this.end_date) ) {
         this.validateStatus.releaseDate = false;
-      } else {
-        this.validateStatus.releaseDate = true;
+        return;
       }
+
+      this.validateStatus.releaseDate = true;
     },
     end_date: function (newDate) {
       if ( Date.parse(newDate) < Date.parse(this.release_date) ) {
         this.validateStatus.endDate = false;
-      } else {
-        this.validateStatus.endDate = true;
+        return;
       }
+
+      this.validateStatus.endDate = true;
     },
   },
   created: function () {
