@@ -38,10 +38,10 @@ Vue.component('event-editor-component', require('./components/EventEditorCompone
  */
 
 const app = new Vue({
-  el: '#app',
-  components: {
-    PictureComponent,
-    PictureItemComponent,
-    EventEditorComponent,
-  }
+    el: '#app',
+    components: {
+        PictureComponent,
+        PictureItemComponent,
+        EventEditorComponent,
+    }
 });
