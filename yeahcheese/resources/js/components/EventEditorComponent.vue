@@ -58,18 +58,6 @@ export default {
       }
     }
   },
-  created: function () {
-    api.fetchEvent(this.eventId).then(
-      eventResponse => {
-        const data = eventResponse.data.data;
-        this.title = data.title;
-        this.release_date = data.release_date;
-        this.end_date = data.end_date;
-      },
-      // TODO: API利用に失敗した際の処理を記述する リクエストの再送信など
-      errors => console.error(errors)
-    );
-  },
   watch: {
     title: function (newTitle) {
       if (newTitle.length > 255 || newTitle.length < 1) {
@@ -93,6 +81,18 @@ export default {
         this.validateStatus.endDate = true;
       }
     },
+  },
+  created: function () {
+    api.fetchEvent(this.eventId).then(
+      eventResponse => {
+        const data = eventResponse.data.data;
+        this.title = data.title;
+        this.release_date = data.release_date;
+        this.end_date = data.end_date;
+      },
+      // TODO: API利用に失敗した際の処理を記述する リクエストの再送信など
+      errors => console.error(errors)
+    );
   },
   methods: {
     updateEvent: function() { 
