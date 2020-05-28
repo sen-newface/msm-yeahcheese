@@ -49,6 +49,6 @@
         </div>
     </div>
     @endforeach
-    {{ $events->links() }}
+    {{ $events->appends(request()->input())->links() }}
 </div>
 @endsection
