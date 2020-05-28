@@ -24,26 +24,40 @@ class EventControllerTest extends TestCase
 
     public function testEventList()
     {
+        // ログインユーザを指定 '/events'
+        $response = $this->get('/');
 
+        $response->assertStatus(200);
     }
 
     public function testEventShow()
     {
+        // /events/show?auth_key={}
+        $response = $this->get('/');
 
+        $response->assertStatus(200);
     }
 
     public function testEventSearch()
     {
+        $response = $this->get('events/search');
 
+        $response->assertStatus(200);
     }
 
     public function testEventCreate()
     {
-        
+        // event/create
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
     }
 
     public function testEventEdit()
     {
-        
+        // /events/edit/{id}
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
     }
 }
