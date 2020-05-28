@@ -29,6 +29,7 @@ class StorePictureRequest extends ApiRequest
     public function messages()
     {
         return [
+            'file.file' => 'ファイルを指定してください',
             'file.mimes' => 'jpgまたはjpeg形式にしてください',
             'file.between' => '100KB以上、1MB以下の画像にしてください',
         ];
