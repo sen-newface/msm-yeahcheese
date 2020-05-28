@@ -23,8 +23,8 @@ class UpdateEventRequest extends ApiRequest
     {
         return [
             'title' => ['max:255'],
-            'release_date' => ['date', 'before:end_date'],
-            'end_date' => ['date', 'after:release_date'],
+            'release_date' => ['date', 'before_or_equal:end_date'],
+            'end_date' => ['date', 'after_or_equal:release_date'],
         ];
     }
 
