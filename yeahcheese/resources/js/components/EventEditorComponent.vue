@@ -2,15 +2,21 @@
   <div>
     <p>イベントタイトル</p>
     <input v-model="title">
-    <p>{{ error_title_msg }}</p>
+    <p v-if="!validateStatus.title">
+      {{ validateErrorMessages.title }}
+    </p>
 
     <p>公開開始日</p>
     <input type="date" v-model="release_date">
-    <p>{{ error_release_date_msg }}</p>
+    <p v-if="!validateStatus.releaseDate">
+      {{ validateErrorMessages.releaseDate }}
+    </p>
 
     <p>公開終了日</p>
     <input type="date" v-model="end_date">
-    <p>{{ error_end_date_msg }}</p>
+    <p v-if="!validateStatus.endDate">
+      {{ validateErrorMessages.endDate }}
+    </p>
 
     <button type="submit" @click="updateEvent">更新</button>
 
@@ -25,7 +31,20 @@ import Vue from 'vue';
 export default {
   name: 'EventEditorComponent',
   props: {
-    eventId: Number,
+    eventId: {
+      type: Number,
+      require: true,
+      'default': -1,
+    },
+    validateErrorMessages: {
+      type: Object,
+      require: false,
+      'default': () => ({
+        title: "1文字以上255文字以下のタイトルを入力してください。",
+        releaseDate: "公開開始日は公開終了日以前にしてください。",
+        endDate: "公開終了日は公開開始日以降にしてください。",
+      }),
+    },
   },
   data: function () {
     return {
@@ -33,10 +52,11 @@ export default {
       release_date : '',
       end_date : '',
       message : '',
-      error_title_msg : '',
-      error_release_date_msg : '',
-      error_end_date_msg : '',
-      error_flag : false,
+      validateStatus: {
+        title: false,
+        releaseDate: false,
+        endDate: false,
+      }
     }
   },
   created: function () {
@@ -55,31 +75,23 @@ export default {
     title: function (newTitle) {
       if (newTitle.length > 255 || newTitle.length < 1) {
         // TODO: 1 < newTitle.length < 255でよくない？
-        this.error_title_msg = "255文字以下のタイトルを入力してください"
-        this.error_flag = false
+        this.validateStatus.title = false;
       } else {
-        this.error_title_msg = ""
-        this.error_flag = true
+        this.validateStatus.title = true;
       }
     },
     release_date: function (newDate) {
       if ( Date.parse(newDate) > Date.parse(this.end_date) ) {
-        this.error_release_date_msg = "公開開始日は公開終了日以前にしてください"
-        this.error_flag = false
+        this.validateStatus.releaseDate = false;
       } else {
-        this.error_release_date_msg = ''
-        this.error_end_date_msg = ''
-        this.error_flag = true
+        this.validateStatus.releaseDate = true;
       }
     },
     end_date: function (newDate) {
       if ( Date.parse(newDate) < Date.parse(this.release_date) ) {
-        this.error_end_date_msg = "公開終了日は公開開始日以降にしてください"
-        this.error_flag = false
+        this.validateStatus.endDate = false;
       } else {
-        this.error_end_date_msg = ''
-        this.error_release_date_msg = ''
-        this.error_flag = true
+        this.validateStatus.endDate = true;
       }
     },
   },
@@ -91,7 +103,7 @@ export default {
         release_date : this.release_date,
         end_date : this.end_date
       }
-      if (this.error_flag) {
+      if (Object.values(this.validateStatus).every(v => v == true)) {
         api.updateEvent(request).then(
           response => {
             this.message = "イベント情報が更新されました";
