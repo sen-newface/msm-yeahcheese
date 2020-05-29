@@ -21,7 +21,7 @@
                     {{ isset($_GET['open']) ? "checked" : "" }}
                     >公開中のイベント
             </label>
-            <label class="checkbox-inline">
+            <label class="checkbox-inline ml-2">
                 <input
                     class="form-check-input"
                     type="checkbox"
