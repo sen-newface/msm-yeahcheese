@@ -6,8 +6,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+use App\Event;
+use App\User;
+
 class EventControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
     /**
      * A basic feature test example.
      *
@@ -24,10 +35,17 @@ class EventControllerTest extends TestCase
 
     public function testEventList()
     {
-        // ログインユーザを指定 '/events'
-        $response = $this->get('/');
+        $event = factory(Event::class)->create();
+        $user = User::where('id', $event->user_id)->first();
 
-        $response->assertStatus(200);
+        $response = $this->actingAs($user)
+            ->get('events');
+        
+        $response->assertStatus(200)
+            ->assertSee($event->title)
+            ->assertSee($event->release_date)
+            ->assertSee($event->end_date)
+            ->assertSee($event->auth_key);
     }
 
     public function testEventShow()
