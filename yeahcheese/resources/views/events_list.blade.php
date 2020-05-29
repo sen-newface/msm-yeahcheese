@@ -11,7 +11,7 @@
     </div>
 
     <form  class="mb-4" method="get" action="/events">
-        <div class="form-inline">
+        <div class="form-check form-check-inline">
             <label class="checkbox-inline">
                 <input
                     class="form-check-input"
