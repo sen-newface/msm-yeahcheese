@@ -8,24 +8,26 @@
         データサイズが1MB以下の写真を登録することができます。
       </p>
       <form
-        class="form-inline"
+        class="col-sm-6 px-0"
         @submit.prevent="postPicture"
       >
-        <div class="form-group px-0">
-          <input
-            id="customFile"
-            type="file"
-            name="file"
-            class="custom-file-input"
-            @change="selectedFile"
-          >
-          <label
-            class="custom-file-label"
-            for="customFile"
-            data-browse="参照"
-          >
-            ファイルを選択
-          </label>
+        <div class="input-group">
+          <div class="custom-file">
+            <input
+              id="customFile"
+              type="file"
+              name="file"
+              class="custom-file-input"
+              @change="selectedFile"
+            >
+            <label
+              class="custom-file-label"
+              for="customFile"
+              data-browse="参照"
+            >
+              ファイルを選択
+            </label>
+          </div>
 
           <div class="input-group-append">
             <button
