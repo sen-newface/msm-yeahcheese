@@ -93,7 +93,7 @@ class EventControllerTest extends TestCase
         $response->assertJson([
             'messages' => [
                 'title' => ['イベントタイトルは255文字まで設定できます'],
-                'release_date' => ['イベント公開開始日は公開終了日より前の日付である必要があります'],
+                'release_date' => ['イベント公開開始日は公開終了日以前の日付である必要があります'],
             ]
         ]);
     }
@@ -137,7 +137,7 @@ class EventControllerTest extends TestCase
 
         $response->assertJson([
             'messages' => [
-                'release_date' => ['イベント公開開始日は公開終了日より前の日付である必要があります'],
+                'release_date' => ['イベント公開開始日は公開終了日以前の日付である必要があります'],
             ]
         ]);
     }
@@ -159,7 +159,7 @@ class EventControllerTest extends TestCase
 
         $response->assertJson([
             'messages' => [
-                'end_date' => ['イベント公開終了日はイベント公開開始日より後の日付である必要があります'],
+                'end_date' => ['イベント公開終了日はイベント公開開始日以降の日付である必要があります'],
             ]
         ]);
     }

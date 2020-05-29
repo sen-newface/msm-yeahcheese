@@ -23,8 +23,8 @@ class UpdateEventRequest extends ApiRequest
     {
         return [
             'title' => ['max:255'],
-            'release_date' => ['date', 'before:end_date'],
-            'end_date' => ['date', 'after:release_date'],
+            'release_date' => ['date', 'before_or_equal:end_date'],
+            'end_date' => ['date', 'after_or_equal:release_date'],
         ];
     }
 
@@ -36,11 +36,11 @@ class UpdateEventRequest extends ApiRequest
 
             'release_date.required' => 'イベント公開開始日は必須項目です',
             'release_date.date' => 'イベント公開開始日は日付形式で入力してください',
-            'release_date.before' => 'イベント公開開始日は公開終了日より前の日付である必要があります',
+            'release_date.before_or_equal' => 'イベント公開開始日は公開終了日以前の日付である必要があります',
 
             'end_date.required' => 'イベント公開終了日は必須項目です',
             'end_date.date' => 'イベント公開終了日は日付形式で入力してください',
-            'end_date.after' => 'イベント公開終了日はイベント公開開始日より後の日付である必要があります',
+            'end_date.after_or_equal' => 'イベント公開終了日はイベント公開開始日以降の日付である必要があります',
         ];
     }
 }
