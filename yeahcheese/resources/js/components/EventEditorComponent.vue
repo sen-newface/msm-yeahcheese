@@ -101,12 +101,12 @@ export default {
     eventId: {
       type: Number,
       require: true,
-      'default': -1,
+      default: -1,
     },
     validateErrorMessages: {
       type: Object,
       require: false,
-      'default': () => ({
+      default: () => ({
         title: "1文字以上255文字以下のタイトルを入力してください。",
         releaseDate: "公開開始日は公開終了日以前にしてください。",
         endDate: "公開終了日は公開開始日以降にしてください。",
@@ -115,7 +115,7 @@ export default {
     postStatusMessages: {
       type: Object,
       require: false,
-      'default': () => ({
+      default: () => ({
         success: "イベント情報が更新されました",
         failed: "更新できませんでした",
       }),
