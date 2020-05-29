@@ -73,7 +73,7 @@ class EventControllerTest extends TestCase
                  ->assertRedirect('events/search');
     }
 
-    public function testEventShowAuthKeyNotFound()
+    public function testEventShowWithInvalidAuthKey()
     {
         $response = $this->get('/events/show?auth_key=dummyauthkey');
 
