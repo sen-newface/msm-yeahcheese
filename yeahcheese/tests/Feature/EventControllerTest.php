@@ -55,13 +55,14 @@ class EventControllerTest extends TestCase
                  ->assertSee($event->end_date)
                  ->assertSee($picture->path);
 
-        /*
-         * イベントが見つからずリダイレクトした時のテスト
-         * いまはコンフリクトすると思うのでここに。あとで分離したい
-         */
+    }
+
+    public function testEventShowWithoutAuthKey()
+    {
         $response = $this->get('events/show');
 
-        $response->assertStatus(302);
+        $response->assertStatus(302)
+            ->assertRedirect('events/search');
     }
 
     public function testEventSearch()
