@@ -147,6 +147,7 @@ export default {
         this.validateStatus.title = true;
         return;
       }
+
       this.validateStatus.title = false;
     },
     release_date: function (newDate) {
@@ -156,6 +157,7 @@ export default {
       }
 
       this.validateStatus.releaseDate = true;
+      this.validateStatus.endDate = true;
     },
     end_date: function (newDate) {
       if ( Date.parse(newDate) < Date.parse(this.release_date) ) {
@@ -164,6 +166,7 @@ export default {
       }
 
       this.validateStatus.endDate = true;
+      this.validateStatus.releaseDate = true;
     },
   },
   created: function () {
@@ -197,7 +200,7 @@ export default {
           updateResponse => {
             const responseDataProperties = Object.getOwnPropertyNames(updateResponse.data);
             const responseData = updateResponse.data;
-            
+
             if (responseDataProperties.includes("messages")) {
               const responseErrors = responseData.messages;
 
