@@ -55,7 +55,8 @@ class EventControllerTest extends TestCase
                  ->assertSee($event->end_date)
                  ->assertSee($picture->path);
 
-        /* イベントが見つからずリダイレクトした時のテスト
+        /*
+         * イベントが見つからずリダイレクトした時のテスト
          * いまはコンフリクトすると思うのでここに。あとで分離したい
          */
         $response = $this->get('events/show');
