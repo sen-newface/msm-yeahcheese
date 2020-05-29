@@ -62,7 +62,6 @@ class EventControllerTest extends TestCase
                  ->assertSee($event->release_date)
                  ->assertSee($event->end_date)
                  ->assertSee($picture->path);
-
     }
 
     public function testEventShowWithoutAuthKey()
