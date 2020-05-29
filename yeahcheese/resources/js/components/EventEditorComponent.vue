@@ -101,7 +101,7 @@ export default {
     eventId: {
       type: Number,
       require: true,
-      default: -1,
+      default: null,
     },
     validateErrorMessages: {
       type: Object,
@@ -166,6 +166,10 @@ export default {
     },
   },
   created: function () {
+    if (!this.eventId) {
+      return;
+    }
+
     api.fetchEvent(this.eventId).then(
       eventResponse => {
         const data = eventResponse.data.data;
