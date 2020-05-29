@@ -84,9 +84,9 @@ class EventControllerTest extends TestCase
 
     public function testEventSearch()
     {
-        $response = $this->get('events/search');
-
-        $response->assertStatus(200);
+        $response = $this->get(route('events.search'));
+        $response->assertStatus(200)
+            ->assertSeeText('認証キーを入力');
     }
 
     public function testEventCreate()
