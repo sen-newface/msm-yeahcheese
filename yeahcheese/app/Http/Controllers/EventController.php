@@ -82,7 +82,7 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-        if (Auth::id() === $event->user_id) {
+        if ($event->isOwner()) {
             return view('event_update', ['event' => $event]);
         }
 
