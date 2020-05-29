@@ -1,46 +1,60 @@
 <template>
   <div class="row m-2">
     <div class="col-12">
-      <h2 class="my-2">写真を登録</h2>
-      <p class="text-secondary">データサイズが1MB以下の写真を登録することができます。</p>
-      
-        <form @submit.prevent="postPicture" class="col-sm-6 px-0">
-          <div class="input-group">
-            <div class="custom-file">
-              <input
-                type="file"
-                name="file"
-                @change="selectedFile"
-                class="custom-file-input"
-                id="customFile"
-              >
-              <label class="custom-file-label" for="customFile" data-browse="参照">ファイルを選択</label>
-            </div>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary">登録</button>
-            </div>
+      <h2 class="my-2">
+        写真を登録
+      </h2>
+      <p class="text-secondary">
+        データサイズが1MB以下の写真を登録することができます。
+      </p>
+      <form
+        class="col-sm-6 px-0"
+        @submit.prevent="postPicture"
+      >
+        <div class="input-group">
+          <div class="custom-file">
+            <input
+              id="customFile"
+              type="file"
+              name="file"
+              class="custom-file-input"
+              @change="selectedFile"
+            >
+            <label
+              class="custom-file-label"
+              for="customFile"
+              data-browse="参照"
+            >
+              ファイルを選択
+            </label>
           </div>
-        </form>
-      
+
+          <div class="input-group-append">
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              登録
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
 
-    <div class="col my-2">
-      <div class="alert alert-danger" v-if="this.getError">
-        画像の取得に失敗しました。時間を置いてやりなおしてください。
-      </div>
-      <div class="alert alert-danger" v-if="this.removeError">
-        削除に失敗しました。時間を置いてやりなおしてください。
-      </div>
-      <div class="alert alert-danger" v-if="this.storeError">
-        画像の保存に失敗しました。時間を置いてやりなおしてください。
+    <div
+      v-if="errorMessage"
+      class="col my-2"
+    >
+      <div class="alert alert-danger">
+        {{ errorMessage }}
       </div>
     </div>
-
 
     <div class="container-fluid">
       <div class="row">
         <div
           v-for="p in reversePictures"
+          :key="p.id"
           class="col-sm-4 my-2"
         >
           <picture-item-component
@@ -67,15 +81,26 @@ export default {
     PictureItemComponent,
   },
   props: {
-    eventId: Number,
+    eventId: {
+      type: Number,
+      require: true,
+      'default': -1,
+    },
+    errorMessages: {
+      type: Object,
+      require: false,
+      'default': () => ({
+        getError: "画像の取得に失敗しました。",
+        removeError: "削除に失敗しました。",
+        storeError: "画像の送信に失敗しました。",
+      }),
+    },
   },
   data: function() {
     return {
       pictures: [],
       uploadImage: null,
-      getError: false,
-      removeError: false,
-      storeError: false,
+      errorMessage: "",
     };
   },
   computed: {
@@ -85,14 +110,18 @@ export default {
     }
   },
   created: function () {
+    if (this.eventId === -1) {
+      return;
+    }
+
     api.getPicturesList(this.eventId).then(
       picturesResponse => {
-        this.getError = false;
+        this.errorMessage = "";
         this.pictures = picturesResponse.data.data;
       },
       // TODO: API利用に失敗した際の処理を記述する リクエストの再送信など
       errors => {
-        this.getError = true;
+        this.errorMessage = this.errorMessages.getError;
         console.error(errors);
       }
     );
@@ -100,14 +129,15 @@ export default {
   methods: {
     removePicture (id) {
       let index = this.pictures.findIndex((p) => p.id === id);
+
       api.removePicture(id).then(
-        pictureRemoveResponse => {
+        () => {
+          this.errorMessage = "";
           this.pictures.splice(index, 1);
-          this.removeError = false;
         },
         // TODO: API利用に失敗した際の処理を記述する
         errors => {
-          this.removeError = true;
+          this.errorMessage = this.errorMessages.removeError;
           console.error(errors);
         },
       );
@@ -120,14 +150,33 @@ export default {
     postPicture () {
       // FormData を利用して File を POST する
       let data = new FormData();
+
       data.append('event_id', this.eventId);
       data.append('file', this.uploadImage);
+
       api.postPicture(data).then(
         picturePostResponse => {
-          this.pictures.push(picturePostResponse.data.data);
+          const responseDataProperties = Object.getOwnPropertyNames(picturePostResponse.data);
+          const responseData = picturePostResponse.data;
+
+          if (responseDataProperties.includes("messages")) {
+            this.errorMessage = responseData.messages.file.toString();
+            return;
+          }
+
+          this.errorMessage = "";
+          this.pictures.push(responseData.data);
         },
         errors => {
-          this.storeError = true;
+          /*
+           * TODO: 返ってきたステータスコードで表示を切りかえたい
+           * ここのエラー表示についてのメモ
+           * 想定しているエラー番号は413(nginxの1MB制限超過)と500
+           * 状態としてはどちらもサーバーに画像を送信できなかった、なので
+           * エラーメッセージは同じものを出している
+           * あんまりよくない状態なのでTODOとしてコメントを残している
+           */
+          this.errorMessage = this.errorMessages.storeError;
           console.error(errors);
         },
       )

@@ -9,7 +9,32 @@
         <p class="text-secondary">イベントタイトルをクリックするとイベント画面を表示する事ができます。</p>
         <a href="{{ route('events.create') }}"><button type="button" class="btn btn-outline-primary btn-lg">新規作成</button></a>
     </div>
-    <!-- ユーザーが作成した全イベント情報を表示 --> 
+
+    <form  class="mb-4" method="get" action="/events">
+        <div class="form-inline">
+            <label class="checkbox-inline">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="open"
+                    value="1"
+                    {{ isset($_GET['open']) ? "checked" : "" }}
+                    >公開中のイベント
+            </label>
+            <label class="checkbox-inline ml-2">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="close"
+                    value="1"
+                    {{ isset($_GET['close']) ? "checked" : "" }}
+                    >公開期間外のイベント
+            </label>
+            <button type="submit" class="btn btn-primary mx-2">絞り込む</button>
+        </div>
+    </form>
+
+    <!-- ユーザーが作成した全イベント情報を表示 -->
     @foreach($events as $event)
     <div class="row mb-4">
         <div class="col-12">
@@ -40,6 +65,6 @@
         </div>
     </div>
     @endforeach
-    </div>
+    {{ $events->appends(request()->input())->links() }}
 </div>
 @endsection
