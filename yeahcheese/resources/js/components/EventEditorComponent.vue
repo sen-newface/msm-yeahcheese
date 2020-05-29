@@ -198,6 +198,8 @@ export default {
             const responseDataProperties = Object.getOwnPropertyNames(updateResponse.data);
             const responseData = updateResponse.data;
             
+            this.errorMessages = [];
+
             if (responseDataProperties.includes("messages")) {
               const responseErrors = responseData.messages;
 
@@ -209,7 +211,6 @@ export default {
               return;
             }
 
-            this.errorMessages = [];
             this.postStatusMessage = this.postStatusMessages.success;
           },
         )
