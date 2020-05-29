@@ -6,8 +6,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+use App\Event;
+use App\Picture;
+
 class EventControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
     /**
      * A basic feature test example.
      *
@@ -32,10 +43,24 @@ class EventControllerTest extends TestCase
 
     public function testEventShow()
     {
-        // /events/show?auth_key={}
-        $response = $this->get('/');
+        $event = Event::find(1);
+        $picture = $event->pictures()->first();
+
+        $response = $this->get('/events/show?auth_key=' . $event->auth_key);
 
         $response->assertStatus(200);
+
+        $response->assertSee($event->title)
+                 ->assertSee($event->release_date)
+                 ->assertSee($event->end_date)
+                 ->assertSee($picture->path);
+
+        /* イベントが見つからずリダイレクトした時のテスト
+         * いまはコンフリクトすると思うのでここに。あとで分離したい
+         */
+        $response = $this->get('events/show');
+
+        $response->assertStatus(302);
     }
 
     public function testEventSearch()
