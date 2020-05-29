@@ -22,6 +22,7 @@
         <ul>
           <li
             v-for="message in errorMessages"
+            :key="message"
           >
             {{ message }}
           </li>
