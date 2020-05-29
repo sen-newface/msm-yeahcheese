@@ -1,6 +1,11 @@
 <template>
-  <div class="row">
-    <div class="col-md-6 offset-3">
+  <div class="row m-2">
+    <div class="col-12 my-2">
+      <h2>イベント情報を編集</h2>
+      <p class="text-secondary">
+        255文字以下のタイトルを設定することができます。イベントの公開開始日は公開終了日より先の日付を指定することはできません。
+      </p>
+
       <div
         v-if="postStatusMessage"
         class="alert my-2"
@@ -23,60 +28,62 @@
         </ul>
       </div>
 
-      <div class="form-group">
-        <label>イベントタイトル</label>
-        <input
-          v-model="title"
-          type="text"
-          class="form-control"
-        >
+      <div class="col-sm-6 px-0">
+        <div class="form-group">
+          <label>イベントタイトル</label>
+          <input
+            v-model="title"
+            type="text"
+            class="form-control"
+          >
 
-        <div
-          v-if="!validateStatus.title"
-          class="alert alert-danger my-2"
-          role="alert"
-        >
-          {{ validateErrorMessages.title }}
+          <div
+            v-if="!validateStatus.title"
+            class="alert alert-danger my-2"
+            role="alert"
+          >
+            {{ validateErrorMessages.title }}
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label>公開開始日</label>
-        <input
-          v-model="release_date"
-          type="date"
-          class="form-control"
-        >
+        <div class="form-group">
+          <label>公開開始日</label>
+          <input
+            v-model="release_date"
+            type="date"
+            class="form-control"
+          >
 
-        <div
-          v-if="!validateStatus.releaseDate"
-          class="alert alert-danger my-2"
-          role="alert"
-        >
-          {{ validateErrorMessages.releaseDate }}
+          <div
+            v-if="!validateStatus.releaseDate"
+            class="alert alert-danger my-2"
+            role="alert"
+          >
+            {{ validateErrorMessages.releaseDate }}
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label>公開終了日</label>
-        <input
-          v-model="end_date"
-          type="date"
-          class="form-control"
-        >
+        <div class="form-group">
+          <label>公開終了日</label>
+          <input
+            v-model="end_date"
+            type="date"
+            class="form-control"
+          >
 
-        <div
-          v-if="!validateStatus.endDate"
-          class="alert alert-danger my-2"
-          role="alert"
-        >
-          {{ validateErrorMessages.endDate }}
+          <div
+            v-if="!validateStatus.endDate"
+            class="alert alert-danger my-2"
+            role="alert"
+          >
+            {{ validateErrorMessages.endDate }}
+          </div>
         </div>
       </div>
 
       <button
         type="submit"
-        class="col-sm-2 offset-sm-5 btn btn-primary"
+        class="col-sm-2 btn btn-primary"
         @click="updateEvent"
       >
         更新
@@ -172,7 +179,7 @@ export default {
     );
   },
   methods: {
-    updateEvent: function() { 
+    updateEvent: function() {
       const request = {
         id : this.eventId,
         title : this.title,

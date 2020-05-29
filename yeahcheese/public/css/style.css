@@ -47,3 +47,10 @@
         object-fit: cover;
     }
 }
+
+.custom-file {
+    overflow: hidden;
+}
+.custom-file-label {
+    white-space: nowrap;
+}

@@ -33,8 +33,8 @@
                     <p class="mb-0">{{ Auth::user()->email }}</p>
                 <!--ログインしてなかったら-->
                 @else
-                    <a href="/login">login</a>
-                    <a href="/register">register</a>
+                    <a href="/login">{{ __('Login') }}</a>
+                    <a href="/register">{{ __('Register') }}</a>
                 @endif
             </div>
         </nav>
@@ -43,8 +43,13 @@
             @yield('content')
         </div>
         
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            $('.custom-file-input').on('change',function(){
+            $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+            })
+        </script>
     </body>
 </html>

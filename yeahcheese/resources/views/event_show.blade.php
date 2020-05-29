@@ -7,7 +7,9 @@
     <div class="jumbotron bg-white border">
         <h2>{{ $event->title }}</h2>
         <p>掲載期間 : {{ $event->release_date }} / {{ $event->end_date }}</p>
-        <p class="text-secondary">画像をクリックすると拡大表示されます</p>
+        @if (!$errors->any())
+            <p class="text-secondary">画像をクリックすると拡大表示されます</p>
+        @endif
     </div>
 
     <div class="container">

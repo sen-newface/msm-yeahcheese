@@ -6,7 +6,7 @@
 <div class="container">
     <div class="jumbotron bg-white border">
         <h2>イベント閲覧</h2>
-        <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます</p>
+        <p class="text-secondary">イベントの認証キーを入力するとイベントを閲覧することができます。</p>
     </div>
 
     <div class="row">
@@ -19,7 +19,7 @@
         <!-- フォームとボタンだけinlineになるように修正する -->
         <div class="col-md-6 offset-md-3">
             <form method="GET" action="{{ route('events.show') }}">
-                <label>認証キー</label>
+                <h4>認証キー</h4>
                 <div class="form-group form-row form-inline">
                     <input type="text" class="form-control col" name="auth_key" placeholder="認証キーを入力">
                     <button type="submit" class="btn btn-primary mx-2">閲覧</button>

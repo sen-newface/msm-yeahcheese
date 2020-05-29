@@ -1,26 +1,41 @@
 <template>
   <div class="row m-2">
     <div class="col-12">
-      <h2><span>写真を登録</span></h2>
+      <h2 class="my-2">
+        写真を登録
+      </h2>
       <p class="text-secondary">
-        1MB以下の写真を登録することができます。
+        データサイズが1MB以下の写真を登録することができます。
       </p>
-
       <form
         class="form-inline"
         @submit.prevent="postPicture"
       >
         <div class="form-group px-0">
           <input
+            id="customFile"
             type="file"
             name="file"
+            class="custom-file-input"
             @change="selectedFile"
           >
-        </div>
+          <label
+            class="custom-file-label"
+            for="customFile"
+            data-browse="参照"
+          >
+            ファイルを選択
+          </label>
 
-        <button type="submit">
-          登録
-        </button>
+          <div class="input-group-append">
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              登録
+            </button>
+          </div>
+        </div>
       </form>
     </div>
 

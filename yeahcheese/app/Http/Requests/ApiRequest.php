@@ -8,7 +8,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class ApiRequest extends FormRequest
 {
-    protected function failedValidation(Validator $validator){
+    protected function failedValidation(Validator $validator)
+    {
         $data = [
             'messages' => $validator->errors()->toArray(),
         ];
