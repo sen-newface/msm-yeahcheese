@@ -137,7 +137,7 @@ export default {
   },
   computed: {
     isUpdateSuccess () {
-      return (this.postStatusMessage == this.postStatusMessages.success ? true : false);
+      return this.postStatusMessage === this.postStatusMessages.success;
     }
   },
   watch: {
