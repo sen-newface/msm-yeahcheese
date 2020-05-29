@@ -202,7 +202,7 @@ export default {
               const responseErrors = responseData.messages;
 
               for (var error in responseErrors) {
-                console.log(responseErrors[error].toString());
+                console.error(responseErrors[error].toString());
                 this.errorMessages.push(responseErrors[error].toString());
               }
 
