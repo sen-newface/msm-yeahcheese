@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 use App\Event;
+use App\Picture;
 use App\User;
 
 class EventControllerTest extends TestCase
@@ -50,11 +51,36 @@ class EventControllerTest extends TestCase
 
     public function testEventShow()
     {
-        // /events/show?auth_key={}
-        $response = $this->get('/');
+        $event = Event::find(1);
+        $picture = $event->pictures()->first();
+
+        $response = $this->get('/events/show?auth_key=' . $event->auth_key);
 
         $response->assertStatus(200);
+
+        $response->assertSee($event->title)
+                 ->assertSee($event->release_date)
+                 ->assertSee($event->end_date)
+                 ->assertSee($picture->path);
+
     }
+
+    public function testEventShowWithoutAuthKey()
+    {
+        $response = $this->get('events/show');
+
+        $response->assertStatus(302)
+                 ->assertRedirect('events/search');
+    }
+
+    public function testEventShowWithInvalidAuthKey()
+    {
+        $response = $this->get('/events/show?auth_key=dummyauthkey');
+
+        $response->assertStatus(302)
+                 ->assertRedirect('events/search');
+    }
+
 
     public function testEventSearch()
     {
