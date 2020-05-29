@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Event extends Model
 {
@@ -14,6 +15,11 @@ class Event extends Model
     public function pictures()
     {
         return $this->hasMany('App\Picture');
+    }
+
+    public function isOwner()
+    {
+        return Auth::id() === $this->user_id;
     }
 
     public function scopeUserIdEquals($query, $id)
