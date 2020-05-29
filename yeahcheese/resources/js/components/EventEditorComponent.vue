@@ -200,19 +200,20 @@ export default {
           updateResponse => {
             const responseDataProperties = Object.getOwnPropertyNames(updateResponse.data);
             const responseData = updateResponse.data;
+            
+            this.errorMessages = [];
 
             if (responseDataProperties.includes("messages")) {
               const responseErrors = responseData.messages;
 
               for (var error in responseErrors) {
-                console.log(responseErrors[error].toString());
+                console.error(responseErrors[error].toString());
                 this.errorMessages.push(responseErrors[error].toString());
               }
 
               return;
             }
 
-            this.errorMessages = [];
             this.postStatusMessage = this.postStatusMessages.success;
           },
         )
