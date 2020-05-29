@@ -10,12 +10,29 @@ use App\Http\Requests\StoreEventRequest;
 
 class EventController extends Controller
 {
-    public function index()
+    const EVENT_NUM_PER_PAGE = 5;
+
+    public function index(Request $request)
     {
+        $today = CarbonImmutable::now()->toDateString();
         $id = Auth::id();
+
         $events = Event::userIdEquals($id)
             ->with('pictures')
-            ->get();
+            ->when(isset($request['open']) && !isset($request['close']), function ($query) use ($today) {
+                $query->releaseDateBeforeOrEquals($today)
+                ->endDateAfterOrEquals($today);
+            })
+            ->when(isset($request['close']) && !isset($request['open']), function ($query) use ($today) {
+                $query->where(function ($query) use ($today) {
+                    return $query->releaseDateAfter($today)
+                    ->orWhere(function ($query) use ($today) {
+                        $query->endDateBefore($today);
+                    });
+                });
+            })
+            ->orderBy('id', 'DESC')
+            ->paginate(self::EVENT_NUM_PER_PAGE);
 
         return view('events_list', ['events' => $events]);
     }

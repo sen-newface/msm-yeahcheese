@@ -31,6 +31,11 @@ class Event extends Model
         return $query->where('end_date', '>', $date);
     }
 
+    public function scopeEndDateAfterOrEquals($query, $date)
+    {
+        return $query->where('end_date', '>=', $date);
+    }
+
     public function scopeEndDateBefore($query, $date)
     {
         return $query->where('end_date', '<', $date);
