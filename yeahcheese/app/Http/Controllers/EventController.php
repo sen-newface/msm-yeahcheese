@@ -24,9 +24,9 @@ class EventController extends Controller
                 ->endDateAfterOrEquals($today);
             })
             ->when(isset($request['close']) && !isset($request['open']), function ($query) use ($today) {
-                $query->where(function($query) use ($today) {
+                $query->where(function ($query) use ($today) {
                     return $query->releaseDateAfter($today)
-                    ->orWhere(function($query) use ($today) {
+                    ->orWhere(function ($query) use ($today) {
                         $query->endDateBefore($today);
                     });
                 });
